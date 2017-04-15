@@ -105,4 +105,11 @@
     <string name="thyroid_us_size">Nodule size:</string>
 
 
+    // RESULTS
+    <string-array name="results_tab_titles_array">
+        <item>Report</item>
+        <item>References</item>
+    </string-array>
+
+
 </resources>

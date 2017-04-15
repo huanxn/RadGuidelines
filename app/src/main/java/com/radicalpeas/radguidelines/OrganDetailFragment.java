@@ -65,14 +65,9 @@ public class OrganDetailFragment extends Fragment
     {
         View rootView = null;
 
-        if(mItem.content == "Renal")
-        {
-            rootView = inflater.inflate(R.layout.renal_detail, container, false);
-        }
-        else
-        {
-            rootView = inflater.inflate(R.layout.organ_detail, container, false);
-        }
+
+        rootView = inflater.inflate(R.layout.organ_detail, container, false);
+
 
         // Show the dummy content as text in a TextView.
         if (mItem != null)

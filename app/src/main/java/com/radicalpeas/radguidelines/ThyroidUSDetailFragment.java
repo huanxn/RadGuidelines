@@ -254,9 +254,6 @@ public class ThyroidUSDetailFragment extends Fragment
 
             });
 
-
-
-
         }
 
         return rootView;
@@ -264,9 +261,16 @@ public class ThyroidUSDetailFragment extends Fragment
 
     // if completed info, returns guideline recommendations, reference, link
     // else send error message
-    public List<String> getGuidelines()
+    public String[] getGuidelines()
     {
-        List<String> stringList = new ArrayList<String>();
+        //ArrayList<String> stringList = new ArrayList<String>();
+        String[] guidelines = new String[7];
+
+        for(int i = 0; i < guidelines.length; i++)
+        {
+            guidelines[i] = "";
+        }
+
         String findings;
         int TIRADS_points = 0;
 
@@ -293,42 +297,53 @@ public class ThyroidUSDetailFragment extends Fragment
 
         TIRADS_points += echogenic_foci;
 
-        stringList.add("VALID");
+        guidelines[0] = "VALID";
 
         if(TIRADS_points <= 1)
         {
-            stringList.add("TR1: Benign.  No FNA");
+            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR1: Benign.";
+            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA";
         }
         else if(TIRADS_points == 2)
         {
-            stringList.add("TR2: Not suspicious. No FNA");
+            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR2: Not suspicious.";
+            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA";
         }
         else if(TIRADS_points == 3)
         {
             if(noduleSize >= 2.5)
             {
-                stringList.add("TR3: Mildly Suspicious.  Given the large size over 2.5 cm, FNA biopsy is recommended");
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR3: Mildly Suspicious.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the large size over 2.5 cm, FNA biopsy is recommended.";
             }
             else if(noduleSize >= 1.5)
             {
-                stringList.add("TR3: Mildly Suspicious.  Given the size less than 2.5 cm, but greater than 1.5 cm, follow up is recommended.");
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR3: Mildly Suspicious.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 2.5 cm, but greater than 1.5 cm, follow up is recommended.";
             }
             else
             {
-                stringList.add("TR3: Mildly Suspicious.  Given the size less than 1.5 cm, no follow up is recommended.");
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR3: Mildly Suspicious.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
             }
         }
         else if(TIRADS_points >= 4 && TIRADS_points <= 6)
         {
-            stringList.add("TR4: Moderately Suspicious.  FNA if > 1.5 cm.  Follow if > 1 cm");
+            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR4: Moderately Suspicious.";
+            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
         }
         else
         {
-            stringList.add("TR5: Highly Suspicious.  FNA if > 1 cm.  Follow if > 0.5 cm");
+            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR5: Highly Suspicious.";
+            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
+            guidelines[OrganDetailActivity.RESULTS_STATISTICS] = " ??% mallignant";
         }
 
+        guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";
+        guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
+        guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_tirads_2017";
 
 
-        return stringList;
+        return guidelines;
     }
 }

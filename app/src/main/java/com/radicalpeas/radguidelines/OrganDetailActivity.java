@@ -26,7 +26,17 @@ public class OrganDetailActivity extends AppCompatActivity
     final static int ORGAN_RENAL = 2;
     final static int ORGAN_LIVER = 3;
     final static int ORGAN_THYROID = 11;
+
+    final static int RESULTS_IMPRESSION = 1;
+    final static int RESULTS_FOLLOWUP = 2;
+    final static int RESULTS_STATISTICS = 3;
+    final static int RESULTS_REFERENCE_TEXT = 4;
+    final static int RESULTS_REFERENCE_LINK = 5;
+    final static int RESULTS_REFERENCE_IMAGE= 6;
+
     int organ_id = -1;
+
+
 
     Fragment fragment;
 
@@ -66,14 +76,16 @@ public class OrganDetailActivity extends AppCompatActivity
                 }
                 else if(organ_id == ORGAN_THYROID)
                 {
-                    List<String> guidelines = new ArrayList<String>();
-                    guidelines = ((ThyroidUSDetailFragment) fragment).getGuidelines();
+                    //ArrayList<String> guidelines = new ArrayList<String>();
+                    String[] results = new String[7];
+                    results = ((ThyroidUSDetailFragment) fragment).getGuidelines();
 
+/*
                     String message;
 
-                    if(guidelines.get(0).contentEquals("VALID"))
+                    if(results[0].contentEquals("VALID"))
                     {
-                        message = guidelines.get(1);
+                        message = results[1]);
                     }
                     else
                     {
@@ -82,30 +94,48 @@ public class OrganDetailActivity extends AppCompatActivity
 
                     Snackbar.make(view, message, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+*/
 
+                    if(results[0].contentEquals("VALID"))
+                    {
+                        // hide button
+                        findViewById(R.id.fab).setVisibility(View.INVISIBLE);
 
-                    // Create the results fragment and add it to the activity
-                    // using a fragment transaction.
-                    Bundle arguments = new Bundle();
+                        // Create the results fragment and add it to the activity
+                        // using a fragment transaction.
+                        Bundle arguments = new Bundle();
 
+                        // pass ORGAN id
+                        arguments.putString(OrganDetailFragment.ARG_ITEM_ID, String.valueOf(ORGAN_THYROID));
+                        arguments.putString(ResultsDetailFragment.ARG_IMPRESSION, results[1]);
+                        arguments.putString(ResultsDetailFragment.ARG_FOLLOWUP, results[2]);
+                        arguments.putString(ResultsDetailFragment.ARG_STATISTICS, results[3]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_TEXT, results[4]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_LINK, results[5]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_IMAGE, results[6]);
 
-                    // pass ORGAN id
-                    arguments.putString(OrganDetailFragment.ARG_ITEM_ID, String.valueOf(ORGAN_THYROID));
+                        Fragment result_fragment = new ResultsDetailFragment();
 
-                    Fragment result_fragment = new ResultsDetailFragment();
+                        result_fragment.setArguments(arguments);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.organ_detail_container, result_fragment)
+                                .addToBackStack(null)
+                                .commit();
 
-                    result_fragment.setArguments(arguments);
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.organ_detail_container, result_fragment)
-                            .addToBackStack(null)
-                            .commit();
-
-
-  //                  Intent intent = new Intent(view.getContext(), ResultsDetailFragment.class);
-//                    intent.putExtra("IMPRESSION", guidelines.get(1));
-  //                  intent.putExtra("FOLLOWUP", guidelines.get(2));
-//                    startActivity(intent);
-
+                    }
+                    else
+                    {
+                        // display error message
+                        Snackbar.make(view, results[0], Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+/*
+// TEST:  starting new ResultsDetailActivity and ResultsDetailFragment   -viewpager still doesn't show sliding tab fragments
+                    Intent intent = new Intent(view.getContext(), ResultsDetailActivity.class);
+                    intent.putExtra(OrganDetailFragment.ARG_ITEM_ID, String.valueOf(organ_id));
+                //    intent.putExtra("FOLLOWUP", guidelines.get(2));
+                   startActivity(intent);
+*/
                 }
                 else
                 {
@@ -139,7 +169,7 @@ public class OrganDetailActivity extends AppCompatActivity
             arguments.putString(OrganDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(OrganDetailFragment.ARG_ITEM_ID));
 
-            organ_id = Integer.valueOf(arguments.getString("item_id"));
+            organ_id = Integer.valueOf(arguments.getString(OrganDetailFragment.ARG_ITEM_ID));
 
             if(organ_id == ORGAN_RENAL)
             {
@@ -151,7 +181,6 @@ public class OrganDetailActivity extends AppCompatActivity
             }
             else
             {
-
                 fragment = new OrganDetailFragment();
             }
 
@@ -184,6 +213,8 @@ public class OrganDetailActivity extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
+
+        findViewById(R.id.fab).setVisibility(View.VISIBLE);
         getSupportFragmentManager().popBackStack();
         return;
     }
