@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
+    <dimen name="item_width">200dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+
+
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">12dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
+    <dimen name="text_box_height">36dp</dimen>
+    <dimen name="list_item_height">48dp</dimen>
+
+    <dimen name="cardTextSize">16sp</dimen>
+    <dimen name="standardTextSize">16sp</dimen>
+    <dimen name="largeTextSize">18sp</dimen>
+    <dimen name="toolbarTextSize">20sp</dimen>
+    <dimen name="veryLargeTextSize">24sp</dimen>
+    <dimen name="extremelyLargeTextSize">30dp</dimen>
+
+    <dimen name="large_image_height">280dp</dimen>
+    <dimen name="medium_image_height">175dp</dimen>
+    <dimen name="small_image_height">100dp</dimen>
+
+    <!-- CardsLib custom settings -->
+    <!-- Thumbnail -->
+    <dimen name="card_thumbnail_width">125dp</dimen>
+    <dimen name="card_thumbnail_height">125dp</dimen>
+
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <!--<dimen name="toolbar_size">?attr/actionBarSize</dimen>-->
+    <dimen name="toolbar_size">56dp</dimen>
+
+    <dimen name="statusbar_size">25dp</dimen>
+
+    <dimen name="fastscroller_width">48dp</dimen>
+
+
+</resources>

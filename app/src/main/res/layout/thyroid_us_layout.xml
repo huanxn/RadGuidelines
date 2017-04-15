@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_thyroid_composition"
+            style="@style/standardTextLabelStyle"
+            android:text="@string/thyroid_us_composition"/>
+
+        <Spinner
+            android:id="@+id/spinner_thyroid_composition"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_thyroid_echogenicity"
+            style="@style/standardTextLabelStyle"
+            android:text="@string/thyroid_us_echogenicity"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_thyroid_echogenicity"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_thyroid_shape"
+            style="@style/standardTextLabelStyle"
+            android:text="@string/thyroid_us_shape"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_thyroid_shape"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_thyroid_margin"
+            style="@style/standardTextLabelStyle"
+            android:text="@string/thyroid_us_margin"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_thyroid_margin"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_thyroid_echogenic_foci"
+            style="@style/standardTextLabelStyle"
+            android:text="@string/thyroid_us_echogenic_foci"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_thyroid_echogenic_foci"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:id="@+id/label_thyroid_nodule_size"
+                  style="@style/standardTextLabelStyle"
+                  android:text="Nodule size (cm): "
+            />
+
+        <EditText
+            android:id="@+id/edittext_thyroid_nodule_size"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:paddingRight="10dp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">Rad Guidelines</string>
+    <string name="title_organ_detail">Organ Detail</string>
+
+
+
+    <string name="risk_level_prompt">Risk Level</string>
+    <string-array name="risk_level_array">
+        <item>General population</item>
+        <item>Limited life expectancy or high risk comorbitidites</item>
+    </string-array>
+
+    <string-array name="renal_solid_size_array">
+        <item>Less than 1 cm</item>
+        <item>1 to 3 cm</item>
+        <item>More than 3 cm</item>
+    </string-array>
+
+    <string name="size_prompt">Size:</string>
+
+    <!-- RENAL CYST -->
+    <string name="renal_cyst_solid">Cystic or Solid</string>
+
+    <string name="renal_cyst_wall_prompt">Cyst wall:</string>
+    <string-array name="renal_cyst_wall_array">
+        <item>Hairline-thin wall</item>
+        <item>Thickened irregular or smooth walls with measurable enhancement</item>
+        <item>Enhancing soft tissue components adjacent to or separate from the wall or septa</item>
+    </string-array>
+
+    <string name="renal_cyst_attenuation_prompt">Attenuation:</string>
+    <string-array name="renal_cyst_attenuation_array">
+        <item>simple fluid attenuation</item>
+        <item>homogeneous hyperattenuation</item>
+    </string-array>
+
+    <string name="renal_cyst_septation_prompt">Septations:</string>
+    <string-array name="renal_cyst_septation_array">
+        <item>no septations</item>
+        <item>few thin septa</item>
+        <item>multiple thin septa, or minimal smooth thickened septa</item>
+        <item>thick irregular septa</item>
+    </string-array>
+
+    <string name="renal_cyst_calcification_prompt">Calcifications:</string>
+    <string-array name="renal_cyst_calcification_array">
+        <item>no calcifications</item>
+        <item>thin or slightly thickened calcifications</item>
+        <item>thick or nodular calcifications</item>
+    </string-array>
+
+    <string name="renal_cyst_enhancement_prompt">Enhancement:</string>
+    <string-array name="renal_cyst_enhancement_array">
+        <item>no enhancement</item>
+        <item>perceived but not measurable enhancement of thin septa or wall</item>
+        <item>measurable enhancement</item>
+    </string-array>
+
+    <string-array name="renal_cyst_size_array">
+        <item>less than 3 cm</item>
+        <item>more than 3 cm</item>
+    </string-array>
+
+
+    <!-- THYROID -->
+    <string name="thyroid_prompt">US or CT</string>
+    <string name="thyroid_us_composition">Composition:</string>
+    <string-array name="thyroid_us_composition_array">
+        <item>cystic or almost completely cystic</item>
+        <item>spongiform</item>
+        <item>mixed cystic and solid</item>
+        <item>solid or almost completely solid</item>
+    </string-array>
+
+    <string name="thyroid_us_echogenicity">Echogenicity:</string>
+    <string-array name="thyroid_us_echogenicity_array">
+        <item>anechoic</item>
+        <item>hyperechoic or isoechoic</item>
+        <item>hypoechoic</item>
+        <item>very hypoechoic</item>
+    </string-array>
+
+    <string name="thyroid_us_shape">Shape:</string>
+    <string-array name="thyroid_us_shape_array">
+        <item>wider than tall</item>
+        <item>taller than wide</item>
+    </string-array>
+
+    <string name="thyroid_us_margin">Margins:</string>
+    <string-array name="thyroid_us_margin_array">
+        <item>smooth</item>
+        <item>ill-defined</item>
+        <item>lobulated or irregular</item>
+        <item>extra-thyroidal extension</item>
+    </string-array>
+
+    <string name="thyroid_us_echogenic_foci">Echogenic foci:</string>
+    <string-array name="thyroid_us_echogenic_foci_array">
+        <item>none or large comet-tail artifacts</item>
+        <item>coarse calcifications</item>
+        <item>peripheral (rim) calcifications</item>
+        <item>punctate echogenic foci</item>
+    </string-array>
+
+    <string name="thyroid_us_size">Nodule size:</string>
+
+
+</resources>
