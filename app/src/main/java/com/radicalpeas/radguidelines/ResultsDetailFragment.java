@@ -1,6 +1,5 @@
 package com.radicalpeas.radguidelines;
 
-import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -33,7 +31,6 @@ public class ResultsDetailFragment extends Fragment
     public static final String ARG_REFERENCE_TEXT = "REFERENCE_TEXT";
     public static final String ARG_REFERENCE_LINK = "REFERENCE_LINK";
     public static final String ARG_REFERENCE_IMAGE = "REFERENCE_IMAGE";
-    public static final String ARG_GUIDELINES_ARRAY = "GUIDELINES_ARRAY";
 
 
 
@@ -258,10 +255,6 @@ public class ResultsDetailFragment extends Fragment
                         {
                             // set image
                             String image_uri = getArguments().getString(ARG_REFERENCE_IMAGE);
-
-                            //    int imageResource = R.drawable.thyroid_tirads_2017;
-                            //    Drawable image = getResources().getDrawable(imageResource);
-
                             int imageResource = getResources().getIdentifier(image_uri, null, getActivity().getPackageName());
                             Drawable image = getResources().getDrawable(imageResource);
 

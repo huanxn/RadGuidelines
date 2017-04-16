@@ -1,6 +1,7 @@
 package com.radicalpeas.radguidelines;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,13 @@ public class OrganDetailActivity extends AppCompatActivity
     final static int RESULTS_REFERENCE_IMAGE= 6;
 
     int organ_id = -1;
+
+    /**
+     * The fragment argument representing the item ID that this fragment
+     * represents.
+     */
+    public static final String ARG_ITEM_ID = "item_id";
+
 
 
 
@@ -78,7 +87,7 @@ public class OrganDetailActivity extends AppCompatActivity
                 {
                     //ArrayList<String> guidelines = new ArrayList<String>();
                     String[] results = new String[7];
-                    results = ((ThyroidUSDetailFragment) fragment).getGuidelines();
+                    results = ((ThyroidDetailFragment) fragment).getResults();
 
 /*
                     String message;
@@ -107,12 +116,12 @@ public class OrganDetailActivity extends AppCompatActivity
 
                         // pass ORGAN id
                         arguments.putString(OrganDetailFragment.ARG_ITEM_ID, String.valueOf(ORGAN_THYROID));
-                        arguments.putString(ResultsDetailFragment.ARG_IMPRESSION, results[1]);
-                        arguments.putString(ResultsDetailFragment.ARG_FOLLOWUP, results[2]);
-                        arguments.putString(ResultsDetailFragment.ARG_STATISTICS, results[3]);
-                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_TEXT, results[4]);
-                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_LINK, results[5]);
-                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_IMAGE, results[6]);
+                        arguments.putString(ResultsDetailFragment.ARG_IMPRESSION, results[RESULTS_IMPRESSION]);
+                        arguments.putString(ResultsDetailFragment.ARG_FOLLOWUP, results[RESULTS_FOLLOWUP]);
+                        arguments.putString(ResultsDetailFragment.ARG_STATISTICS, results[RESULTS_STATISTICS]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_TEXT, results[RESULTS_REFERENCE_TEXT]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_LINK, results[RESULTS_REFERENCE_LINK]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_IMAGE, results[RESULTS_REFERENCE_IMAGE]);
 
                         Fragment result_fragment = new ResultsDetailFragment();
 
@@ -171,13 +180,20 @@ public class OrganDetailActivity extends AppCompatActivity
 
             organ_id = Integer.valueOf(arguments.getString(OrganDetailFragment.ARG_ITEM_ID));
 
-            if(organ_id == ORGAN_RENAL)
+            if(organ_id == ORGAN_LIVER)
             {
+                setImageView(R.id.toolbar_imageview, R.drawable.liver_ct_header);
+                //fragment = new LiverDetailFragment();
+            }
+            else if(organ_id == ORGAN_RENAL)
+            {
+                setImageView(R.id.toolbar_imageview, R.drawable.renal_ct_header);
                 fragment = new RenalDetailFragment();
             }
             else if(organ_id == ORGAN_THYROID)
             {
-                fragment = new ThyroidUSDetailFragment();
+                setImageView(R.id.toolbar_imageview, R.drawable.thyroid_us_header);
+                fragment = new ThyroidDetailFragment();
             }
             else
             {
@@ -189,6 +205,14 @@ public class OrganDetailActivity extends AppCompatActivity
                     .add(R.id.organ_detail_container, fragment)
                     .commit();
         }
+    }
+
+    public void setImageView(int imageViewID, int drawable)
+    {
+        //int imageResource = drawable;
+        Drawable image = getResources().getDrawable(drawable);
+        ImageView imageView = (ImageView) findViewById(imageViewID);
+        imageView.setImageDrawable(image);
     }
 
     @Override

@@ -64,6 +64,11 @@
 
     <!-- THYROID -->
     <string name="thyroid_prompt">US or CT</string>
+    <string-array name="thyroid_tab_titles_array">
+        <item>Ultrasound</item>
+        <item>CT</item>
+    </string-array>
+
     <string name="thyroid_us_composition">Composition:</string>
     <string-array name="thyroid_us_composition_array">
         <item>cystic or almost completely cystic</item>
