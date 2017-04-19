@@ -9,28 +9,19 @@
         android:orientation="vertical">
 
 
-        <TextView android:id="@+id/organ_detail"
-                  style="?android:attr/textAppearanceLarge"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:padding="16dp"
-                  android:textIsSelectable="true"
-            />
-
         <com.radicalpeas.radguidelines.SpinnerWithPrompt
-            android:id="@+id/spinner_thyroid_US_or_CT"
-            style="@style/customSpinnerStyle"
-            android:prompt="@string/thyroid_prompt"
+            android:id="@+id/spinner_cyst_or_solid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/renal_cyst_solid"
             />
 
         <!-- will inflate with Renal Cyst or Renal Solid lesion group of menu items -->
         <FrameLayout
-            android:id="@+id/thyroid_lesion_container"
+            android:id="@+id/renal_lesion_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
-
-
 
     </LinearLayout>
 

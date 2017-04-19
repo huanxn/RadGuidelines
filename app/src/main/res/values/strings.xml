@@ -3,12 +3,54 @@
     <string name="title_organ_detail">Organ Detail</string>
 
 
+    <string-array name="ct_tab_titles_array">
+        <item>CT</item>
+    </string-array>
 
-    <string name="risk_level_prompt">Risk Level</string>
-    <string-array name="risk_level_array">
+    <string-array name="ctmr_tab_titles_array">
+        <item>CT or MR</item>
+    </string-array>
+
+    <string-array name="ctmrus_tab_titles_array">
+        <item>CT or MR or US</item>
+    </string-array>
+
+
+    <string-array name="no_yes_array">
+        <item>no</item>
+        <item>yes</item>
+    </string-array>
+
+    <string name="demographic_prompt">Demographic:</string>
+    <string-array name="demographic_array">
         <item>General population</item>
         <item>Limited life expectancy or high risk comorbitidites</item>
     </string-array>
+
+
+    <!-- LUNG -->
+    <string-array name="lung_tab_titles_array">
+        <item>Incidental on CT</item>
+        <item>Screening on CT</item>
+    </string-array>
+
+    <!-- LIVER -->
+    <string-array name="liver_tab_titles_array">
+        <item>Incidental on CT</item>
+        <item>LI-RADS</item>
+    </string-array>
+    <string-array name="liver_lirads_size_array">
+        <item>&lt; 1.0</item>
+        <item>between 1.0 and 2.0</item>
+        <item>&gt;= 2.0</item>
+    </string-array>
+
+    <string-array name="liver_lirads_arterial_array">
+        <item>hypo- or iso-enhancement</item>
+        <item>hyper-enhancement</item>
+    </string-array>
+
+    <!-- RENAL -->
 
     <string-array name="renal_solid_size_array">
         <item>Less than 1 cm</item>
@@ -16,10 +58,10 @@
         <item>More than 3 cm</item>
     </string-array>
 
-    <string name="size_prompt">Size:</string>
+    <string name="size_prompt">Size (cm):</string>
 
     <!-- RENAL CYST -->
-    <string name="renal_cyst_solid">Cystic or Solid</string>
+    <string name="renal_cyst_solid">Cystic or Solid Lesion</string>
 
     <string name="renal_cyst_wall_prompt">Cyst wall:</string>
     <string-array name="renal_cyst_wall_array">
@@ -52,7 +94,6 @@
     <string name="renal_cyst_enhancement_prompt">Enhancement:</string>
     <string-array name="renal_cyst_enhancement_array">
         <item>no enhancement</item>
-        <item>perceived but not measurable enhancement of thin septa or wall</item>
         <item>measurable enhancement</item>
     </string-array>
 
@@ -63,10 +104,9 @@
 
 
     <!-- THYROID -->
-    <string name="thyroid_prompt">US or CT</string>
     <string-array name="thyroid_tab_titles_array">
         <item>Ultrasound</item>
-        <item>CT</item>
+        <item>CT or MR</item>
     </string-array>
 
     <string name="thyroid_us_composition">Composition:</string>
@@ -109,12 +149,41 @@
 
     <string name="thyroid_us_size">Nodule size:</string>
 
+    <string name="suspicious_ct_or_mr">Suspicious CT or MR features</string>
 
-    // RESULTS
+    <string name="thyroid_ct_age">Age:</string>
+    <string-array name="thyroid_ct_age_array">
+        <item>&lt; 35 years</item>
+        <item>&gt;= 35 years</item>
+    </string-array>
+
+    <string-array name="thyroid_ct_young_size_array">
+        <item>&lt; 1 cm</item>
+        <item>&gt;= 1 cm</item>
+    </string-array>
+
+    <string-array name="thyroid_ct_old_size_array">
+        <item>&lt; 1.5 cm</item>
+        <item>&gt;= 1.5 cm</item>
+    </string-array>
+
+    <!-- ADRENAL -->
+    <string-array name="adrenal_tab_titles_array">
+        <item>Incidental CT</item>
+        <item>Adrenal protocol CT</item>
+    </string-array>
+
+    <string-array name="prostate_tab_titles_array">
+        <item>PI-RADS</item>
+    </string-array>
+
+    <!-- RESULTS -->
     <string-array name="results_tab_titles_array">
         <item>Report</item>
         <item>References</item>
     </string-array>
+
+
 
 
 </resources>

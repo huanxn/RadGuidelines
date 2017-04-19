@@ -110,7 +110,7 @@ public class OrganListActivity extends AppCompatActivity
                     if (mTwoPane)
                     {
                         Bundle arguments = new Bundle();
-                        arguments.putString(OrganDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putString(OrganDetailActivity.ARG_ITEM_ID, holder.mItem.id);
                         OrganDetailFragment fragment = new OrganDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -121,7 +121,7 @@ public class OrganListActivity extends AppCompatActivity
                     {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, OrganDetailActivity.class);
-                        intent.putExtra(OrganDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(OrganDetailActivity.ARG_ITEM_ID, holder.mItem.id);
 
                         context.startActivity(intent);
                     }

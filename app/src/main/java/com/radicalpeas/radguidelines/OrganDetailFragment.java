@@ -1,15 +1,28 @@
 package com.radicalpeas.radguidelines;
 
 import android.app.Activity;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.Spinner;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.radicalpeas.radguidelines.dummy.DummyContent;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 
 /**
  * A fragment representing a single Organ detail screen.
@@ -17,13 +30,19 @@ import com.radicalpeas.radguidelines.dummy.DummyContent;
  * in two-pane mode (on tablets) or a {@link OrganDetailActivity}
  * on handsets.
  */
+
+/**
+ * Created by huanx on 4/13/2017.
+ */
+
+
 public class OrganDetailFragment extends Fragment
 {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
-    public static final String ARG_ITEM_ID = "item_id";
+    private int tab_titles_array_id;    // R.string array resource id of tab titles for this organ
+
+    // todo declare organ specific spinner position variables
+
+
 
     /**
      * The dummy content this fragment is presenting.
@@ -34,6 +53,251 @@ public class OrganDetailFragment extends Fragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
+    public OrganDetailFragment()
+    {
+    }
+
+    // must be called by inheriting class before view is inflated
+    public void setTabTitlesArray(int resource_id)
+    {
+        tab_titles_array_id = resource_id;
+    }
+
+    SectionsPagerAdapter mSectionsPagerAdapter;
+    ViewPager mViewPager;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments().containsKey(OrganDetailActivity.ARG_ITEM_ID))
+        {
+            // Load the dummy content specified by the fragment
+            // arguments. In a real-world scenario, use a Loader
+            // to load content from a content provider.
+            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(OrganDetailActivity.ARG_ITEM_ID));
+
+            Activity activity = this.getActivity();
+            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+            if (appBarLayout != null)
+            {
+                appBarLayout.setTitle(mItem.content);
+            }
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.viewpager_tabs, container, false);
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), this, tab_titles_array_id);
+
+        // Initialize the ViewPager and set the adapter
+        mViewPager = (ViewPager) view.findViewById(R.id.pager);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+        // Bind the PagerSlidingTabStrip to the ViewPager
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
+        tabs.setViewPager(mViewPager);
+        tabs.setTextColor(ContextCompat.getColor(getContext(), R.color.text_light));
+        tabs.setIndicatorColor(ContextCompat.getColor(getContext(), R.color.white_text));
+        tabs.setShouldExpand(true);
+
+        return view;
+    }
+
+    // must be overriden
+    // called by tabbedFragment
+    // create the organ specific layout for each tab position
+    public View createView(LayoutInflater inflater, ViewGroup container,
+                           Bundle savedInstanceState, int tabPosition)
+    {
+        View view;
+
+        switch(tabPosition)
+        {
+            //
+            case 0:
+                // TODO set to organ specific layout
+                view = inflater.inflate(R.layout.organ_detail, container, false);
+
+                break;
+
+
+            default:
+                view = null;
+        }
+
+
+        return view;
+    }
+
+    // must be overriden
+    // if completed info, returns guideline recommendations, reference, link
+    // else send error message
+    public String[] getResults()
+    {
+        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+
+        for (int i = 0; i < guidelines.length; i++)
+        {
+            guidelines[i] = "";
+        }
+
+        // tab position
+        switch(mViewPager.getCurrentItem())
+        {
+            case 0:
+                break;
+
+            default:
+                break;
+        }
+
+        return guidelines;
+
+    }
+
+
+
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter
+    {
+        private OrganDetailFragment rootFragment; // parent fragment with overriden organ specific methods to create layout and form results
+        private String [] tab_titles;
+        private TabbedContentFragment [] tabbedContentFragments;// = new TabbedContentFragment[tab_titles.length];
+
+        public SectionsPagerAdapter(FragmentManager fm, OrganDetailFragment parentFragment, int tab_titles_array_resource_id)
+        {
+            super(fm);
+
+            rootFragment = parentFragment;
+
+            tab_titles = getResources().getStringArray(tab_titles_array_resource_id);
+            tabbedContentFragments = new TabbedContentFragment[tab_titles.length];
+        }
+
+        public TabbedContentFragment getTabbedContentFragment(int tabPosition)
+        {
+            return tabbedContentFragments[tabPosition];
+        }
+
+        @Override
+        public Fragment getItem(int position)
+        {
+            if(position < getCount())
+            {
+                Fragment fragment = new TabbedContentFragment();
+
+                Bundle args = new Bundle();
+                args.putInt(TabbedContentFragment.ARG_TAB_NUMBER, position);
+                fragment.setArguments(args);
+
+                tabbedContentFragments[position] = (TabbedContentFragment) fragment;
+                tabbedContentFragments[position].setRootFragment(rootFragment);
+
+                return fragment;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        @Override
+        public int getCount()
+        {
+            return tab_titles.length;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position)
+        {
+            Locale l = Locale.getDefault();
+
+            if(position < getCount())
+                return tab_titles[position].toUpperCase(l);
+            else
+                return null;
+        }
+    } // end SectionsPagerAdapter
+
+    public static class TabbedContentFragment extends Fragment
+    {
+        public static final String ARG_TAB_NUMBER = "tab_number_position";
+        OrganDetailFragment rootFragment;
+
+        public TabbedContentFragment() {
+        }
+
+        public void setRootFragment(OrganDetailFragment fragment)
+        {
+            rootFragment = fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState)
+        {
+
+            View view;
+
+            if(getArguments().containsKey(ARG_TAB_NUMBER))
+            {
+                int tabPosition = getArguments().getInt(ARG_TAB_NUMBER);
+
+                view = rootFragment.createView(inflater, container, savedInstanceState, tabPosition);
+                /*
+
+
+                switch(tabPosition)
+                {
+                    //
+                    case 0:
+                        // TODO set to organ specific layout
+                        view = inflater.inflate(R.layout.organ_detail, container, false);
+
+                        break;
+
+
+                    default:
+                        view = null;
+                }
+                */
+            }
+            else
+            {
+                view = null;
+            }
+
+            return view;
+
+
+
+        }
+
+
+    } // end TabbedContentFragment
+
+}
+
+
+
+
+
+
+/*
+public class OrganDetailFragment extends Fragment
+{
+    // The fragment argument representing the item ID that this fragment represents.
+    public static final String ARG_ITEM_ID = "item_id";
+
+    // The dummy content this fragment is presenting.
+    private DummyContent.DummyItem mItem;
+
+    //Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
     public OrganDetailFragment()
     {
     }
@@ -78,3 +342,4 @@ public class OrganDetailFragment extends Fragment
         return rootView;
     }
 }
+*/

@@ -6,12 +6,10 @@
 
     <TextView
         android:id="@+id/reference_article_text"
-        style="@style/standardTextInfoStyle"
-        android:text="test"/>
+        style="@style/standardTextInfoStyle"/>
     <TextView
         android:id="@+id/reference_link_text"
-        style="@style/webLinkStyle"
-        android:text="test"/>
+        style="@style/webLinkStyle"/>
 
     <ImageView
         android:id="@+id/reference_imageview"

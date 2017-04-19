@@ -19,8 +19,7 @@
     <dimen name="smallTextSize">12sp</dimen>
     <dimen name="cardTextSize">16sp</dimen>
     <dimen name="standardTextSize">16sp</dimen>
-    <dimen name="largeTextSize">18sp</dimen>
-    <dimen name="toolbarTextSize">20sp</dimen>
+    <dimen name="largeTextSize">20sp</dimen>
     <dimen name="veryLargeTextSize">24sp</dimen>
     <dimen name="extremelyLargeTextSize">30dp</dimen>
 
@@ -28,14 +27,7 @@
     <dimen name="medium_image_height">175dp</dimen>
     <dimen name="small_image_height">100dp</dimen>
 
-    <!-- CardsLib custom settings -->
-    <!-- Thumbnail -->
-    <dimen name="card_thumbnail_width">125dp</dimen>
-    <dimen name="card_thumbnail_height">125dp</dimen>
 
-    <dimen name="navigation_drawer_width">240dp</dimen>
-
-    <!--<dimen name="toolbar_size">?attr/actionBarSize</dimen>-->
     <dimen name="toolbar_size">56dp</dimen>
 
     <dimen name="statusbar_size">25dp</dimen>

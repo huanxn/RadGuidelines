@@ -1,14 +1,6 @@
 package com.radicalpeas.radguidelines;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,483 +9,545 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import com.astuetz.PagerSlidingTabStrip;
-import com.radicalpeas.radguidelines.dummy.DummyContent;
-
-import java.util.Locale;
 
 /**
  * Created by huanx on 4/13/2017.
  */
 
 
-public class ThyroidDetailFragment extends Fragment
+public class ThyroidDetailFragment extends OrganDetailFragment
 {
-     /**
-     * The dummy content this fragment is presenting.
-     */
-    private DummyContent.DummyItem mItem;
+    // US variables
+    private int composition = 0;
+    private int echogenicity = 0;
+    private int shape = 0;
+    private int margin = 0;
+    private int echogenic_foci = 0;
+    private float noduleSize = 0;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public ThyroidDetailFragment()
-    {
-    }
+    // CT variables (spinner positions)
+    private int suspicious_features = 0;
+    private int population_risk = 0;
+    private int age = 0;
+    private int size = 0;
 
-    SectionsPagerAdapter mSectionsPagerAdapter;
-    ViewPager mViewPager;
-
+    // called by tabbedFragment
+    // create the organ specific layout for each tab position
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments().containsKey(OrganDetailActivity.ARG_ITEM_ID))
+    public View createView(LayoutInflater inflater, ViewGroup container,
+                           Bundle savedInstanceState, int tabPosition)
+    {
+        View view;
+
+        switch(tabPosition)
         {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(OrganDetailActivity.ARG_ITEM_ID));
+            // THYROID US
+            case 0:
+                view = inflater.inflate(R.layout.thyroid_us_layout, container, false);
 
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null)
-            {
-                appBarLayout.setTitle(mItem.content);
-            }
+                final Spinner thyroid_composition_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_composition);
+                final Spinner thyroid_echogenicity_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_echogenicity);
+                final Spinner thyroid_shape_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_shape);
+                final Spinner thyroid_margin_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_margin);
+                final Spinner thyroid_echogenic_foci_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_echogenic_foci);
+
+                final EditText nodule_size_EditText = (EditText) view.findViewById(R.id.edittext_thyroid_nodule_size);
+
+                // THYROID COMPOSITION
+                ArrayAdapter<CharSequence> composition_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_composition_array, R.layout.spinner_dropdown_item_multiline);
+                composition_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_composition_spinner.setAdapter(composition_adapter);
+
+                thyroid_composition_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_composition_spinner.setSelection(position);
+                        composition = position;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+                });
+
+                // THYROID ECHOGENICITY
+                ArrayAdapter<CharSequence> echogenicity_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_echogenicity_array, R.layout.spinner_dropdown_item_multiline);
+                echogenicity_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_echogenicity_spinner.setAdapter(echogenicity_adapter);
+
+                thyroid_echogenicity_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_echogenicity_spinner.setSelection(position);
+                        echogenicity = position;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+
+                });
+
+                // THYROID SHAPE
+                ArrayAdapter<CharSequence> shape_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_shape_array, R.layout.spinner_dropdown_item_multiline);
+                shape_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_shape_spinner.setAdapter(shape_adapter);
+
+                thyroid_shape_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_shape_spinner.setSelection(position);
+                        shape = position;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+
+                });
+
+                // THYROID MARGIN
+                ArrayAdapter<CharSequence> margin_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_margin_array, R.layout.spinner_dropdown_item_multiline);
+                margin_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_margin_spinner.setAdapter(margin_adapter);
+
+                thyroid_margin_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_margin_spinner.setSelection(position);
+                        margin = position;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+
+                });
+
+                // THYROID ECHOGENIC FOCI
+                ArrayAdapter<CharSequence> echogenic_foci_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_echogenic_foci_array, R.layout.spinner_dropdown_item_multiline);
+                echogenic_foci_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_echogenic_foci_spinner.setAdapter(echogenic_foci_adapter);
+
+                thyroid_echogenic_foci_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_echogenic_foci_spinner.setSelection(position);
+                        echogenic_foci = position;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+
+                });
+
+                // THYROID NODULE SIZE
+                nodule_size_EditText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s)
+                    {
+                        String noduleSizeString = nodule_size_EditText.getText().toString();
+                        if(noduleSizeString != null && !noduleSizeString.isEmpty())
+                        {
+                            noduleSize = Float.valueOf(noduleSizeString);
+                        }
+                        else
+                        {
+                            noduleSize = 0;
+                        }
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after)
+                    {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count)
+                    {
+                    }
+                });
+
+                break;
+
+
+            // THYROID CT OR MR
+            case 1:
+                view = inflater.inflate(R.layout.thyroid_ctmr_layout, container, false);
+                final Spinner thyroid_suspicious_features_spinner = (Spinner) view.findViewById(R.id.spinner_suspicious_features);
+                final Spinner thyroid_population_risk_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_population);
+                final Spinner thyroid_age_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_age);
+                final Spinner thyroid_size_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_ct_size);
+
+                // CT or MR SUSPICIOUS FEATURES
+                ArrayAdapter<CharSequence> suspicious_features_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.no_yes_array, R.layout.spinner_dropdown_item_multiline);
+                suspicious_features_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_suspicious_features_spinner.setAdapter(suspicious_features_adapter);
+
+                thyroid_suspicious_features_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_suspicious_features_spinner.setSelection(position);
+                        suspicious_features = position;
+
+                        if(suspicious_features == 0)
+                        {
+                            thyroid_population_risk_spinner.setEnabled(true);
+                            thyroid_age_spinner.setEnabled(true);
+                            thyroid_size_spinner.setEnabled(true);
+                        }
+                        else if(suspicious_features == 1)
+                        {
+                            thyroid_population_risk_spinner.setEnabled(false);
+                            thyroid_age_spinner.setEnabled(false);
+                            thyroid_size_spinner.setEnabled(false);
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+                });
+
+                // POPULATION / RISK LEVEL
+                ArrayAdapter<CharSequence> population_risk_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.demographic_array, R.layout.spinner_dropdown_item_multiline);
+                population_risk_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_population_risk_spinner.setAdapter(population_risk_adapter);
+
+                thyroid_population_risk_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_population_risk_spinner.setSelection(position);
+                        population_risk = position;
+
+                        if(population_risk == 0)
+                        {
+                            thyroid_age_spinner.setEnabled(true);
+                            thyroid_size_spinner.setEnabled(true);
+                        }
+                        else if(population_risk == 1 && suspicious_features == 0)
+                        {
+                            thyroid_age_spinner.setEnabled(false);
+                            thyroid_size_spinner.setEnabled(false);
+                        }
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+                });
+
+                // PATIENT AGE
+                ArrayAdapter<CharSequence> age_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_age_array, R.layout.spinner_dropdown_item_multiline);
+                age_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_age_spinner.setAdapter(age_adapter);
+
+                thyroid_age_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_age_spinner.setSelection(position);
+                        age = position;
+
+                        if(age == 0)
+                        {
+                            // if <35 years old, size threshold is 1 cm
+                            ArrayAdapter<CharSequence> size_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_young_size_array, R.layout.spinner_dropdown_item_multiline);
+                            size_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                            thyroid_size_spinner.setAdapter(size_adapter);
+                        }
+                        else
+                        {
+                            // if >35 years old, size threshold is 1.5 cm
+                            ArrayAdapter<CharSequence> size_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_old_size_array, R.layout.spinner_dropdown_item_multiline);
+                            size_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                            thyroid_size_spinner.setAdapter(size_adapter);
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+                });
+
+                // NODULE SIZE
+                // default young patient size threshold, but will change if user selects older patient age
+                ArrayAdapter<CharSequence> size_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_young_size_array, R.layout.spinner_dropdown_item_multiline);
+                size_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_size_spinner.setAdapter(size_adapter);
+
+                thyroid_size_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        thyroid_size_spinner.setSelection(position);
+                        size = position;
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // hide
+                    }
+                });
+                break;
+
+            default:
+                view = null;
         }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        View view = inflater.inflate(R.layout.results_tabs, container, false);
-
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
-
-        // Initialize the ViewPager and set the adapter
-        mViewPager = (ViewPager) view.findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
-        // Bind the PagerSlidingTabStrip to the ViewPager
-        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
-        tabs.setViewPager(mViewPager);
-        //	tabs.setBackgroundColor(activity.getResources().getColor(R.attr.colorPrimary));
-        tabs.setTextColor(ContextCompat.getColor(getContext(), R.color.text_light));
-
-        // TODO get from attr theme
-        tabs.setIndicatorColor(ContextCompat.getColor(getContext(), R.color.white_text));
-        //tabs.setIndicatorColor(activity.getResources().getColor(R.color.white_text));
-        tabs.setShouldExpand(true);
-
-
-        //TypedValue textColor = new TypedValue();
-        //tabs.setDividerColor(textColor.);
 
         return view;
     }
 
-    // if completed info, returns guideline recommendations, reference, link
-    // else send error message
+    @Override
     public String[] getResults()
     {
-        // get fragment of active tab (current item in pager adapter)
-        TabbedContentFragment tabbedContentFragment = mSectionsPagerAdapter.getTabbedContentFragment(mViewPager.getCurrentItem()); // either US or CT
-        return tabbedContentFragment.getResults();
-    }
+        //ArrayList<String> stringList = new ArrayList<String>();
+        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
 
-
-    public class SectionsPagerAdapter extends FragmentPagerAdapter
-    {
-        private String [] tab_titles;
-        private TabbedContentFragment [] tabbedContentFragments;// = new TabbedContentFragment[tab_titles.length];
-
-        public SectionsPagerAdapter(FragmentManager fm)
+        for (int i = 0; i < guidelines.length; i++)
         {
-            super(fm);
-
-            tab_titles = getResources().getStringArray(R.array.thyroid_tab_titles_array);
-            tabbedContentFragments = new TabbedContentFragment[tab_titles.length];
+            guidelines[i] = "";
         }
 
-        public TabbedContentFragment getTabbedContentFragment(int tabPosition)
-        {
-            return tabbedContentFragments[tabPosition];
-        }
+        if(mViewPager.getCurrentItem() == 0)
+        {// if completed info, returns guideline recommendations, reference, link
+            // else send error message
 
-        @Override
-        public Fragment getItem(int position)
-        {
+            String findings = "";
+            int TIRADS_points = 0;
 
-/*
-            switch(position)
+            if(composition == 0)
             {
-                case 0:
-                    //viewpager's page 1 (first tab)
-                    return new TabbedContentFragment();
-                case 1:
-                    //viewpager's page 2 (second tab)
-                    return new ReferenceTabFragment();
-                default:
-                    return null;
+                findings = "There is a cystic or almost completely cystic";
             }
-*/
-
-            if(position < getCount())
+            else if (composition == 1)
             {
-                Fragment fragment = new TabbedContentFragment();
-
-                Bundle args = new Bundle();
-                args.putInt(TabbedContentFragment.ARG_TAB_NUMBER, position);
-                fragment.setArguments(args);
-
-                tabbedContentFragments[position] = (TabbedContentFragment) fragment;
-
-                return fragment;
+                findings = "There is a spongiform";
             }
-            else
+            else if (composition == 2)    // mixed cystic and solid
             {
-                return null;
+                TIRADS_points += 1;
+                findings = "There is a mixed cystic and solid";
+            }
+            else if (composition == 3)   // solid or almost completely solid
+            {
+                TIRADS_points += 2;
+
+                findings = "There is a solid or almost completely solid";
             }
 
-        }
-
-        public TabbedContentFragment getList(int position)
-        {
-            return tabbedContentFragments[position];
-        }
-
-        @Override
-        public int getCount()
-        {
-            return tab_titles.length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position)
-        {
-            Locale l = Locale.getDefault();
-
-            if(position < getCount())
-                return tab_titles[position].toUpperCase(l);
-            else
-                return null;
-        }
-    } // end SectionsPagerAdapter
-
-    public static class TabbedContentFragment extends Fragment
-    {
-        public static final String ARG_TAB_NUMBER = "tab_number_position";
-
-        int tabPosition = 0;    // 0: US, 1: CT
-
-        // US variables
-        private int composition = 0;
-        private int echogenicity = 0;
-        private int shape = 0;
-        private int margin = 0;
-        private int echogenic_foci = 0;
-        private float noduleSize = 0;
-
-        // CT variables
-        //...
-
-        public TabbedContentFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState)
-        {
-            View view;
-
-            if(getArguments().containsKey(ARG_TAB_NUMBER))
+            TIRADS_points += echogenicity;
+            if(echogenicity == 0)
             {
-                tabPosition = getArguments().getInt(ARG_TAB_NUMBER);
+                findings += " anechoic nodule";
+            }
+            else if (echogenicity == 1)
+            {
+                findings += " hyperechoic or isoechoic nodule";
+            }
+            else if (echogenicity == 2)    // mixed cystic and solid
+            {
+                findings += " hypoechoic nodule";
+            }
+            else if (echogenicity == 3)   // solid or almost completely solid
+            {
+                findings += " very hypoechoic nodule";
+            }
 
-                switch(tabPosition)
+            if (shape == 1)  // taller than wide
+            {
+                TIRADS_points += 3;
+                findings += ", taller than wide";
+            }
+
+            if (margin == 2 || margin == 3)
+            {
+                TIRADS_points += margin;
+            }
+            if(margin == 0)
+            {
+                findings += ", with smooth margins";
+            }
+            else if (margin == 1)
+            {
+                findings += ", with ill-defined margins";
+            }
+            else if (margin == 2)
+            {
+                findings += ", with lobulated or irregular margins";
+            }
+            else if (margin == 3)
+            {
+                findings += ", with extra-thyroidal extension";
+            }
+
+
+            TIRADS_points += echogenic_foci;
+            if(echogenic_foci == 0)
+            {
+                findings += ", and no calcifications or only large comet-tail artifacts";
+            }
+            else if (echogenic_foci == 1)
+            {
+                findings += ", and coarse macrocalcifications";
+            }
+            else if (echogenic_foci == 2)
+            {
+                findings += ", and peripheral calcifications";
+            }
+            else if (echogenic_foci == 3)
+            {
+                findings += ", and punctate microcalcifications";
+            }
+
+            findings += ".";
+
+            guidelines[0] = "VALID";
+
+            if (TIRADS_points <= 1)
+            {
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR1: Benign.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
+            }
+            else if (TIRADS_points == 2)
+            {
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR2: Not suspicious.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
+            }
+            else if (TIRADS_points == 3)
+            {
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR3: Mildly Suspicious.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 2.5 cm.  Follow if > 1.5 cm";
+
+                if (noduleSize >= 2.5)
                 {
-                    case 0:
-                        view = inflater.inflate(R.layout.thyroid_us_layout, container, false);
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                }
+                else if (noduleSize >= 1.5)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.5 and 2.5 cm, follow up is recommended.";
+                }
+                else if (noduleSize > 0)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
+                }
+            }
+            else if (TIRADS_points >= 4 && TIRADS_points <= 6)
+            {
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR4: Moderately Suspicious.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
 
-                        final Spinner thyroid_composition_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_composition);
-                        final Spinner thyroid_echogenicity_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_echogenicity);
-                        final Spinner thyroid_shape_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_shape);
-                        final Spinner thyroid_margin_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_margin);
-                        final Spinner thyroid_echogenic_foci_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_echogenic_foci);
-
-                        final EditText nodule_size_EditText = (EditText) view.findViewById(R.id.edittext_thyroid_nodule_size);
-
-                        // THYROID COMPOSITION
-                        ArrayAdapter<CharSequence> composition_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_composition_array, R.layout.multiline_spinner_dropdown_item);
-                        composition_adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
-                        thyroid_composition_spinner.setAdapter(composition_adapter);
-
-                        thyroid_composition_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                thyroid_composition_spinner.setSelection(position);
-                                composition = position;
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parentView) {
-                                // hide
-                            }
-                        });
-
-                        // THYROID ECHOGENICITY
-                        ArrayAdapter<CharSequence> echogenicity_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_echogenicity_array, R.layout.multiline_spinner_dropdown_item);
-                        echogenicity_adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
-                        thyroid_echogenicity_spinner.setAdapter(echogenicity_adapter);
-
-                        thyroid_echogenicity_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                thyroid_echogenicity_spinner.setSelection(position);
-                                echogenicity = position;
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parentView) {
-                                // hide
-                            }
-
-                        });
-
-                        // THYROID SHAPE
-                        ArrayAdapter<CharSequence> shape_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_shape_array, R.layout.multiline_spinner_dropdown_item);
-                        shape_adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
-                        thyroid_shape_spinner.setAdapter(shape_adapter);
-
-                        thyroid_shape_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                thyroid_shape_spinner.setSelection(position);
-                                shape = position;
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parentView) {
-                                // hide
-                            }
-
-                        });
-
-                        // THYROID MARGIN
-                        ArrayAdapter<CharSequence> margin_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_margin_array, R.layout.multiline_spinner_dropdown_item);
-                        margin_adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
-                        thyroid_margin_spinner.setAdapter(margin_adapter);
-
-                        thyroid_margin_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                thyroid_margin_spinner.setSelection(position);
-                                margin = position;
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parentView) {
-                                // hide
-                            }
-
-                        });
-
-                        // THYROID ECHOGENIC FOCI
-                        ArrayAdapter<CharSequence> echogenic_foci_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_echogenic_foci_array, R.layout.multiline_spinner_dropdown_item);
-                        echogenic_foci_adapter.setDropDownViewResource(R.layout.multiline_spinner_dropdown_item);
-                        thyroid_echogenic_foci_spinner.setAdapter(echogenic_foci_adapter);
-
-                        thyroid_echogenic_foci_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                                thyroid_echogenic_foci_spinner.setSelection(position);
-                                echogenic_foci = position;
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parentView) {
-                                // hide
-                            }
-
-                        });
-
-                        // THYROID NODULE SIZE
-                        nodule_size_EditText.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void afterTextChanged(Editable s)
-                            {
-                                String noduleSizeString = nodule_size_EditText.getText().toString();
-                                if(!noduleSizeString.isEmpty() && noduleSizeString != null)
-                                {
-                                    noduleSize = Float.valueOf(noduleSizeString);
-                                }
-                                else
-                                {
-                                    noduleSize = 0;
-                                }
-                            }
-
-                            @Override
-                            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-                            {
-                            }
-
-                            @Override
-                            public void onTextChanged(CharSequence s, int start, int before, int count)
-                            {
-                            }
-                        });
-
-
-                        break;
-
-                    case 1:
-                        view = inflater.inflate(R.layout.results_references, container, false);
-
-                        break;
-
-                    default:
-                        view = null;
+                if (noduleSize >= 2.5)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                }
+                else if (noduleSize >= 1.5)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.0 and 1.5 cm, follow up is recommended.";
+                }
+                else if (noduleSize > 0)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
                 }
             }
             else
             {
-                view = null;
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR5: Highly Suspicious.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
+
+                if (noduleSize >= 1.0)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 1.0 cm, FNA biopsy is recommended.";
+                }
+                else if (noduleSize >= 0.5)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 0.5 and 1.0 cm, follow up is recommended.";
+                }
+                else if (noduleSize > 0)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 0.5 cm, no follow up is recommended.";
+                }
+
+                guidelines[OrganDetailActivity.RESULTS_STATISTICS] = " ??% mallignant";
             }
 
-            return view;
-        }
+            guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";
+            guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
+            guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_tirads_2017";
 
-        String[] getResults()
+
+            return guidelines;
+
+        } // US tab
+        else
         {
-            if(tabPosition == 0)
-            {// if completed info, returns guideline recommendations, reference, link
-                // else send error message
-
-                //ArrayList<String> stringList = new ArrayList<String>();
-                String[] guidelines = new String[7];
-
-                for (int i = 0; i < guidelines.length; i++)
+            guidelines[0] = "VALID";
+            if(suspicious_features == 1)
+            {
+                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with suspicious features.";
+                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+            }
+            else    // not suspicious
+            {
+                if(population_risk == 1)
                 {
-                    guidelines[i] = "";
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with no suspicious features in a patient with limited life expectancy and comorbidities.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
                 }
-
-                String findings;
-                int TIRADS_points = 0;
-
-                if (composition == 2)    // mixed cystic and solid
+                else    // general population
                 {
-                    TIRADS_points += 1;
-                }
-                else if (composition == 3)   // solid or almost completely solid
-                {
-                    TIRADS_points += 2;
-                }
-
-                TIRADS_points += echogenicity;
-
-                if (shape == 1)  // taller than wide
-                {
-                    TIRADS_points += 3;
-                }
-
-                if (margin == 2 || margin == 3)
-                {
-                    TIRADS_points += margin;
-                }
-
-                TIRADS_points += echogenic_foci;
-
-                guidelines[0] = "VALID";
-
-                if (TIRADS_points <= 1)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR1: Benign.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA";
-                }
-                else if (TIRADS_points == 2)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR2: Not suspicious.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA";
-                }
-                else if (TIRADS_points == 3)
-                {
-                    if (noduleSize >= 2.5)
+                    if(age == 0) // age less than 35
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR3: Mildly Suspicious.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the large size over 2.5 cm, FNA biopsy is recommended.";
+                        if(size == 0)   // size less than 1 cm
+                        {
+                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1 cm, with no suspicious features.";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                        }
+                        else    // size greater than 1 cm
+                        {
+                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1 cm, in a patient less than 35 years old.";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                        }
                     }
-                    else if (noduleSize >= 1.5)
+                    else    // age more than 35
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR3: Mildly Suspicious.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 2.5 cm, but greater than 1.5 cm, follow up is recommended.";
+                        if(size == 0)   // size less than 1.5 cm
+                        {
+                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1.5 cm, with no suspicious features, in a patient over 35 years old.";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                        }
+                        else    // size greater than 1.5 cm
+                        {
+                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1.5 cm, in a patient over 35 years old.";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                        }
                     }
-                    else
-                    {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR3: Mildly Suspicious.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
-                    }
+
                 }
-                else if (TIRADS_points >= 4 && TIRADS_points <= 6)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR4: Moderately Suspicious.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
-                }
-                else
-                {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "TR5: Highly Suspicious.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
-                    guidelines[OrganDetailActivity.RESULTS_STATISTICS] = " ??% mallignant";
-                }
+            }
 
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_tirads_2017";
+            guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Thyroid Nodules Detected on Imaging: White Paper of the ACR Incidental Thyroid Findings Committee";
+            guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(14)00627-9/fulltext";
+            guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_ct_guidelines";
 
+            return guidelines;
 
-                return guidelines;
-
-            } // US tab
-            else
-            {
-                return null;
-            } // CT tab
-        } // end getResults
-
-    } // end TabbedContentFragment
-
-    /*
-    public static class ReferenceTabFragment extends Fragment
-    {
-        public ReferenceTabFragment() {
-        }
-
-        public ReferenceTabFragment newInstance()
-        {
-            return new ReferenceTabFragment();
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState)
-        {
-            View rootView = inflater.inflate(R.layout.results_references, container, false);
-            TextView dummyTextView = (TextView) rootView.findViewById(R.id.reference_article_text);
-            dummyTextView.setText("reference tab");
-
-            return rootView;
-        }
-
-    } // end ReferenceTabFragment
-    */
-
-    //   }
-
+        } // CT or MR tab
+    } // end getResults
 
 }

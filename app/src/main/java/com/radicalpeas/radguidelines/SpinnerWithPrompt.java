@@ -96,9 +96,9 @@ public class SpinnerWithPrompt extends AppCompatSpinner // implements DialogInte
             spinnerList.add(stringList.get(i));
         }
 
-        spinnerArrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, spinnerList);
+        spinnerArrayAdapter = new ArrayAdapter<String>(context, R.layout.spinner_dropdown_item_large, spinnerList);
         //spinnerArrayAdapter.addAll(items);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item_large);
         setAdapter(spinnerArrayAdapter);
 
         setOnItemSelectedListener(new OnItemSelectedListener()
@@ -306,10 +306,15 @@ public class SpinnerWithPrompt extends AppCompatSpinner // implements DialogInte
 
             if (position < 0)
             {
-                final TextView v = (TextView) ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(android.R.layout.simple_spinner_item, parent, false);
+                // set default text prompt and layout
+                final TextView v = (TextView) ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.spinner_dropdown_item_large, parent, false);
 
-                // set default text prompt and color
-                //TODO set text font/style to match
+                v.setLayoutParams(new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                v.setPadding(16,16,16,16);
+
                 v.setText(getPrompt());
 
                 // get hint color

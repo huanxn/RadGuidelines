@@ -6,16 +6,19 @@
 
     <TextView
         android:id="@+id/impression_text"
-        style="@style/standardTextInfoStyle"
-        android:text="test"/>
+        style="@style/standardTextInfoStyle"/>
+
+    <TextView
+        android:id="@+id/classification_text"
+        style="@style/standardTextInfoStyle"/>
+
     <TextView
         android:id="@+id/followup_text"
-        style="@style/standardTextInfoStyle"
-        android:text="test"/>
+        style="@style/standardTextInfoStyle"/>
+
     <TextView
         android:id="@+id/statistics_text"
-        style="@style/standardTextInfoStyle"
-        android:text="test"/>
+        style="@style/standardTextInfoStyle"/>
 
 
 

@@ -26,6 +26,7 @@ public class ResultsDetailFragment extends Fragment
 {
 
     public static final String ARG_IMPRESSION = "IMPRESSION";
+    public static final String ARG_CLASSIFICATION = "CLASSIFICATION";
     public static final String ARG_FOLLOWUP = "FOLLOWUP";
     public static final String ARG_STATISTICS = "STATISTICS";
     public static final String ARG_REFERENCE_TEXT = "REFERENCE_TEXT";
@@ -65,7 +66,7 @@ public class ResultsDetailFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.results_tabs, container, false);
+        View view = inflater.inflate(R.layout.viewpager_tabs, container, false);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
         /*
@@ -106,6 +107,7 @@ public class ResultsDetailFragment extends Fragment
         TabbedContentFragment [] tabbedContentFragments;// = new TabbedContentFragment[tab_titles.length];
 
         private String impression;
+        private String classification;
         private String statistics;
         private String followup;
         private String reference_text;
@@ -124,6 +126,7 @@ public class ResultsDetailFragment extends Fragment
         public void passArguments(Bundle args)
         {
             impression = args.getString(ARG_IMPRESSION);
+            classification = args.getString(ARG_CLASSIFICATION);
             followup = args.getString(ARG_FOLLOWUP);
             statistics = args.getString(ARG_STATISTICS);
             reference_text = args.getString(ARG_REFERENCE_TEXT);
@@ -160,6 +163,7 @@ public class ResultsDetailFragment extends Fragment
                 if(position == 0)
                 {
                     args.putString(ARG_IMPRESSION, impression);
+                    args.putString(ARG_CLASSIFICATION, classification);
                     args.putString(ARG_FOLLOWUP, followup);
                     args.putString(ARG_STATISTICS, statistics);
                 }
@@ -230,6 +234,10 @@ public class ResultsDetailFragment extends Fragment
                         {
                             ((TextView) view.findViewById(R.id.impression_text)).setText(getArguments().getString(ARG_IMPRESSION));
                         }
+                        if(getArguments().containsKey(ARG_CLASSIFICATION))
+                        {
+                            ((TextView) view.findViewById(R.id.classification_text)).setText(getArguments().getString(ARG_CLASSIFICATION));
+                        }
                         if(getArguments().containsKey(ARG_FOLLOWUP))
                         {
                             ((TextView) view.findViewById(R.id.followup_text)).setText(getArguments().getString(ARG_FOLLOWUP));
@@ -255,11 +263,14 @@ public class ResultsDetailFragment extends Fragment
                         {
                             // set image
                             String image_uri = getArguments().getString(ARG_REFERENCE_IMAGE);
-                            int imageResource = getResources().getIdentifier(image_uri, null, getActivity().getPackageName());
-                            Drawable image = getResources().getDrawable(imageResource);
+                            if(image_uri != null && !image_uri.isEmpty())
+                            {
+                                int imageResource = getResources().getIdentifier(image_uri, null, getActivity().getPackageName());
+                                Drawable image = getResources().getDrawable(imageResource);
 
-                            ImageView imageView = (ImageView) view.findViewById(R.id.reference_imageview);
-                            imageView.setImageDrawable(image);
+                                ImageView imageView = (ImageView) view.findViewById(R.id.reference_imageview);
+                                imageView.setImageDrawable(image);
+                            }
                         }
                         break;
 

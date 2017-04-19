@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#0d47a1</color>
+    <color name="colorPrimaryDark">#002171</color>
+    <color name="colorPrimaryLight">#5472d3</color>
+    <color name="colorAccent">#4caf50</color>
 
         <!-- Text Colors -->
         <color name="dark_grey_text">@color/md_grey_800</color>
@@ -16,6 +17,8 @@
         <color name="text_dark_secondary">#80000000</color>
         <color name="text_dark_hint">#43000000</color>
         <color name="text_dark_divider">#1F000000</color>
+
+        <color name="text_dark_disabled">#2F000000</color>
 
         <color name="text_light">#DEFFFFFF</color>
         <color name="text_light_secondary">#8AFFFFFF</color>
