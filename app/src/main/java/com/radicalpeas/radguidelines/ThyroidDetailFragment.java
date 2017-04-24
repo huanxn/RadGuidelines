@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 /**
  * Created by huanx on 4/13/2017.
  */
@@ -32,6 +34,52 @@ public class ThyroidDetailFragment extends OrganDetailFragment
     private int age = 0;
     private int size = 0;
 
+    private enum Tab
+    {
+        US(0), CTorMR(1);
+
+        private final int value;
+        private Tab(int value)
+        {
+            this.value = value;
+        }
+
+        public int getValue()
+        {
+            return value;
+        }
+
+        public Tab valueOf(int num)
+        {
+            return values()[num];
+        }
+
+        @Override
+        public String toString()
+        {
+            switch(this)
+            {
+                case US:
+                    return "Ultrasound";
+                case CTorMR:
+                    return "CT or MR";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    public static final ThyroidDetailFragment newInstance()
+    {
+        ThyroidDetailFragment f = new ThyroidDetailFragment();
+
+        tab_titles = new ArrayList<>();
+        tab_titles.add(Tab.US.getValue(), Tab.US.toString());
+        tab_titles.add(Tab.CTorMR.getValue(), Tab.CTorMR.toString());
+
+        return f;
+    }
+
     // called by tabbedFragment
     // create the organ specific layout for each tab position
     @Override
@@ -40,10 +88,12 @@ public class ThyroidDetailFragment extends OrganDetailFragment
     {
         View view;
 
-        switch(tabPosition)
+        Tab currentTab = Tab.values()[tabPosition];
+
+        switch(currentTab)
         {
             // THYROID US
-            case 0:
+            case US:
                 view = inflater.inflate(R.layout.thyroid_us_layout, container, false);
 
                 final Spinner thyroid_composition_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_composition);
@@ -179,7 +229,7 @@ public class ThyroidDetailFragment extends OrganDetailFragment
 
 
             // THYROID CT OR MR
-            case 1:
+            case CTorMR:
                 view = inflater.inflate(R.layout.thyroid_ctmr_layout, container, false);
                 final Spinner thyroid_suspicious_features_spinner = (Spinner) view.findViewById(R.id.spinner_suspicious_features);
                 final Spinner thyroid_population_risk_spinner = (Spinner) view.findViewById(R.id.spinner_thyroid_population);
@@ -319,235 +369,239 @@ public class ThyroidDetailFragment extends OrganDetailFragment
             guidelines[i] = "";
         }
 
-        if(mViewPager.getCurrentItem() == 0)
+        Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];
+        switch(currentTab)
         {// if completed info, returns guideline recommendations, reference, link
             // else send error message
 
-            String findings = "";
-            int TIRADS_points = 0;
+            case US:
+                String findings = "";
+                int TIRADS_points = 0;
 
-            if(composition == 0)
-            {
-                findings = "There is a cystic or almost completely cystic";
-            }
-            else if (composition == 1)
-            {
-                findings = "There is a spongiform";
-            }
-            else if (composition == 2)    // mixed cystic and solid
-            {
-                TIRADS_points += 1;
-                findings = "There is a mixed cystic and solid";
-            }
-            else if (composition == 3)   // solid or almost completely solid
-            {
-                TIRADS_points += 2;
-
-                findings = "There is a solid or almost completely solid";
-            }
-
-            TIRADS_points += echogenicity;
-            if(echogenicity == 0)
-            {
-                findings += " anechoic nodule";
-            }
-            else if (echogenicity == 1)
-            {
-                findings += " hyperechoic or isoechoic nodule";
-            }
-            else if (echogenicity == 2)    // mixed cystic and solid
-            {
-                findings += " hypoechoic nodule";
-            }
-            else if (echogenicity == 3)   // solid or almost completely solid
-            {
-                findings += " very hypoechoic nodule";
-            }
-
-            if (shape == 1)  // taller than wide
-            {
-                TIRADS_points += 3;
-                findings += ", taller than wide";
-            }
-
-            if (margin == 2 || margin == 3)
-            {
-                TIRADS_points += margin;
-            }
-            if(margin == 0)
-            {
-                findings += ", with smooth margins";
-            }
-            else if (margin == 1)
-            {
-                findings += ", with ill-defined margins";
-            }
-            else if (margin == 2)
-            {
-                findings += ", with lobulated or irregular margins";
-            }
-            else if (margin == 3)
-            {
-                findings += ", with extra-thyroidal extension";
-            }
-
-
-            TIRADS_points += echogenic_foci;
-            if(echogenic_foci == 0)
-            {
-                findings += ", and no calcifications or only large comet-tail artifacts";
-            }
-            else if (echogenic_foci == 1)
-            {
-                findings += ", and coarse macrocalcifications";
-            }
-            else if (echogenic_foci == 2)
-            {
-                findings += ", and peripheral calcifications";
-            }
-            else if (echogenic_foci == 3)
-            {
-                findings += ", and punctate microcalcifications";
-            }
-
-            findings += ".";
-
-            guidelines[0] = "VALID";
-
-            if (TIRADS_points <= 1)
-            {
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR1: Benign.";
-                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
-            }
-            else if (TIRADS_points == 2)
-            {
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR2: Not suspicious.";
-                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
-            }
-            else if (TIRADS_points == 3)
-            {
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR3: Mildly Suspicious.";
-                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 2.5 cm.  Follow if > 1.5 cm";
-
-                if (noduleSize >= 2.5)
+                if(composition == 0)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                    findings = "There is a cystic or almost completely cystic";
                 }
-                else if (noduleSize >= 1.5)
+                else if (composition == 1)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.5 and 2.5 cm, follow up is recommended.";
+                    findings = "There is a spongiform";
                 }
-                else if (noduleSize > 0)
+                else if (composition == 2)    // mixed cystic and solid
                 {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
+                    TIRADS_points += 1;
+                    findings = "There is a mixed cystic and solid";
                 }
-            }
-            else if (TIRADS_points >= 4 && TIRADS_points <= 6)
-            {
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR4: Moderately Suspicious.";
-                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
+                else if (composition == 3)   // solid or almost completely solid
+                {
+                    TIRADS_points += 2;
 
-                if (noduleSize >= 2.5)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
-                }
-                else if (noduleSize >= 1.5)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.0 and 1.5 cm, follow up is recommended.";
-                }
-                else if (noduleSize > 0)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
-                }
-            }
-            else
-            {
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR5: Highly Suspicious.";
-                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
-
-                if (noduleSize >= 1.0)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 1.0 cm, FNA biopsy is recommended.";
-                }
-                else if (noduleSize >= 0.5)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 0.5 and 1.0 cm, follow up is recommended.";
-                }
-                else if (noduleSize > 0)
-                {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 0.5 cm, no follow up is recommended.";
+                    findings = "There is a solid or almost completely solid";
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_STATISTICS] = " ??% mallignant";
-            }
-
-            guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";
-            guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
-            guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_tirads_2017";
-
-
-            return guidelines;
-
-        } // US tab
-        else
-        {
-            guidelines[0] = "VALID";
-            if(suspicious_features == 1)
-            {
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with suspicious features.";
-                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
-            }
-            else    // not suspicious
-            {
-                if(population_risk == 1)
+                TIRADS_points += echogenicity;
+                if(echogenicity == 0)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with no suspicious features in a patient with limited life expectancy and comorbidities.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                    findings += " anechoic nodule";
                 }
-                else    // general population
+                else if (echogenicity == 1)
                 {
-                    if(age == 0) // age less than 35
+                    findings += " hyperechoic or isoechoic nodule";
+                }
+                else if (echogenicity == 2)    // mixed cystic and solid
+                {
+                    findings += " hypoechoic nodule";
+                }
+                else if (echogenicity == 3)   // solid or almost completely solid
+                {
+                    findings += " very hypoechoic nodule";
+                }
+
+                if (shape == 1)  // taller than wide
+                {
+                    TIRADS_points += 3;
+                    findings += ", taller than wide";
+                }
+
+                if (margin == 2 || margin == 3)
+                {
+                    TIRADS_points += margin;
+                }
+                if(margin == 0)
+                {
+                    findings += ", with smooth margins";
+                }
+                else if (margin == 1)
+                {
+                    findings += ", with ill-defined margins";
+                }
+                else if (margin == 2)
+                {
+                    findings += ", with lobulated or irregular margins";
+                }
+                else if (margin == 3)
+                {
+                    findings += ", with extra-thyroidal extension";
+                }
+
+
+                TIRADS_points += echogenic_foci;
+                if(echogenic_foci == 0)
+                {
+                    findings += ", and no calcifications or only large comet-tail artifacts";
+                }
+                else if (echogenic_foci == 1)
+                {
+                    findings += ", and coarse macrocalcifications";
+                }
+                else if (echogenic_foci == 2)
+                {
+                    findings += ", and peripheral calcifications";
+                }
+                else if (echogenic_foci == 3)
+                {
+                    findings += ", and punctate microcalcifications";
+                }
+
+                findings += ".";
+
+                guidelines[0] = "VALID";
+
+                if (TIRADS_points <= 1)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR1: Benign.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
+                }
+                else if (TIRADS_points == 2)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR2: Not suspicious.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
+                }
+                else if (TIRADS_points == 3)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR3: Mildly Suspicious.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 2.5 cm.  Follow if > 1.5 cm";
+
+                    if (noduleSize >= 2.5)
                     {
-                        if(size == 0)   // size less than 1 cm
-                        {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1 cm, with no suspicious features.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
-                        }
-                        else    // size greater than 1 cm
-                        {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1 cm, in a patient less than 35 years old.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
-                        }
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
                     }
-                    else    // age more than 35
+                    else if (noduleSize >= 1.5)
                     {
-                        if(size == 0)   // size less than 1.5 cm
-                        {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1.5 cm, with no suspicious features, in a patient over 35 years old.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
-                        }
-                        else    // size greater than 1.5 cm
-                        {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1.5 cm, in a patient over 35 years old.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
-                        }
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.5 and 2.5 cm, follow up is recommended.";
+                    }
+                    else if (noduleSize > 0)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
+                    }
+                }
+                else if (TIRADS_points >= 4 && TIRADS_points <= 6)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR4: Moderately Suspicious.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
+
+                    if (noduleSize >= 2.5)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                    }
+                    else if (noduleSize >= 1.5)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.0 and 1.5 cm, follow up is recommended.";
+                    }
+                    else if (noduleSize > 0)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
+                    }
+                }
+                else
+                {
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
+                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR5: Highly Suspicious.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
+
+                    if (noduleSize >= 1.0)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 1.0 cm, FNA biopsy is recommended.";
+                    }
+                    else if (noduleSize >= 0.5)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 0.5 and 1.0 cm, follow up is recommended.";
+                    }
+                    else if (noduleSize > 0)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 0.5 cm, no follow up is recommended.";
                     }
 
+                    guidelines[OrganDetailActivity.RESULTS_STATISTICS] = " ??% mallignant";
                 }
-            }
 
-            guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Thyroid Nodules Detected on Imaging: White Paper of the ACR Incidental Thyroid Findings Committee";
-            guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(14)00627-9/fulltext";
-            guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_ct_guidelines";
+                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";
+                guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
+                guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_tirads_2017";
 
-            return guidelines;
 
-        } // CT or MR tab
+                return guidelines;
+
+            case CTorMR:
+
+                guidelines[0] = "VALID";
+                if(suspicious_features == 1)
+                {
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with suspicious features.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                }
+                else    // not suspicious
+                {
+                    if(population_risk == 1)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with no suspicious features in a patient with limited life expectancy and comorbidities.";
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                    }
+                    else    // general population
+                    {
+                        if(age == 0) // age less than 35
+                        {
+                            if(size == 0)   // size less than 1 cm
+                            {
+                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1 cm, with no suspicious features.";
+                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                            }
+                            else    // size greater than 1 cm
+                            {
+                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1 cm, in a patient less than 35 years old.";
+                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                            }
+                        }
+                        else    // age more than 35
+                        {
+                            if(size == 0)   // size less than 1.5 cm
+                            {
+                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1.5 cm, with no suspicious features, in a patient over 35 years old.";
+                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                            }
+                            else    // size greater than 1.5 cm
+                            {
+                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1.5 cm, in a patient over 35 years old.";
+                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                            }
+                        }
+
+                    }
+                }
+
+                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Thyroid Nodules Detected on Imaging: White Paper of the ACR Incidental Thyroid Findings Committee";
+                guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(14)00627-9/fulltext";
+                guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_ct_guidelines";
+
+                return guidelines;
+
+            default:
+                return guidelines;
+
+        }
     } // end getResults
 
 }

@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 /**
  * Created by huanx on 4/17/2017.
  */
@@ -27,6 +29,48 @@ import android.widget.Spinner;
 
 public class PancreasDetailFragment extends OrganDetailFragment
 {
+    private enum Tab
+    {
+        CTorMRorUS(0);
+
+        private final int value;
+        private Tab(int value)
+        {
+            this.value = value;
+        }
+
+        public int getValue()
+        {
+            return value;
+        }
+
+        public Tab valueOf(int num)
+        {
+            return values()[num];
+        }
+
+        @Override
+        public String toString()
+        {
+            switch(this)
+            {
+                case CTorMRorUS:
+                    return "CT or MR or US";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    public static final PancreasDetailFragment newInstance()
+    {
+        PancreasDetailFragment f = new PancreasDetailFragment();
+
+        tab_titles = new ArrayList<>();
+        tab_titles.add(Tab.CTorMRorUS.getValue(), Tab.CTorMRorUS.toString());
+
+        return f;
+    }
 
     // must be overriden
     // called by tabbedFragment
@@ -36,9 +80,10 @@ public class PancreasDetailFragment extends OrganDetailFragment
     {
         View view;
 
-        switch(tabPosition)
+        Tab currentTab = Tab.values()[tabPosition];
+        switch(currentTab)
         {
-            case 0:
+            case CTorMRorUS:
 
                 view = inflater.inflate(R.layout.pancreas_cyst_layout, container, false);
 
@@ -65,10 +110,13 @@ public class PancreasDetailFragment extends OrganDetailFragment
             guidelines[i] = "";
         }
 
+        guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
+
         // tab position
-        switch(mViewPager.getCurrentItem())
+        Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];
+        switch(currentTab)
         {
-            case 0:
+            case CTorMRorUS:
 
                 break;
 
@@ -76,12 +124,8 @@ public class PancreasDetailFragment extends OrganDetailFragment
                 break;
         }
 
-        guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "";
-        guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "";
-
 
         return guidelines;
-
     }
 
 }

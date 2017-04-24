@@ -39,6 +39,7 @@ import java.util.Locale;
 public class OrganDetailFragment extends Fragment
 {
     private int tab_titles_array_id;    // R.string array resource id of tab titles for this organ
+    protected static List<String> tab_titles;
 
     // todo declare organ specific spinner position variables
 
@@ -56,6 +57,22 @@ public class OrganDetailFragment extends Fragment
     public OrganDetailFragment()
     {
     }
+
+    /*
+    public static final OrganDetailFragment newInstance()
+    {
+        OrganDetailFragment f = new OrganDetailFragment();
+        setTabTitles();
+        return f;
+    }
+
+    public static void setTabTitles()
+    {
+        // must overrride
+        tab_titles = new ArrayList<>();
+        tab_titles.add(0, "Default");
+    }
+    */
 
     // must be called by inheriting class before view is inflated
     public void setTabTitlesArray(int resource_id)
@@ -90,7 +107,9 @@ public class OrganDetailFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.viewpager_tabs, container, false);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), this, tab_titles_array_id);
+        //mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), this, tab_titles_array_id);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), this, tab_titles);
+
 
         // Initialize the ViewPager and set the adapter
         mViewPager = (ViewPager) view.findViewById(R.id.pager);
@@ -175,6 +194,21 @@ public class OrganDetailFragment extends Fragment
             rootFragment = parentFragment;
 
             tab_titles = getResources().getStringArray(tab_titles_array_resource_id);
+            tabbedContentFragments = new TabbedContentFragment[tab_titles.length];
+        }
+
+        public SectionsPagerAdapter(FragmentManager fm, OrganDetailFragment parentFragment, List<String> tabTitlesList)
+        {
+            super(fm);
+
+            rootFragment = parentFragment;
+
+            tab_titles = new String[tabTitlesList.size()];
+            for(int i = 0; i < tabTitlesList.size(); i++)
+            {
+                tab_titles[i] = tabTitlesList.get(i);
+            }
+
             tabbedContentFragments = new TabbedContentFragment[tab_titles.length];
         }
 

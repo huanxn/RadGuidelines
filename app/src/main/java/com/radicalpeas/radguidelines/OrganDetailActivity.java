@@ -13,9 +13,6 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * An activity representing a single Organ detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
@@ -38,6 +35,8 @@ public class OrganDetailActivity extends AppCompatActivity
     final static int ORGAN_PROSTATE = 12;
     final static int ORGAN_BREAST = 13;
 
+
+    final static int RESULTS_STATUS_MESSAGE = 0;
     final static int RESULTS_IMPRESSION = 1;
     final static int RESULTS_CLASSIFICATION = 2;
     final static int RESULTS_FOLLOWUP = 3;
@@ -45,7 +44,7 @@ public class OrganDetailActivity extends AppCompatActivity
     final static int RESULTS_REFERENCE_TEXT = 5;
     final static int RESULTS_REFERENCE_LINK = 6;
     final static int RESULTS_REFERENCE_IMAGE= 7;
-    final static int RESULTS_ARRAY_SIZE = 8;
+    final static int RESULTS_ARRAY_SIZE = RESULTS_REFERENCE_IMAGE + 10; // use extra slots for reference images
 
     int organ_id = -1;
 
@@ -153,49 +152,43 @@ public class OrganDetailActivity extends AppCompatActivity
             if(organ_id == ORGAN_LUNG)
             {
                 setImageView(R.id.toolbar_imageview, R.drawable.lung_ct_header);
-                organFragment = new LungDetailFragment();
-                organFragment.setTabTitlesArray(R.array.lung_tab_titles_array);
+                organFragment = LungDetailFragment.newInstance();
             }
             else if(organ_id == ORGAN_LIVER)
             {
                 setImageView(R.id.toolbar_imageview, R.drawable.liver_ct_header);
-                organFragment = new LiverDetailFragment();
-                organFragment.setTabTitlesArray(R.array.liver_tab_titles_array);
+                organFragment = LiverDetailFragment.newInstance();
             }
             else if(organ_id == ORGAN_RENAL)
             {
                 setImageView(R.id.toolbar_imageview, R.drawable.renal_ct_header);
-                organFragment = new RenalDetailFragment();
-                organFragment.setTabTitlesArray(R.array.ct_tab_titles_array);
+                organFragment = RenalDetailFragment.newInstance();
             }
             else if(organ_id == ORGAN_THYROID)
             {
                 setImageView(R.id.toolbar_imageview, R.drawable.thyroid_us_header);
-                organFragment = new ThyroidDetailFragment();
-                organFragment.setTabTitlesArray(R.array.thyroid_tab_titles_array);
+                organFragment = ThyroidDetailFragment.newInstance();
             }
             else if(organ_id == ORGAN_ADRENAL)
             {
-                //setImageView(R.id.toolbar_imageview, R.drawable.adrenal_ct_header);
-                organFragment = new AdrenalDetailFragment();
-                organFragment.setTabTitlesArray(R.array.adrenal_tab_titles_array);
+            //    setImageView(R.id.toolbar_imageview, R.drawable.adrenal_ct_header);
+                organFragment = AdrenalDetailFragment.newInstance();
             }
             else if(organ_id == ORGAN_PANCREAS)
             {
-                //setImageView(R.id.toolbar_imageview, R.drawable.liver_ct_header);
-                organFragment = new PancreasDetailFragment();
-                organFragment.setTabTitlesArray(R.array.ctmrus_tab_titles_array);
+            //    setImageView(R.id.toolbar_imageview, R.drawable.pancreas_header);
+                organFragment = PancreasDetailFragment.newInstance();
             }
             else if(organ_id == ORGAN_PROSTATE)
             {
                 //setImageView(R.id.toolbar_imageview, R.drawable.prostate_mr_header);
-                organFragment = new ProstateDetailFragment();
-                organFragment.setTabTitlesArray(R.array.prostate_tab_titles_array);
+                organFragment = ProstateDetailFragment.newInstance();
+//                organFragment.setTabTitlesArray(R.array.prostate_tab_titles_array);
             }
             else
             {
-                organFragment = new OrganDetailFragment();
-                organFragment.setTabTitlesArray(R.array.ctmrus_tab_titles_array);
+ //               organFragment = new OrganDetailFragment();
+   //             organFragment.setTabTitlesArray(R.array.ctmrus_tab_titles_array);
             }
 
             organFragment.setArguments(arguments);

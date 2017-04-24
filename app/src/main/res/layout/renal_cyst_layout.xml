@@ -9,12 +9,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/demographic_label"
+                    android:id="@+id/label_renal_cyst_demographic"
                     style="@style/standardTextLabelStyle"
                     android:text="@string/demographic_prompt"/>
 
                 <Spinner
-                    android:id="@+id/spinner_demographic"
+                    android:id="@+id/spinner_renal_solid_demographic"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/renal_cyst_wall_label"
+                    android:id="@+id/label_renal_cyst_wall"
                     style="@style/standardTextLabelStyle"
                     android:text="@string/renal_cyst_wall_prompt"
                     />
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/renal_attenuation_label"
+                    android:id="@+id/label_renal_cyst_attenuation"
                     style="@style/standardTextLabelStyle"
                     android:text="@string/renal_cyst_attenuation_prompt"
                     />
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/renal_septation_label"
+                    android:id="@+id/label_renal_cyst_septation"
                     style="@style/standardTextLabelStyle"
                     android:text="@string/renal_cyst_septation_prompt"
                     />
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/renal_calcification_label"
+                    android:id="@+id/label_renal_cyst_calcification"
                     style="@style/standardTextLabelStyle"
                     android:text="@string/renal_cyst_calcification_prompt"
                     />
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/renal_enhancement_label"
+                    android:id="@+id/label_renal_cyst_enhancement"
                     style="@style/standardTextLabelStyle"
                     android:text="@string/renal_cyst_enhancement_prompt"
                     />
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/renal_cyst_size_label"
+                    android:id="@+id/label_renal_cyst_size"
                     style="@style/standardTextLabelStyle"
                     android:text="@string/size_prompt"
                     />

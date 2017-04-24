@@ -266,10 +266,9 @@ public class ResultsDetailFragment extends Fragment
                             if(image_uri != null && !image_uri.isEmpty())
                             {
                                 int imageResource = getResources().getIdentifier(image_uri, null, getActivity().getPackageName());
-                                Drawable image = getResources().getDrawable(imageResource);
 
                                 ImageView imageView = (ImageView) view.findViewById(R.id.reference_imageview);
-                                imageView.setImageDrawable(image);
+                                Utilities.setPic(getContext(), imageView, imageResource);
                             }
                         }
                         break;

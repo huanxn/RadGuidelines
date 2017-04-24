@@ -11,7 +11,7 @@
         android:id="@+id/reference_link_text"
         style="@style/webLinkStyle"/>
 
-    <ImageView
+    <com.radicalpeas.radguidelines.TouchImageView
         android:id="@+id/reference_imageview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

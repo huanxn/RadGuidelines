@@ -29,16 +29,37 @@
 
 
     <!-- LUNG -->
-    <string-array name="lung_tab_titles_array">
-        <item>Incidental on CT</item>
-        <item>Screening on CT</item>
-    </string-array>
+
 
     <!-- LIVER -->
-    <string-array name="liver_tab_titles_array">
-        <item>Incidental on CT</item>
-        <item>LI-RADS</item>
+    <string name="liver_ct_risk_level">Risk level:</string>
+    <string-array name="liver_ct_risk_level_array">
+        <item>low risk</item>
+        <item>average risk</item>
+        <item>high risk</item>
     </string-array>
+
+    <string-array name="liver_ct_size_array">
+        <item>&lt; 0.5 cm</item>
+        <item>0.5 to 1.5 cm</item>
+        <item>&gt; 1.5 cm</item>
+    </string-array>
+
+    <string name="liver_ct_attenuation">Attenuation:</string>
+    <string-array name="liver_ct_attenuation_array">
+        <item>low attenuation, benign features</item>
+        <item>low attenuation, suspicious features</item>
+        <item>flash filling (robust enhancement)</item>
+    </string-array>
+
+    <string name="liver_ct_imaging_features">Imaging features:</string>
+    <string-array name="liver_ct_imaging_features_array">
+        <item>benign diagnostic features</item>
+        <item>no benign diagnostic features</item>
+    </string-array>
+
+    <string name="liver_lirads_observation_prompt">Observation in high-risk patients</string>
+
     <string-array name="liver_lirads_size_array">
         <item>&lt; 1.0</item>
         <item>between 1.0 and 2.0</item>
@@ -50,15 +71,32 @@
         <item>hyper-enhancement</item>
     </string-array>
 
+    <string-array name="liver_lirads_growth_rate_array">
+        <item>slow growth rate</item>
+        <item>50% or greater diameter increase in 6 months or less</item>
+    </string-array>
+
+    <string-array name="liver_lirads_ultrasound_array">
+        <item>no corresponding discrete nodule</item>
+        <item>discrete nodule corresponding to observation with washout appearance</item>
+    </string-array>
+
     <!-- RENAL -->
 
+    <!-- RENAL SOLID -->
+    <string name="nonneoplastic_prompt">Non-neoplastic features:</string>
+    <string-array name="renal_solid_nonneoplastic_array">
+        <item>none</item>
+        <item>focal pyelonephritis</item>
+        <item>fat-containing, non-calcified</item>
+    </string-array>
+
+    <string name="size_prompt">Size (cm):</string>
     <string-array name="renal_solid_size_array">
         <item>Less than 1 cm</item>
         <item>1 to 3 cm</item>
         <item>More than 3 cm</item>
     </string-array>
-
-    <string name="size_prompt">Size (cm):</string>
 
     <!-- RENAL CYST -->
     <string name="renal_cyst_solid">Cystic or Solid Lesion</string>
@@ -104,11 +142,6 @@
 
 
     <!-- THYROID -->
-    <string-array name="thyroid_tab_titles_array">
-        <item>Ultrasound</item>
-        <item>CT or MR</item>
-    </string-array>
-
     <string name="thyroid_us_composition">Composition:</string>
     <string-array name="thyroid_us_composition_array">
         <item>cystic or almost completely cystic</item>
@@ -168,11 +201,8 @@
     </string-array>
 
     <!-- ADRENAL -->
-    <string-array name="adrenal_tab_titles_array">
-        <item>Incidental CT</item>
-        <item>Adrenal protocol CT</item>
-    </string-array>
 
+    <!-- PROSTATE -->
     <string-array name="prostate_tab_titles_array">
         <item>PI-RADS</item>
     </string-array>

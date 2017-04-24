@@ -4,13 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
-/**
- * Created by huanx on 4/17/2017.
- */
+import java.util.ArrayList;
 
 
 /**
@@ -27,6 +22,51 @@ import android.widget.Spinner;
 
 public class LungDetailFragment extends OrganDetailFragment
 {
+    private enum Tab
+    {
+        INCIDENTAL(0), SCREEN(1);
+
+        private final int value;
+        private Tab(int value)
+        {
+            this.value = value;
+        }
+
+        public int getValue()
+        {
+            return value;
+        }
+
+        public Tab valueOf(int num)
+        {
+            return values()[num];
+        }
+
+        @Override
+        public String toString()
+        {
+            switch(this)
+            {
+                case INCIDENTAL:
+                    return "Incidental on CT";
+                case SCREEN:
+                    return "Screening on CT";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    public static final LungDetailFragment newInstance()
+    {
+        LungDetailFragment f = new LungDetailFragment();
+
+        tab_titles = new ArrayList<>();
+        tab_titles.add(Tab.INCIDENTAL.getValue(), Tab.INCIDENTAL.toString());
+        tab_titles.add(Tab.SCREEN.getValue(), Tab.SCREEN.toString());
+
+        return f;
+    }
 
     // must be overriden
     // called by tabbedFragment
@@ -36,14 +76,20 @@ public class LungDetailFragment extends OrganDetailFragment
     {
         View view;
 
-        switch(tabPosition)
+        Tab currentTab = Tab.values()[tabPosition];
+        switch(currentTab)
         {
-            case 0:
-
+            case INCIDENTAL:
                 view = inflater.inflate(R.layout.lung_incidental_ct_layout, container, false);
 
                 break;
 
+            case SCREEN:
+
+                //view = inflater.inflate(R.layout.lung_screen_ct_layout, container, false);
+                view = null;
+
+                break;
 
             default:
                 view = null;
@@ -65,10 +111,17 @@ public class LungDetailFragment extends OrganDetailFragment
             guidelines[i] = "";
         }
 
+        guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
+
         // tab position
-        switch(mViewPager.getCurrentItem())
+        Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];
+        switch(currentTab)
         {
-            case 0:
+            case INCIDENTAL:
+
+                break;
+
+            case SCREEN:
 
                 break;
 

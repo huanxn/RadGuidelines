@@ -1,89 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.radicalpeas.radguidelines.SpinnerWithPrompt
+        android:id="@+id/spinner_liver_lirads_observation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="@string/size_prompt"
-            />
-        <Spinner
-            android:id="@+id/spinner_liver_lirads_size"
-            android:layout_gravity="center"
+        android:prompt="@string/liver_lirads_observation_prompt"
+        />
+
+        <LinearLayout
+            android:id="@+id/liver_lirads345_layout"
+            android:layout_below="@id/spinner_liver_lirads_observation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="Arterial phase:"
-            />
-        <Spinner
-            android:id="@+id/spinner_liver_lirads_arterial_enhancement"
-            android:layout_gravity="center"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+            android:orientation="horizontal">
+            <TextView
+                style="@style/standardTextLabelStyle"
+                android:text="@string/size_prompt"
+                />
+            <Spinner
+                android:id="@+id/spinner_liver_lirads_size"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="Washout:"
-            />
-        <Spinner
-            android:id="@+id/spinner_liver_lirads_washout"
-            android:layout_gravity="center"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+            android:orientation="horizontal">
+            <TextView
+                style="@style/standardTextLabelStyle"
+                android:text="Arterial phase:"
+                />
+            <Spinner
+                android:id="@+id/spinner_liver_lirads_arterial_enhancement"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="Capsule:"
-            />
-        <Spinner
-            android:id="@+id/spinner_liver_lirads_capsule"
-            android:layout_gravity="center"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+            android:orientation="horizontal">
+            <TextView
+                style="@style/standardTextLabelStyle"
+                android:text="Washout:"
+                />
+            <Spinner
+                android:id="@+id/spinner_liver_lirads_washout"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
         <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="Growth:"
+            android:id="@+id/textview_liver_lirads_washout_info"
+            style="@style/secondaryTextInfoStyle"
+            android:text="Signal intensity of an observation must be less than on an earlier post-contrast phase AND visibly less than background liver on portal venous or delayed phase."
+            android:visibility="gone"
             />
-        <Spinner
-            android:id="@+id/spinner_liver_lirads_growth"
-            android:layout_gravity="center"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/standardTextLabelStyle"
+                android:text="Capsule:"
+                />
+            <Spinner
+                android:id="@+id/spinner_liver_lirads_capsule"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textview_liver_lirads_capsule_info"
+            style="@style/secondaryTextInfoStyle"
+            android:text="Rim of smooth hyperenhancement along the periphery of an observation in portal venous or delayed phase."
+            android:visibility="gone"
             />
-    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/standardTextLabelStyle"
+                android:text="Growth:"
+                />
+            <Spinner
+                android:id="@+id/spinner_liver_lirads_growth"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textview_liver_lirads_growth_info"
+            style="@style/secondaryTextInfoStyle"
+            android:text="Increase in diameter by both a minimum of 5 mm and a sufficient rate of at least 50% increase within 6 months or at least 100% increase over more than 6 months.\nA new observation measuring at least 10 mm not previously present on a prior examination of sufficient quality also meets threshold growth."
+            android:visibility="gone"
+            />
 
 
 
-</LinearLayout>
+            <LinearLayout
+                android:id="@+id/liver_lirads_growth_rate_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <TextView
+                    style="@style/standardTextLabelStyle"
+                    android:text="Growth rate:"
+                    />
+                <Spinner
+                    android:id="@+id/spinner_liver_lirads_growth_rate"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/liver_lirads_ultrasound_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <TextView
+                    style="@style/standardTextLabelStyle"
+                    android:text="Ultrasound findings:"
+                    />
+                <Spinner
+                    android:id="@+id/spinner_liver_lirads_ultrasound"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+</RelativeLayout>
