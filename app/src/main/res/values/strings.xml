@@ -2,20 +2,6 @@
     <string name="app_name">Rad Guidelines</string>
     <string name="title_organ_detail">Organ Detail</string>
 
-
-    <string-array name="ct_tab_titles_array">
-        <item>CT</item>
-    </string-array>
-
-    <string-array name="ctmr_tab_titles_array">
-        <item>CT or MR</item>
-    </string-array>
-
-    <string-array name="ctmrus_tab_titles_array">
-        <item>CT or MR or US</item>
-    </string-array>
-
-
     <string-array name="no_yes_array">
         <item>no</item>
         <item>yes</item>
@@ -201,6 +187,32 @@
     </string-array>
 
     <!-- ADRENAL -->
+    <string-array name="adrenal_incidental_diagnostic_array">
+        <item>none</item>
+        <item>myelolipoma, calcifications</item>
+        <item>less than 10 HU attenuation on CT or signal drop out on chemical shift MRI</item>
+    </string-array>
+
+    <string-array name="adrenal_incidental_size_array">
+        <item>1 to 4 cm</item>
+        <item>&gt; 4 cm</item>
+    </string-array>
+
+    <string-array name="adrenal_incidental_cancer_array">
+        <item>no</item>
+        <item>yes</item>
+    </string-array>
+
+    <string-array name="adrenal_incidental_prior_array">
+        <item>none available</item>
+        <item>stable over 1 year</item>
+        <item>lesion enlarging</item>
+    </string-array>
+
+    <string-array name="adrenal_incidental_features_array">
+        <item>benign</item>
+        <item>suspicious</item>
+    </string-array>
 
     <!-- PROSTATE -->
     <string-array name="prostate_tab_titles_array">

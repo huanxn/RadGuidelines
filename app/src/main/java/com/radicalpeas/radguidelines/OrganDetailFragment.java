@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.radicalpeas.radguidelines.dummy.DummyContent;
@@ -176,6 +177,17 @@ public class OrganDetailFragment extends Fragment
 
         return guidelines;
 
+    }
+
+    public void enableField(View view, int textView_resource, int spinner_resource)
+    {
+        ((TextView) view.findViewById(textView_resource)).setTextColor(getResources().getColor(R.color.text_dark));
+        ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.VISIBLE);
+    }
+    public void disableField(View view, int textView_resource, int spinner_resource)
+    {
+        ((TextView) view.findViewById(textView_resource)).setTextColor(getResources().getColor(R.color.text_dark_disabled));
+        ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.INVISIBLE);
     }
 
 

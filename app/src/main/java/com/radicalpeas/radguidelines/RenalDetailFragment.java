@@ -571,7 +571,7 @@ public class RenalDetailFragment extends OrganDetailFragment
                         {
                             // thin cyst wall, small hyperdense cyst, either multiple septation or thick calc
                             findings = findings_intro + " hyperdense cyst smaller than 3 cm" + features + ".";
-                            followup_2F += followup_observation_long + ".";
+                            followup_2F += followup_observation_long;
 
                             guidelines[0] = "VALID";
                             guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
@@ -582,7 +582,7 @@ public class RenalDetailFragment extends OrganDetailFragment
                         {
                             // thin cyst wall, large hyperdense cyst
                             findings = findings_intro + " hyperdense cyst larger than 3 cm" + features + ".";
-                            followup_2F += followup_observation_long + ".";
+                            followup_2F += followup_observation_long;
 
                             guidelines[0] = "VALID";
                             guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
@@ -594,7 +594,7 @@ public class RenalDetailFragment extends OrganDetailFragment
                         {
                             // thin cyst wall,
                             findings = findings_intro + " simple fluid attenuating cyst" + features + ".";
-                            followup_2F += followup_observation_long + ".";
+                            followup_2F += followup_observation_long;
 
                             guidelines[0] = "VALID";
                             guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
@@ -684,7 +684,6 @@ public class RenalDetailFragment extends OrganDetailFragment
                             }
                             else if (solid_size == 2)
                             {
-                                guidelines[0] = "VALID";
                                 guidelines[0] = "VALID";
                                 guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a large mass larger than 3 cm.";
                                 guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
