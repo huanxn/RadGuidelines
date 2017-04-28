@@ -171,6 +171,7 @@
     <string name="suspicious_ct_or_mr">Suspicious CT or MR features</string>
 
     <string name="thyroid_ct_age">Age:</string>
+
     <string-array name="thyroid_ct_age_array">
         <item>&lt; 35 years</item>
         <item>&gt;= 35 years</item>
@@ -187,9 +188,15 @@
     </string-array>
 
     <!-- ADRENAL -->
+    <string name="adrenal_diagnostic_features_prompt">Diagnostic features:</string>
+    <string name="adrenal_prior_imaging_prompt">Prior Imaging:</string>
+    <string name="adrenal_cancer_history_prompt">Cancer History:</string>
+    <string name="adrenal_imaging_features_prompt">Imaging Features:</string>
+
     <string-array name="adrenal_incidental_diagnostic_array">
         <item>none</item>
-        <item>myelolipoma, calcifications</item>
+        <item>simple cyst</item>
+        <item>macroscopic fat, with or without calcifications</item>
         <item>less than 10 HU attenuation on CT or signal drop out on chemical shift MRI</item>
     </string-array>
 
@@ -214,10 +221,80 @@
         <item>suspicious</item>
     </string-array>
 
-    <!-- PROSTATE -->
-    <string-array name="prostate_tab_titles_array">
-        <item>PI-RADS</item>
+    <string name="adrenal_precontrast_prompt">Pre-contrast (HU):</string>
+    <string name="adrenal_portalvenous_prompt">Portal venous (HU):</string>
+    <string name="adrenal_delayed_prompt">15-minute delayed (HU):</string>
+    <string name="adrenal_absolute_washout_prompt">Absolute Washout:</string>
+    <string name="adrenal_relative_washout_prompt">Relative Washout:</string>
+    <string name="vascular_cartoid_velocity_prompt">ICA Velocity:</string>
+    <string name="vascular_carotid_ratio_prompt">ICA:CCA Ratio:</string>
+
+    <!-- PANCREAS -->
+    <string-array name="pancreas_cyst_size_array">
+        <item>&lt; 2 cm</item>
+        <item>2 to 3 cm</item>
+        <item>&gt; 3 cm</item>
     </string-array>
+
+    <string-array name="pancreas_cyst_medium_mri_array">
+        <item>not available</item>
+        <item>serous cystadenoma</item>
+        <item>side branch IPMN</item>
+        <item>uncharacterized cystic mass</item>
+    </string-array>
+
+    <string-array name="pancreas_cyst_large_character_array">
+        <item>serous cystadenoma</item>
+        <item>uncharacterized cystic mass or other cystic neoplasm</item>
+    </string-array>
+
+    <!-- VASCULAR -->
+    <string-array name="vascular_aorta_size_array">
+        <item>&lt; 2.5 cm</item>
+        <item>2.5 to 2.9 cm</item>
+        <item>3.0 to 3.4 cm</item>
+        <item>3.5 to 3.9 cm</item>
+        <item>4.0 to 4.4 cm</item>
+        <item>4.5 to 5.0 cm</item>
+        <item>5.0 to 5.5 cm</item>
+        <item>&gt; 5.5 cm</item>
+    </string-array>
+
+    <string-array name="vascular_iliac_size_array">
+        <item>&lt; 2.5 cm</item>
+        <item>2.5 to 2.9 cm</item>
+        <item>3.0 to 3.5 cm</item>
+        <item>&gt; 3.5 cm</item>
+    </string-array>
+
+    <string-array name="vascular_other_size_array">
+        <item>no aneurysm</item>
+        <item>&lt; 2.0 cm</item>
+        <item>&gt;= 2.0 cm</item>
+    </string-array>
+
+    <string-array name="vascular_renal_size_array">
+        <item>&lt; 1.0 cm</item>
+        <item>1.0 to 1.5 cm</item>
+        <item>&gt; 1.5 cm</item>
+    </string-array>
+
+    <string-array name="vascular_carotid_velocity_array">
+        <item>&lt; 125 cm/s</item>
+        <item>125 to 230 cm/s</item>
+        <item>&gt; 230 cm</item>
+        <item>not detectable</item>
+    </string-array>
+
+    <string-array name="vascular_carotid_ratio_array">
+        <item>&lt; 2.0</item>
+        <item>2.0 to 4.0</item>
+        <item>&gt; 4.0</item>
+        <item>not detectable</item>
+    </string-array>
+
+    <!-- PROSTATE -->
+
 
     <!-- RESULTS -->
     <string-array name="results_tab_titles_array">

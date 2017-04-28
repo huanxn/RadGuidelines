@@ -1,11 +1,14 @@
 package com.radicalpeas.radguidelines;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -26,11 +29,21 @@ import java.util.ArrayList;
 
 public class AdrenalDetailFragment extends OrganDetailFragment
 {
+    // INCIDENTAL
     private int diagnostic = 0;
     private int size = 0;
     private int cancer_history = 0;
     private int prior_imaging = 0;
     private int features = 0;
+
+    // ADRENAL PROTOCOL
+    private String preconString = null;
+    private String portalvenousString = null;
+    private String delayedString = null;
+    private String absoluteWashoutString = null;
+    private String relativeWashoutString = null;
+    private double absolute_washout;
+    private double relative_washout;
 
     private enum Tab
     {
@@ -91,7 +104,7 @@ public class AdrenalDetailFragment extends OrganDetailFragment
         {
             case INCIDENTAL:
                 view = inflater.inflate(R.layout.adrenal_incidental_layout, container, false);
-                final View rootView = view;
+                final View incidentalView = view;
 
                 final Spinner diagnostic_spinner = (Spinner) view.findViewById(R.id.spinner_adrenal_diagnostic);
                 final Spinner size_spinner = (Spinner) view.findViewById(R.id.spinner_adrenal_size);
@@ -110,7 +123,7 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                         diagnostic_spinner.setSelection(position);
                         diagnostic = position;
 
-                        set_adrenal_incidental_layout_status(rootView);
+                        set_adrenal_incidental_layout_status(incidentalView);
                     }
 
                     @Override
@@ -128,7 +141,7 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                         size_spinner.setSelection(position);
                         size = position;
 
-                        set_adrenal_incidental_layout_status(rootView);
+                        set_adrenal_incidental_layout_status(incidentalView);
                     }
 
                     @Override
@@ -146,7 +159,7 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                         cancer_history_spinner.setSelection(position);
                         cancer_history = position;
 
-                        set_adrenal_incidental_layout_status(rootView);
+                        set_adrenal_incidental_layout_status(incidentalView);
                     }
 
                     @Override
@@ -164,7 +177,7 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                         prior_imaging_spinner.setSelection(position);
                         prior_imaging = position;
 
-                        set_adrenal_incidental_layout_status(rootView);
+                        set_adrenal_incidental_layout_status(incidentalView);
                     }
 
                     @Override
@@ -182,7 +195,7 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                         features_spinner.setSelection(position);
                         features = position;
 
-                        TextView features_info_textview = (TextView) rootView.findViewById(R.id.textview_adrenal_features_info);
+                        TextView features_info_textview = (TextView) incidentalView.findViewById(R.id.textview_adrenal_features_info);
 
                         if(features == 0)
                         {
@@ -204,9 +217,69 @@ public class AdrenalDetailFragment extends OrganDetailFragment
 
 
             case ADRENAL_PROTOCOL:
+                view = inflater.inflate(R.layout.adrenal_protocol_layout, container, false);
+                final View protocolView = view;
 
-                view = null;
+                final EditText precon_edittext = (EditText) view.findViewById(R.id.edittext_adrenal_precontrast);
+                final EditText portalvenous_edittext = (EditText) view.findViewById(R.id.edittext_adrenal_portalvenous);
+                final EditText delayed_edittext = (EditText) view.findViewById(R.id.edittext_adrenal_delayed);
 
+                precon_edittext.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s)
+                    {
+                        preconString = precon_edittext.getText().toString();
+                        calculateAdrenalWashout(protocolView);
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after)
+                    {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count)
+                    {
+                    }
+                });
+
+                portalvenous_edittext.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s)
+                    {
+                        portalvenousString = portalvenous_edittext.getText().toString();
+                        calculateAdrenalWashout(protocolView);
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after)
+                    {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count)
+                    {
+                    }
+                });
+
+                delayed_edittext.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s)
+                    {
+                        delayedString = delayed_edittext.getText().toString();
+                        calculateAdrenalWashout(protocolView);
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after)
+                    {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count)
+                    {
+                    }
+                });
                 break;
             default:
                 view = null;
@@ -257,6 +330,54 @@ public class AdrenalDetailFragment extends OrganDetailFragment
         }
     }
 
+    public void calculateAdrenalWashout(View view)
+    {
+        int precon_attenuation;
+        int portalvenous_attenuation;
+        int delayed_attenuation;
+
+        final TextView absolute_washout_textview = (TextView) view.findViewById(R.id.textview_absolute_washout);
+        final TextView relative_washout_textview = (TextView) view.findViewById(R.id.textview_relative_washout);
+
+        if (preconString != null && !preconString.isEmpty()
+                && portalvenousString != null && !portalvenousString.isEmpty()
+                && delayedString != null && !delayedString.isEmpty())
+        {
+
+            precon_attenuation = Integer.valueOf(preconString);
+            portalvenous_attenuation = Integer.valueOf(portalvenousString);
+            delayed_attenuation = Integer.valueOf(delayedString);
+
+            absolute_washout = ((double) portalvenous_attenuation - delayed_attenuation) / ((double) portalvenous_attenuation - precon_attenuation) * 100;
+            absolute_washout_textview.setText(String.valueOf(absolute_washout));
+
+            absoluteWashoutString = String.valueOf(Math.round(absolute_washout*10.0)/10.0) + "%";
+            absolute_washout_textview.setText(absoluteWashoutString);
+        }
+        else
+        {
+            absoluteWashoutString = null;
+            absolute_washout_textview.setText("");
+        }
+
+        if (portalvenousString != null && !portalvenousString.isEmpty()
+                && delayedString != null && !delayedString.isEmpty())
+        {
+            portalvenous_attenuation = Integer.valueOf(portalvenousString);
+            delayed_attenuation = Integer.valueOf(delayedString);
+
+            relative_washout = ((double) portalvenous_attenuation - delayed_attenuation) / ((double) portalvenous_attenuation) * 100;
+
+            relativeWashoutString = String.valueOf(Math.round(relative_washout*10.0)/10.0) + "%";
+            relative_washout_textview.setText(relativeWashoutString);
+        }
+        else
+        {
+            relativeWashoutString = null;
+            relative_washout_textview.setText("");
+        }
+    }
+
 
     // must be overriden
     // if completed info, returns guideline recommendations, reference, link
@@ -272,26 +393,42 @@ public class AdrenalDetailFragment extends OrganDetailFragment
 
         guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
 
+        String incidental_legend1 = "If the patient has clinical signs or symptoms of adrenal hyperfunction, consider biochemical evaluation.";
+        String incidental_legend2 = "Consider biochemical testing to exclude pheochromocytoma";
+
         // tab position
         Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];
         switch(currentTab)
         {
             case INCIDENTAL:
 
+
                 if(diagnostic == 1)
                 {
-                    // myelolipoma
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "myelolipoma";
+                    // adenoma
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a simple adrenal cyst.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No follow up necessary.";
                 }
-                else if(diagnostic == 2)
+                if(diagnostic == 2)
+                {
+                    // myelolipoma
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with macroscopic fat, compatible with an adrenal myelolipoma.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No follow up necessary.";
+                }
+                else if(diagnostic == 3)
                 {
                     // adenoma
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "adenoma";
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with low attenuation less than 10 HU or signal drop out on chemical shift MRI, compatible with an adrenal adenoma.";
+                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend1;
                 }
                 else if(diagnostic == 0)
                 {
+                    String findings = "There is an adrenal nodule";
                     if(size == 0)
                     {
+                        // size between 1 to 4 cm
+                        findings += " measuring between 1 to 4 cm";
+
                         if(prior_imaging == 0)
                         {
                             // no prior images
@@ -302,49 +439,51 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                                 if(features == 0)
                                 {
                                     // benign features
-                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "1 to 4 cm with benign features.  No history of cancer.";
+                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a homogeneous, low density adrenal nodule with smooth margins, measuring between 1 to 4 cm, in a patient without a history of cancer.";
+                                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Findings are suggestive of a benign adrenal nodule.";
                                     guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider 12 month follow up CT or MR.";
                                 }
                                 else if(features == 1)
                                 {
                                     // suspicious features
-                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "1 to 4 cm with suspicious features.  No history of cancer.";
-                                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider further evaluation with unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal protocol CT.";
+                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a heterogeneous adrenal nodule with irregular margins, measuring between 1 to 4 cm.";
+                                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider further evaluation with unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal washout CT.";
                                 }
                             }
                             else if(cancer_history == 1)
                             {
                                 // has cancer history
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "1 to 4 cm with history of cancer.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider PET.  Consider further evaluation with unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal protocol CT.";
+                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", in a patient with history of cancer.";
+                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider further evaluation with PET, unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal protocol CT.";
                             }
                         }
                         else if(prior_imaging == 1)
                         {
                             // stable over 1 year
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "1 to 4 cm. stable over 1 year.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "if no symptoms... benign.";
+                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", which has been stable for over 1 year, and is most likely benign";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend1;
                         }
                         else if(prior_imaging == 2)
                         {
                             // enlarging
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "1 to 4 cm. enlarging, concerning for malignancy";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "consider biopsy or resection.";
+                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", which has enlarged compared to prior exam, concerning for malignancy";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider biopsy or resection. " + incidental_legend2 + ".";
                         }
 
                     }
                     else if(size == 1)
                     {
                         // over 4 cm
+                        findings += " measuring at least 4 cm in size";
                         if(cancer_history == 0)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "large 4 cm. no cancer history";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "consider resection.";
+                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ".";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider resection. " + incidental_legend2 + ".";
                         }
                         else if(cancer_history == 1)
                             {
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "large 4 cm. with cancer history";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "consider PET or biopsy.";
+                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", in a patient with a history of cancer.";
+                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider PET or biopsy. " + incidental_legend2 + ".";
                             }
                     }
 
@@ -353,6 +492,50 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                 break;
 
             case ADRENAL_PROTOCOL:
+
+                if(preconString != null && !preconString.isEmpty())
+                {
+                    // pre-contrast was performed
+                    if(Integer.valueOf(preconString) <= 10)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with pre-contrast attenuation of 10 HU or less, diagnostic of a lipid rich adrenal adenoma.";
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
+                    }
+                    else if(absoluteWashoutString != null && !absoluteWashoutString.isEmpty())
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with absolute washout of " + absoluteWashoutString + ".";
+
+                        if(absolute_washout >= 60)
+                        {
+                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Absolute washout of 60% or greater is diagnostic of an adrenal adenoma.";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
+                        }
+                        else
+                        {
+                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Absolute washout of less than 60% is indeterminate.";
+                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend2 + ", chemical shift MR, or biopsy if appropriate.";
+                        }
+                    }
+                }
+                else if(relativeWashoutString != null && !relativeWashoutString.isEmpty())
+                {
+                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with relative washout of " + relativeWashoutString + ".";
+
+                    if(relative_washout >= 40)
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Relative washout of 40% or greater is diagnostic of an adrenal adenoma.";
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
+                    }
+                    else
+                    {
+                        guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Relative washout of less than 40% is indeterminate.";
+                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend2 + ", chemical shift MR, or biopsy if appropriate.";
+                    }
+                }
+                else
+                {
+                    guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "Not enough info";
+                }
 
                 break;
 

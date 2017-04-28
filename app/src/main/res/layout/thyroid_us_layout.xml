@@ -19,6 +19,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/thyroid_us_composition_array"
             />
     </LinearLayout>
 
@@ -37,6 +38,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/thyroid_us_echogenicity_array"
             />
     </LinearLayout>
 
@@ -55,6 +57,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/thyroid_us_shape_array"
             />
     </LinearLayout>
 
@@ -73,6 +76,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/thyroid_us_margin_array"
             />
     </LinearLayout>
 
@@ -91,6 +95,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/thyroid_us_echogenic_foci_array"
             />
     </LinearLayout>
 

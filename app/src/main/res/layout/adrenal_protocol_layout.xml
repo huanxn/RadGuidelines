@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:id="@+id/label_adrenal_precontrast"
+                  style="@style/standardTextLabelStyle"
+                  android:text="@string/adrenal_precontrast_prompt"
+            />
+
+        <EditText
+            android:id="@+id/edittext_adrenal_precontrast"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:paddingRight="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:id="@+id/label_adrenal_postcontrast"
+                  style="@style/standardTextLabelStyle"
+                  android:text="@string/adrenal_portalvenous_prompt"
+            />
+
+        <EditText
+            android:id="@+id/edittext_adrenal_portalvenous"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:paddingRight="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:id="@+id/label_adrenal_delayed"
+                  style="@style/standardTextLabelStyle"
+                  android:text="@string/adrenal_delayed_prompt"
+            />
+
+        <EditText
+            android:id="@+id/edittext_adrenal_delayed"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:paddingRight="10dp"/>
+    </LinearLayout>
+
+    <View
+        style="@style/divider"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:id="@+id/label_absolute_washout"
+                  style="@style/standardTextLabelStyle"
+                  android:text="@string/adrenal_absolute_washout_prompt"
+            />
+
+        <TextView android:id="@+id/textview_absolute_washout"
+                  style="@style/standardTextLabelStyle"
+                  android:text=""
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView android:id="@+id/label_relative_washout"
+                  style="@style/standardTextLabelStyle"
+                  android:text="@string/adrenal_relative_washout_prompt"
+            />
+
+        <TextView android:id="@+id/textview_relative_washout"
+                  style="@style/standardTextLabelStyle"
+                  android:text=""
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

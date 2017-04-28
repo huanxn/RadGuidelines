@@ -185,16 +185,29 @@ public class OrganDetailActivity extends AppCompatActivity
                 organFragment = ProstateDetailFragment.newInstance();
 //                organFragment.setTabTitlesArray(R.array.prostate_tab_titles_array);
             }
+            else if(organ_id == ORGAN_VASCULAR)
+            {
+                organFragment = VascularDetailFragment.newInstance();
+            }
             else
             {
+                organFragment = null;
  //               organFragment = new OrganDetailFragment();
    //             organFragment.setTabTitlesArray(R.array.ctmrus_tab_titles_array);
             }
 
-            organFragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.organ_detail_container, organFragment)
-                    .commit();
+            if(organFragment != null)
+            {
+                organFragment.setArguments(arguments);
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.organ_detail_container, organFragment)
+                        .commit();
+            }
+            else
+            {
+            //    Snackbar.make(view, "Under construction", Snackbar.LENGTH_LONG)
+            //            .setAction("Action", null).show();
+            }
         }
     }
 
