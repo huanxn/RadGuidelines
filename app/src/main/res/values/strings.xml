@@ -14,6 +14,9 @@
     </string-array>
 
 
+    <string name="organ_cancer_history_prompt">Cancer History:</string>
+    <string name="organ_malignancy_history_prompt">Malignancy History:</string>
+
     <!-- LUNG -->
 
 
@@ -168,7 +171,7 @@
 
     <string name="thyroid_us_size">Nodule size:</string>
 
-    <string name="suspicious_ct_or_mr">Suspicious CT or MR features</string>
+    <string name="suspicious_features_prompt">Suspicious features:</string>
 
     <string name="thyroid_ct_age">Age:</string>
 
@@ -190,7 +193,6 @@
     <!-- ADRENAL -->
     <string name="adrenal_diagnostic_features_prompt">Diagnostic features:</string>
     <string name="adrenal_prior_imaging_prompt">Prior Imaging:</string>
-    <string name="adrenal_cancer_history_prompt">Cancer History:</string>
     <string name="adrenal_imaging_features_prompt">Imaging Features:</string>
 
     <string-array name="adrenal_incidental_diagnostic_array">
@@ -261,7 +263,7 @@
     </string-array>
 
     <string-array name="vascular_iliac_size_array">
-        <item>&lt; 2.5 cm</item>
+        <item>no aneurysm</item>
         <item>2.5 to 2.9 cm</item>
         <item>3.0 to 3.5 cm</item>
         <item>&gt; 3.5 cm</item>
@@ -274,7 +276,7 @@
     </string-array>
 
     <string-array name="vascular_renal_size_array">
-        <item>&lt; 1.0 cm</item>
+        <item>no aneurysm</item>
         <item>1.0 to 1.5 cm</item>
         <item>&gt; 1.5 cm</item>
     </string-array>
@@ -291,6 +293,98 @@
         <item>2.0 to 4.0</item>
         <item>&gt; 4.0</item>
         <item>not detectable</item>
+    </string-array>
+
+
+    <!-- SPLEEN -->
+    <string-array name="spleen_diagnostic_features_array">
+        <item>benign</item>
+        <item>indeterminate</item>
+    </string-array>
+
+    <string-array name="spleen_prior_array">
+        <item>none</item>
+        <item>stable for 1 year</item>
+        <item>not stable</item>
+    </string-array>
+
+    <string-array name="spleen_suspicious_features_array">
+        <item>suspicious</item>
+        <item>indeterminate</item>
+    </string-array>
+
+    <string-array name="spleen_lesion_size_array">
+        <item>&lt; 1 cm</item>
+        <item>&gt;= 1 cm</item>
+    </string-array>
+
+    <!-- NODE -->
+    <string-array name="node_ct_imaging_features_array">
+        <item>benign</item>
+        <item>suspicious</item>
+    </string-array>
+
+    <string-array name="node_clinical_array">
+        <item>benign</item>
+        <item>lymphoproliferative disorder</item>
+    </string-array>
+
+    <!-- ADNEXA -->
+    <string-array name="adnexa_ct_imaging_features_array">
+        <item>benign-appearing cyst</item>
+        <item>probably benign cyst</item>
+        <item>other imaging features</item>
+    </string-array>
+
+    <string-array name="adenexa_ct_diagnostic_features_array">
+        <item>not specific</item>
+        <item>paraovarian cyst</item>
+        <item>hydrosalpinx</item>
+        <item>peritoneal inclusion cyst</item>
+        <item>cystic teratoma</item>
+        <item>endometrioma</item>
+        <item>leiomyoma</item>
+        <item>ovarian fibroma</item>
+        <item>malignancy</item>
+    </string-array>
+
+    <string-array name="adnexa_ct_menopause_array">
+        <item>pre-menopausal</item>
+        <item>early post-menopausal</item>
+        <item>late post-menopausal</item>
+    </string-array>
+
+    <string-array name="adnexa_ct_size_array">
+        <item>&lt; 1 cm</item>
+        <item>1 to 3 cm</item>
+        <item>3 to 5 cm</item>
+        <item>&gt; 5 cm</item>
+    </string-array>
+
+    <!-- GALLBLADDER -->
+    <string-array name="gallbladder_contents_array">
+        <item>normal</item>
+        <item>gallstones</item>
+        <item>dense material</item>
+    </string-array>
+
+    <string-array name="gallbladder_wall_array">
+        <item>normal</item>
+        <item>calcification</item>
+        <item>diffuse thickening &gt; 3 mm</item>
+        <item>focal gallbladder wall thickening or mass</item>
+    </string-array>
+
+    <string-array name="gallbladder_polyp_array">
+        <item>none</item>
+        <item>&lt;= 6 mm</item>
+        <item>7 to 9 mm</item>
+        <item>&gt;= 10 mm</item>
+    </string-array>
+
+    <string-array name="gallbladder_duct_array">
+        <item>normal</item>
+        <item>duct dilation</item>
     </string-array>
 
     <!-- PROSTATE -->

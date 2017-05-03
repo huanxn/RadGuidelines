@@ -9,14 +9,64 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_adnexa_ct_imaging_features"
             style="@style/standardTextLabelStyle"
-            android:text="@string/suspicious_features_prompt"/>
-
+            android:text="Imaging features:"
+            />
         <Spinner
-            android:id="@+id/spinner_suspicious_features"
+            android:id="@+id/spinner_adnexa_ct_imaging_features"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/adnexa_ct_imaging_features_array"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview_adnexa_ct_imaging_features"
+        style="@style/secondaryTextInfoStyle"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_adnexa_ct_diagnostic_features"
+            style="@style/standardTextLabelStyle"
+            android:text="Diagnostic features:"
+            />
+        <Spinner
+            android:id="@+id/spinner_adnexa_ct_diagnostic_features"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/adenexa_ct_diagnostic_features_array"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview_adnexa_ct_diagnostic_features"
+        style="@style/secondaryTextInfoStyle"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_adnexa_ct_menopause"
+            style="@style/standardTextLabelStyle"
+            android:text="Menopause:"
+            />
+        <Spinner
+            android:id="@+id/spinner_adnexa_ct_menopause"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/adnexa_ct_menopause_array"
             />
     </LinearLayout>
 
@@ -25,50 +75,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="@string/demographic_prompt"
-            />
-
-        <Spinner
-            android:id="@+id/spinner_thyroid_population"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="@string/thyroid_ct_age"
-            />
-
-        <Spinner
-            android:id="@+id/spinner_thyroid_age"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
+            android:id="@+id/label_adnexa_ct_size"
             style="@style/standardTextLabelStyle"
             android:text="@string/size_prompt"
             />
-
         <Spinner
-            android:id="@+id/spinner_thyroid_ct_size"
+            android:id="@+id/spinner_adnexa_ct_size"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/adnexa_ct_size_array"
             />
     </LinearLayout>
+
 
 </LinearLayout>

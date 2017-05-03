@@ -9,14 +9,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_gallbladder_ct_gallbladder"
             style="@style/standardTextLabelStyle"
-            android:text="@string/suspicious_features_prompt"/>
-
+            android:text="Intraluminal contents:"
+            />
         <Spinner
-            android:id="@+id/spinner_suspicious_features"
+            android:id="@+id/spinner_gallbladder_ct_contents"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/gallbladder_contents_array"
             />
     </LinearLayout>
 
@@ -25,15 +27,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_gallbladder_ct_wall"
             style="@style/standardTextLabelStyle"
-            android:text="@string/demographic_prompt"
+            android:text="Gallbladder wall:"
             />
-
         <Spinner
-            android:id="@+id/spinner_thyroid_population"
+            android:id="@+id/spinner_gallbladder_ct_wall"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/gallbladder_wall_array"
             />
     </LinearLayout>
 
@@ -42,15 +45,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_gallbladder_ct_polyp"
             style="@style/standardTextLabelStyle"
-            android:text="@string/thyroid_ct_age"
+            android:text="Polyps:"
             />
-
         <Spinner
-            android:id="@+id/spinner_thyroid_age"
+            android:id="@+id/spinner_gallbladder_ct_polyp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/gallbladder_polyp_array"
             />
     </LinearLayout>
 
@@ -59,16 +63,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_gallbladder_ct_duct_dilation"
             style="@style/standardTextLabelStyle"
-            android:text="@string/size_prompt"
+            android:text="Bile ducts:"
             />
-
         <Spinner
-            android:id="@+id/spinner_thyroid_ct_size"
+            android:id="@+id/spinner_gallbladder_ct_duct_dilation"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/gallbladder_duct_array"
             />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview_gallblader_ct_info"
+        style="@style/secondaryTextInfoStyle"
+        android:visibility="gone"
+        android:text="Common bile duct or common hepatic duct &gt; 6 mm in a patient &lt; 60 years of age with the gallbladder present or a common duct &gt; 10 mm with the gallbladder absent."
+        />
 
 </LinearLayout>

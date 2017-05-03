@@ -65,7 +65,7 @@
         <TextView
             android:id="@+id/label_cancer_history"
             style="@style/standardTextLabelStyle"
-            android:text="@string/adrenal_cancer_history_prompt"
+            android:text="@string/organ_cancer_history_prompt"
             />
         <Spinner
             android:id="@+id/spinner_adrenal_cancer_history"

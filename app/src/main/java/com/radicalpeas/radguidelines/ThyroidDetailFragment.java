@@ -298,9 +298,7 @@ public class ThyroidDetailFragment extends OrganDetailFragment
                 });
 
                 // PATIENT AGE
-                ArrayAdapter<CharSequence> age_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_age_array, R.layout.spinner_dropdown_item_multiline);
-                age_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
-                thyroid_age_spinner.setAdapter(age_adapter);
+                setSpinnerEntries(thyroid_age_spinner, R.array.thyroid_ct_age_array);
 
                 thyroid_age_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -311,16 +309,12 @@ public class ThyroidDetailFragment extends OrganDetailFragment
                         if(age == 0)
                         {
                             // if <35 years old, size threshold is 1 cm
-                            ArrayAdapter<CharSequence> size_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_young_size_array, R.layout.spinner_dropdown_item_multiline);
-                            size_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
-                            thyroid_size_spinner.setAdapter(size_adapter);
+                            setSpinnerEntries(thyroid_size_spinner, R.array.thyroid_ct_young_size_array);
                         }
                         else
                         {
                             // if >35 years old, size threshold is 1.5 cm
-                            ArrayAdapter<CharSequence> size_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_old_size_array, R.layout.spinner_dropdown_item_multiline);
-                            size_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
-                            thyroid_size_spinner.setAdapter(size_adapter);
+                            setSpinnerEntries(thyroid_size_spinner, R.array.thyroid_ct_old_size_array);
                         }
                     }
 
@@ -332,9 +326,7 @@ public class ThyroidDetailFragment extends OrganDetailFragment
 
                 // NODULE SIZE
                 // default young patient size threshold, but will change if user selects older patient age
-                ArrayAdapter<CharSequence> size_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_ct_young_size_array, R.layout.spinner_dropdown_item_multiline);
-                size_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
-                thyroid_size_spinner.setAdapter(size_adapter);
+                setSpinnerEntries(thyroid_size_spinner, R.array.thyroid_ct_young_size_array);
 
                 thyroid_size_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override

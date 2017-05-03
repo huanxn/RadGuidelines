@@ -189,6 +189,22 @@ public class OrganDetailActivity extends AppCompatActivity
             {
                 organFragment = VascularDetailFragment.newInstance();
             }
+            else if(organ_id == ORGAN_GALLBLADDER)
+            {
+                organFragment = GallbladderDetailFragment.newInstance();
+            }
+            else if(organ_id == ORGAN_SPLEEN)
+            {
+                organFragment = SpleenDetailFragment.newInstance();
+            }
+            else if(organ_id == ORGAN_NODAL)
+            {
+                organFragment = LymphNodeDetailFragment.newInstance();
+            }
+            else if(organ_id == ORGAN_ADNEXA)
+            {
+                organFragment = AdnexaDetailFragment.newInstance();
+            }
             else
             {
                 organFragment = null;

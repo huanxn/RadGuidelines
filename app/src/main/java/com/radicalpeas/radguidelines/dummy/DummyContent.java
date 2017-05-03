@@ -37,14 +37,14 @@ public class DummyContent
         */
 
         addItem(new DummyItem("1", "Lung", "Amphoteric is the property of certain substances of acting either as acids or as bases depending on the reaction in which they are involved"));
-        addItem(new DummyItem("2", "Renal", "Anion is a negatively charged ion"));
+        addItem(new DummyItem("2", "Kidney", "Anion is a negatively charged ion"));
         addItem(new DummyItem("3", "Liver", "Anode is a positively charged ion"));
-        addItem(new DummyItem("4", "Adrenal", "Amphoteric is the property of certain substances of acting either as acids or as bases depending on the reaction in which they are involved"));
-        addItem(new DummyItem("5", "Cystic Pancreatic", "Anion is a negatively charged ion"));
-        addItem(new DummyItem("6", "Adnexal", "Anode is a positively charged ion"));
+        addItem(new DummyItem("4", "Adrenal Gland", "Amphoteric is the property of certain substances of acting either as acids or as bases depending on the reaction in which they are involved"));
+        addItem(new DummyItem("5", "Pancreas", "Anion is a negatively charged ion"));
+        addItem(new DummyItem("6", "Adnexa", "Anode is a positively charged ion"));
         addItem(new DummyItem("7", "Vascular", "Amphoteric is the property of certain substances of acting either as acids or as bases depending on the reaction in which they are involved"));
-        addItem(new DummyItem("8", "Splenic", "Anion is a negatively charged ion"));
-        addItem(new DummyItem("9", "Nodal", "Anode is a positively charged ion"));
+        addItem(new DummyItem("8", "Spleen", "Anion is a negatively charged ion"));
+        addItem(new DummyItem("9", "Lymph Node", "Anode is a positively charged ion"));
         addItem(new DummyItem("10", "Gallbladder", "Anion is a negatively charged ion"));
         addItem(new DummyItem("11", "Thyroid", "Anode is a positively charged ion"));
         addItem(new DummyItem("12", "Prostate", "Anion is a negatively charged ion"));

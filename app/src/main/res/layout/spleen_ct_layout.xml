@@ -9,14 +9,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_spleen_ct_diagnostic_features"
             style="@style/standardTextLabelStyle"
-            android:text="@string/suspicious_features_prompt"/>
-
+            android:text="Diagnostic benign features:"
+            />
         <Spinner
-            android:id="@+id/spinner_suspicious_features"
+            android:id="@+id/spinner_spleen_ct_benign_features"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/no_yes_array"
             />
     </LinearLayout>
 
@@ -25,15 +27,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_spleen_ct_prior_imaging"
             style="@style/standardTextLabelStyle"
-            android:text="@string/demographic_prompt"
+            android:text="Prior imaging:"
             />
-
         <Spinner
-            android:id="@+id/spinner_thyroid_population"
+            android:id="@+id/spinner_spleen_ct_prior_imaging"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/spleen_prior_array"
             />
     </LinearLayout>
 
@@ -42,15 +45,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_spleen_ct_cancer_history"
             style="@style/standardTextLabelStyle"
-            android:text="@string/thyroid_ct_age"
+            android:text="@string/organ_cancer_history_prompt"
             />
-
         <Spinner
-            android:id="@+id/spinner_thyroid_age"
+            android:id="@+id/spinner_spleen_ct_cancer_history"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/no_yes_array"
             />
     </LinearLayout>
 
@@ -59,16 +63,50 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/label_spleen_ct_suspicious_features"
             style="@style/standardTextLabelStyle"
-            android:text="@string/size_prompt"
+            android:text="@string/suspicious_features_prompt"
             />
-
         <Spinner
-            android:id="@+id/spinner_thyroid_ct_size"
+            android:id="@+id/spinner_spleen_ct_suspicious_features"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/no_yes_array"
             />
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/label_spleen_ct_lesion_size"
+            style="@style/standardTextLabelStyle"
+            android:text="Lesion size:"
+            />
+        <Spinner
+            android:id="@+id/spinner_spleen_ct_lesion_size"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spleen_lesion_size_array"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview_liver_ct_features_info"
+        style="@style/secondaryTextInfoStyle"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/textview_liver_ct_attenuation_info"
+        style="@style/secondaryTextInfoStyle"
+        android:visibility="gone"
+        />
+
+
 
 </LinearLayout>

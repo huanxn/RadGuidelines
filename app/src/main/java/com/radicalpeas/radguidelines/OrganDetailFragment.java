@@ -181,6 +181,7 @@ public class OrganDetailFragment extends Fragment
 
     public void enableField(View view, int textView_resource, int spinner_resource)
     {
+        ((TextView) view.findViewById(textView_resource)).setVisibility(View.VISIBLE);
         ((TextView) view.findViewById(textView_resource)).setTextColor(getResources().getColor(R.color.text_dark));
         ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.VISIBLE);
     }
@@ -190,7 +191,36 @@ public class OrganDetailFragment extends Fragment
         ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.INVISIBLE);
     }
 
+    public void hideField(View view, int textView_resource, int spinner_resource)
+    {
+        ((TextView) view.findViewById(textView_resource)).setVisibility(View.GONE);
+        ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.GONE);
+    }
 
+    public void fixStringUnicode(String[] inString)
+    {
+        for(int i = 0; i < inString.length; i++)
+        {
+            inString[i] = inString[i].replace("<=", "\u2264");
+            inString[i] = inString[i].replace(">=", "\u2265");
+        }
+    }
+
+    public void  setSpinnerEntries(Spinner spinner, int arrayResId)
+    {
+        /*
+                ArrayAdapter<CharSequence> composition_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_composition_array, R.layout.spinner_dropdown_item_multiline);
+                composition_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_multiline);
+                thyroid_composition_spinner.setAdapter(composition_adapter);
+
+         */
+        String[] stringArray = getResources().getStringArray(arrayResId);
+        fixStringUnicode(stringArray);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), R.layout.spinner_dropdown_item_multiline);
+        adapter.addAll(stringArray);
+        spinner.setAdapter(adapter);
+    }
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter
