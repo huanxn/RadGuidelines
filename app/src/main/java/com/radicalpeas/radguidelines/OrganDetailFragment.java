@@ -39,7 +39,17 @@ import java.util.Locale;
 
 public class OrganDetailFragment extends Fragment
 {
-    private int tab_titles_array_id;    // R.string array resource id of tab titles for this organ
+
+    final static int RESULTS_STATUS_MESSAGE = 0;
+    final static int RESULTS_IMPRESSION = 1;
+    final static int RESULTS_CLASSIFICATION = 2;
+    final static int RESULTS_FOLLOWUP = 3;
+    final static int RESULTS_STATISTICS = 4;
+    final static int RESULTS_REFERENCE_TEXT = 5;
+    final static int RESULTS_REFERENCE_LINK = 6;
+    final static int RESULTS_REFERENCE_IMAGE= 7;
+    final static int RESULTS_ARRAY_SIZE = RESULTS_REFERENCE_IMAGE + 10; // use extra slots for reference images
+
     protected static List<String> tab_titles;
 
     // todo declare organ specific spinner position variables
@@ -67,19 +77,7 @@ public class OrganDetailFragment extends Fragment
         return f;
     }
 
-    public static void setTabTitles()
-    {
-        // must overrride
-        tab_titles = new ArrayList<>();
-        tab_titles.add(0, "Default");
-    }
     */
-
-    // must be called by inheriting class before view is inflated
-    public void setTabTitlesArray(int resource_id)
-    {
-        tab_titles_array_id = resource_id;
-    }
 
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
@@ -158,7 +156,7 @@ public class OrganDetailFragment extends Fragment
     // else send error message
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
@@ -179,25 +177,25 @@ public class OrganDetailFragment extends Fragment
 
     }
 
-    public void enableField(View view, int textView_resource, int spinner_resource)
+    protected void enableField(View view, int textView_resource, int spinner_resource)
     {
         ((TextView) view.findViewById(textView_resource)).setVisibility(View.VISIBLE);
         ((TextView) view.findViewById(textView_resource)).setTextColor(getResources().getColor(R.color.text_dark));
         ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.VISIBLE);
     }
-    public void disableField(View view, int textView_resource, int spinner_resource)
+    protected void disableField(View view, int textView_resource, int spinner_resource)
     {
         ((TextView) view.findViewById(textView_resource)).setTextColor(getResources().getColor(R.color.text_dark_disabled));
         ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.INVISIBLE);
     }
 
-    public void hideField(View view, int textView_resource, int spinner_resource)
+    protected void hideField(View view, int textView_resource, int spinner_resource)
     {
         ((TextView) view.findViewById(textView_resource)).setVisibility(View.GONE);
         ((Spinner) view.findViewById(spinner_resource)).setVisibility(View.GONE);
     }
 
-    public void fixStringUnicode(String[] inString)
+    private void fixStringUnicode(String[] inString)
     {
         for(int i = 0; i < inString.length; i++)
         {
@@ -206,7 +204,13 @@ public class OrganDetailFragment extends Fragment
         }
     }
 
-    public void  setSpinnerEntries(Spinner spinner, int arrayResId)
+    /**
+     * Use this method to set multiline, and to use unicode character for <= and >=
+     * otherwise, set entries in XML layout
+     * @param spinner
+     * @param arrayResId
+     */
+    protected void  setSpinnerEntries(Spinner spinner, int arrayResId)
     {
         /*
                 ArrayAdapter<CharSequence> composition_adapter = ArrayAdapter.createFromResource(getActivity(), R.array.thyroid_us_composition_array, R.layout.spinner_dropdown_item_multiline);

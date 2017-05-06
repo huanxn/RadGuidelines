@@ -35,17 +35,6 @@ public class OrganDetailActivity extends AppCompatActivity
     final static int ORGAN_PROSTATE = 12;
     final static int ORGAN_BREAST = 13;
 
-
-    final static int RESULTS_STATUS_MESSAGE = 0;
-    final static int RESULTS_IMPRESSION = 1;
-    final static int RESULTS_CLASSIFICATION = 2;
-    final static int RESULTS_FOLLOWUP = 3;
-    final static int RESULTS_STATISTICS = 4;
-    final static int RESULTS_REFERENCE_TEXT = 5;
-    final static int RESULTS_REFERENCE_LINK = 6;
-    final static int RESULTS_REFERENCE_IMAGE= 7;
-    final static int RESULTS_ARRAY_SIZE = RESULTS_REFERENCE_IMAGE + 10; // use extra slots for reference images
-
     int organ_id = -1;
 
     /**
@@ -86,13 +75,13 @@ public class OrganDetailActivity extends AppCompatActivity
                         Bundle arguments = new Bundle();
 
                         // pass results to fragment
-                        arguments.putString(ResultsDetailFragment.ARG_IMPRESSION, results[RESULTS_IMPRESSION]);
-                        arguments.putString(ResultsDetailFragment.ARG_CLASSIFICATION, results[RESULTS_CLASSIFICATION]);
-                        arguments.putString(ResultsDetailFragment.ARG_FOLLOWUP, results[RESULTS_FOLLOWUP]);
-                        arguments.putString(ResultsDetailFragment.ARG_STATISTICS, results[RESULTS_STATISTICS]);
-                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_TEXT, results[RESULTS_REFERENCE_TEXT]);
-                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_LINK, results[RESULTS_REFERENCE_LINK]);
-                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_IMAGE, results[RESULTS_REFERENCE_IMAGE]);
+                        arguments.putString(ResultsDetailFragment.ARG_IMPRESSION, results[OrganDetailFragment.RESULTS_IMPRESSION]);
+                        arguments.putString(ResultsDetailFragment.ARG_CLASSIFICATION, results[OrganDetailFragment.RESULTS_CLASSIFICATION]);
+                        arguments.putString(ResultsDetailFragment.ARG_FOLLOWUP, results[OrganDetailFragment.RESULTS_FOLLOWUP]);
+                        arguments.putString(ResultsDetailFragment.ARG_STATISTICS, results[OrganDetailFragment.RESULTS_STATISTICS]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_TEXT, results[OrganDetailFragment.RESULTS_REFERENCE_TEXT]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_LINK, results[OrganDetailFragment.RESULTS_REFERENCE_LINK]);
+                        arguments.putString(ResultsDetailFragment.ARG_REFERENCE_IMAGE, results[OrganDetailFragment.RESULTS_REFERENCE_IMAGE]);
 
                         Fragment result_fragment = new ResultsDetailFragment();
 

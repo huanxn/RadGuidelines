@@ -103,14 +103,14 @@ public class PancreasDetailFragment extends OrganDetailFragment
     // else send error message
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
             guidelines[i] = "";
         }
 
-        guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
+        guidelines[RESULTS_STATUS_MESSAGE] = "VALID";
 
         // tab position
         Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];

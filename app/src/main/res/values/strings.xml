@@ -354,11 +354,25 @@
         <item>late post-menopausal</item>
     </string-array>
 
-    <string-array name="adnexa_ct_size_array">
-        <item>&lt; 1 cm</item>
-        <item>1 to 3 cm</item>
-        <item>3 to 5 cm</item>
+    <string-array name="adnexa_ct_size_5_array">
+        <item>&lt;= 5 cm</item>
         <item>&gt; 5 cm</item>
+    </string-array>
+
+    <string-array name="adnexa_ct_size_35_array">
+        <item>&lt;= 3 cm</item>
+        <item>&gt; 3 cm, &lt;= 5 cm</item>
+        <item>&gt; 5 cm</item>
+    </string-array>
+
+    <string-array name="adnexa_ct_size_3_array">
+        <item>&lt;= 3 cm</item>
+        <item>&gt; 3 cm</item>
+    </string-array>
+
+    <string-array name="adnexa_ct_size_1_array">
+        <item>&lt;= 1 cm</item>
+        <item>&gt; 1 cm</item>
     </string-array>
 
     <!-- GALLBLADDER -->

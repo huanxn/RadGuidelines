@@ -384,14 +384,14 @@ public class AdrenalDetailFragment extends OrganDetailFragment
     // else send error message
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
             guidelines[i] = "";
         }
 
-        guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
+        guidelines[RESULTS_STATUS_MESSAGE] = "VALID";
 
         String incidental_legend1 = "If the patient has clinical signs or symptoms of adrenal hyperfunction, consider biochemical evaluation.";
         String incidental_legend2 = "Consider biochemical testing to exclude pheochromocytoma";
@@ -406,20 +406,20 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                 if(diagnostic == 1)
                 {
                     // adenoma
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a simple adrenal cyst.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No follow up necessary.";
+                    guidelines[RESULTS_IMPRESSION] = "There is a simple adrenal cyst.";
+                    guidelines[RESULTS_FOLLOWUP] = "No follow up necessary.";
                 }
                 if(diagnostic == 2)
                 {
                     // myelolipoma
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with macroscopic fat, compatible with an adrenal myelolipoma.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No follow up necessary.";
+                    guidelines[RESULTS_IMPRESSION] = "There is an adrenal nodule with macroscopic fat, compatible with an adrenal myelolipoma.";
+                    guidelines[RESULTS_FOLLOWUP] = "No follow up necessary.";
                 }
                 else if(diagnostic == 3)
                 {
                     // adenoma
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with low attenuation less than 10 HU or signal drop out on chemical shift MRI, compatible with an adrenal adenoma.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend1;
+                    guidelines[RESULTS_IMPRESSION] = "There is an adrenal nodule with low attenuation less than 10 HU or signal drop out on chemical shift MRI, compatible with an adrenal adenoma.";
+                    guidelines[RESULTS_FOLLOWUP] = incidental_legend1;
                 }
                 else if(diagnostic == 0)
                 {
@@ -439,35 +439,35 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                                 if(features == 0)
                                 {
                                     // benign features
-                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a homogeneous, low density adrenal nodule with smooth margins, measuring between 1 to 4 cm, in a patient without a history of cancer.";
-                                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Findings are suggestive of a benign adrenal nodule.";
-                                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider 12 month follow up CT or MR.";
+                                    guidelines[RESULTS_IMPRESSION] = "There is a homogeneous, low density adrenal nodule with smooth margins, measuring between 1 to 4 cm, in a patient without a history of cancer.";
+                                    guidelines[RESULTS_CLASSIFICATION] = "Findings are suggestive of a benign adrenal nodule.";
+                                    guidelines[RESULTS_FOLLOWUP] = "Consider 12 month follow up CT or MR.";
                                 }
                                 else if(features == 1)
                                 {
                                     // suspicious features
-                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a heterogeneous adrenal nodule with irregular margins, measuring between 1 to 4 cm.";
-                                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider further evaluation with unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal washout CT.";
+                                    guidelines[RESULTS_IMPRESSION] = "There is a heterogeneous adrenal nodule with irregular margins, measuring between 1 to 4 cm.";
+                                    guidelines[RESULTS_FOLLOWUP] = "Consider further evaluation with unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal washout CT.";
                                 }
                             }
                             else if(cancer_history == 1)
                             {
                                 // has cancer history
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", in a patient with history of cancer.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider further evaluation with PET, unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal protocol CT.";
+                                guidelines[RESULTS_IMPRESSION] = findings + ", in a patient with history of cancer.";
+                                guidelines[RESULTS_FOLLOWUP] = "Consider further evaluation with PET, unenhanced CT or chemical shift MRI. If there are no findings of lipid rich adenoma, consider further evaluation with adrenal protocol CT.";
                             }
                         }
                         else if(prior_imaging == 1)
                         {
                             // stable over 1 year
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", which has been stable for over 1 year, and is most likely benign";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend1;
+                            guidelines[RESULTS_IMPRESSION] = findings + ", which has been stable for over 1 year, and is most likely benign";
+                            guidelines[RESULTS_FOLLOWUP] = incidental_legend1;
                         }
                         else if(prior_imaging == 2)
                         {
                             // enlarging
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", which has enlarged compared to prior exam, concerning for malignancy";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider biopsy or resection. " + incidental_legend2 + ".";
+                            guidelines[RESULTS_IMPRESSION] = findings + ", which has enlarged compared to prior exam, concerning for malignancy";
+                            guidelines[RESULTS_FOLLOWUP] = "Consider biopsy or resection. " + incidental_legend2 + ".";
                         }
 
                     }
@@ -477,13 +477,13 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                         findings += " measuring at least 4 cm in size";
                         if(cancer_history == 0)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ".";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider resection. " + incidental_legend2 + ".";
+                            guidelines[RESULTS_IMPRESSION] = findings + ".";
+                            guidelines[RESULTS_FOLLOWUP] = "Consider resection. " + incidental_legend2 + ".";
                         }
                         else if(cancer_history == 1)
                             {
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + ", in a patient with a history of cancer.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider PET or biopsy. " + incidental_legend2 + ".";
+                                guidelines[RESULTS_IMPRESSION] = findings + ", in a patient with a history of cancer.";
+                                guidelines[RESULTS_FOLLOWUP] = "Consider PET or biopsy. " + incidental_legend2 + ".";
                             }
                     }
 
@@ -498,43 +498,43 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                     // pre-contrast was performed
                     if(Integer.valueOf(preconString) <= 10)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with pre-contrast attenuation of 10 HU or less, diagnostic of a lipid rich adrenal adenoma.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
+                        guidelines[RESULTS_IMPRESSION] = "There is an adrenal nodule with pre-contrast attenuation of 10 HU or less, diagnostic of a lipid rich adrenal adenoma.";
+                        guidelines[RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
                     }
                     else if(absoluteWashoutString != null && !absoluteWashoutString.isEmpty())
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with absolute washout of " + absoluteWashoutString + ".";
+                        guidelines[RESULTS_IMPRESSION] = "There is an adrenal nodule with absolute washout of " + absoluteWashoutString + ".";
 
                         if(absolute_washout >= 60)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Absolute washout of 60% or greater is diagnostic of an adrenal adenoma.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
+                            guidelines[RESULTS_CLASSIFICATION] = "Absolute washout of 60% or greater is diagnostic of an adrenal adenoma.";
+                            guidelines[RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
                         }
                         else
                         {
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Absolute washout of less than 60% is indeterminate.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend2 + ", chemical shift MR, or biopsy if appropriate.";
+                            guidelines[RESULTS_CLASSIFICATION] = "Absolute washout of less than 60% is indeterminate.";
+                            guidelines[RESULTS_FOLLOWUP] = incidental_legend2 + ", chemical shift MR, or biopsy if appropriate.";
                         }
                     }
                 }
                 else if(relativeWashoutString != null && !relativeWashoutString.isEmpty())
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an adrenal nodule with relative washout of " + relativeWashoutString + ".";
+                    guidelines[RESULTS_IMPRESSION] = "There is an adrenal nodule with relative washout of " + relativeWashoutString + ".";
 
                     if(relative_washout >= 40)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Relative washout of 40% or greater is diagnostic of an adrenal adenoma.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
+                        guidelines[RESULTS_CLASSIFICATION] = "Relative washout of 40% or greater is diagnostic of an adrenal adenoma.";
+                        guidelines[RESULTS_FOLLOWUP] = "No imaging follow up necessary. " + incidental_legend1;
                     }
                     else
                     {
-                        guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Relative washout of less than 40% is indeterminate.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = incidental_legend2 + ", chemical shift MR, or biopsy if appropriate.";
+                        guidelines[RESULTS_CLASSIFICATION] = "Relative washout of less than 40% is indeterminate.";
+                        guidelines[RESULTS_FOLLOWUP] = incidental_legend2 + ", chemical shift MR, or biopsy if appropriate.";
                     }
                 }
                 else
                 {
-                    guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "Not enough info";
+                    guidelines[RESULTS_STATUS_MESSAGE] = "Not enough info";
                 }
 
                 break;
@@ -543,9 +543,9 @@ public class AdrenalDetailFragment extends OrganDetailFragment
                 break;
         }
 
-        guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
-        guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec13";
-        guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/adrenal_ct_guidelines";
+        guidelines[RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
+        guidelines[RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec13";
+        guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/adrenal_ct_guidelines";
 
         return guidelines;
     }

@@ -453,7 +453,7 @@ public class RenalDetailFragment extends OrganDetailFragment
     @Override
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
@@ -543,9 +543,9 @@ public class RenalDetailFragment extends OrganDetailFragment
                             // BOSNIAK 1
 
                             guidelines[0] = "VALID";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a simple fluid attenuating cyst without septations, calcifications, or enhancement.";
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 1: simple cyst";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No follow up necessary.";
+                            guidelines[RESULTS_IMPRESSION] = "There is a simple fluid attenuating cyst without septations, calcifications, or enhancement.";
+                            guidelines[RESULTS_CLASSIFICATION] = "Bosniak 1: simple cyst";
+                            guidelines[RESULTS_FOLLOWUP] = "No follow up necessary.";
                         }
                         else if (cyst_attenuation == 0 && cyst_septation <= 1 && cyst_calcification <= 1 && cyst_enhancement == 0)
                         {
@@ -553,9 +553,9 @@ public class RenalDetailFragment extends OrganDetailFragment
                             findings = findings_intro + " simple fluid attenuating cyst" + features + ".";
 
                             guidelines[0] = "VALID";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 2: minimally complex cyst";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No follow up necessary.";
+                            guidelines[RESULTS_IMPRESSION] = findings;
+                            guidelines[RESULTS_CLASSIFICATION] = "Bosniak 2: minimally complex cyst";
+                            guidelines[RESULTS_FOLLOWUP] = "No follow up necessary.";
                         }
                         else if (cyst_attenuation == 1 && cyst_size == 0 && cyst_septation <= 1 && cyst_calcification <= 1 && cyst_enhancement == 0)
                         {
@@ -563,9 +563,9 @@ public class RenalDetailFragment extends OrganDetailFragment
                             findings = findings_intro + " hyperdense cyst smaller than 3 cm" + features + ".";
 
                             guidelines[0] = "VALID";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 2: minimally complex cyst";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No follow up necessary.";
+                            guidelines[RESULTS_IMPRESSION] = findings;
+                            guidelines[RESULTS_CLASSIFICATION] = "Bosniak 2: minimally complex cyst";
+                            guidelines[RESULTS_FOLLOWUP] = "No follow up necessary.";
                         }
                         else if (cyst_attenuation == 1 && cyst_size == 0 && cyst_septation <= 2 && cyst_calcification <= 2 && cyst_enhancement == 0)
                         {
@@ -574,9 +574,9 @@ public class RenalDetailFragment extends OrganDetailFragment
                             followup_2F += followup_observation_long;
 
                             guidelines[0] = "VALID";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 2F: mildly complex cyst";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_2F.substring(0, 1).toUpperCase() + followup_2F.substring(1) + ".";
+                            guidelines[RESULTS_IMPRESSION] = findings;
+                            guidelines[RESULTS_CLASSIFICATION] = "Bosniak 2F: mildly complex cyst";
+                            guidelines[RESULTS_FOLLOWUP] = followup_2F.substring(0, 1).toUpperCase() + followup_2F.substring(1) + ".";
                         }
                         else if (cyst_attenuation == 1 && cyst_size == 1 && cyst_septation <= 2 && cyst_calcification <= 2 && cyst_enhancement == 0)
                         {
@@ -585,9 +585,9 @@ public class RenalDetailFragment extends OrganDetailFragment
                             followup_2F += followup_observation_long;
 
                             guidelines[0] = "VALID";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 2F: mildly complex cyst";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_2F.substring(0, 1).toUpperCase() + followup_2F.substring(1) + ".";
+                            guidelines[RESULTS_IMPRESSION] = findings;
+                            guidelines[RESULTS_CLASSIFICATION] = "Bosniak 2F: mildly complex cyst";
+                            guidelines[RESULTS_FOLLOWUP] = followup_2F.substring(0, 1).toUpperCase() + followup_2F.substring(1) + ".";
 
                         }
                         else if (cyst_attenuation == 0 && cyst_septation <= 2 && cyst_calcification <= 2 && cyst_enhancement == 0)
@@ -597,10 +597,10 @@ public class RenalDetailFragment extends OrganDetailFragment
                             followup_2F += followup_observation_long;
 
                             guidelines[0] = "VALID";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 2F: mildly complex cyst";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_2F.substring(0, 1).toUpperCase() + followup_2F.substring(1) + ".";
-                            guidelines[OrganDetailActivity.RESULTS_STATISTICS] = "Percentage malignant: 5%";
+                            guidelines[RESULTS_IMPRESSION] = findings;
+                            guidelines[RESULTS_CLASSIFICATION] = "Bosniak 2F: mildly complex cyst";
+                            guidelines[RESULTS_FOLLOWUP] = followup_2F.substring(0, 1).toUpperCase() + followup_2F.substring(1) + ".";
+                            guidelines[RESULTS_STATISTICS] = "Percentage malignant: 5%";
                         }
                         else if (cyst_septation == 3 || cyst_enhancement == 1)
                         {
@@ -614,10 +614,10 @@ public class RenalDetailFragment extends OrganDetailFragment
                             followup_3_or_4 += followup_surgery;
 
                             guidelines[0] = "VALID";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 3: Indeterminate cyst";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
-                            guidelines[OrganDetailActivity.RESULTS_STATISTICS] = "Percentage malignant: 55%";
+                            guidelines[RESULTS_IMPRESSION] = findings;
+                            guidelines[RESULTS_CLASSIFICATION] = "Bosniak 3: Indeterminate cyst";
+                            guidelines[RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
+                            guidelines[RESULTS_STATISTICS] = "Percentage malignant: 55%";
                         }
                         else
                         {
@@ -636,28 +636,28 @@ public class RenalDetailFragment extends OrganDetailFragment
                         followup_3_or_4 += followup_surgery;
 
                         guidelines[0] = "VALID";
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                        guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 3: Indeterminate cyst";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
-                        guidelines[OrganDetailActivity.RESULTS_STATISTICS] = "Percentage malignant: 55%";
+                        guidelines[RESULTS_IMPRESSION] = findings;
+                        guidelines[RESULTS_CLASSIFICATION] = "Bosniak 3: Indeterminate cyst";
+                        guidelines[RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
+                        guidelines[RESULTS_STATISTICS] = "Percentage malignant: 55%";
                     }
                     else if (cyst_wall == 2)
                     {
                         followup_3_or_4 += followup_surgery;
 
                         guidelines[0] = "VALID";
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a cystic lesion with enhancing soft tissue components adjacent to or separate from the wall or septa.";
-                        guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Bosniak 4: Likely malignant";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
+                        guidelines[RESULTS_IMPRESSION] = "There is a cystic lesion with enhancing soft tissue components adjacent to or separate from the wall or septa.";
+                        guidelines[RESULTS_CLASSIFICATION] = "Bosniak 4: Likely malignant";
+                        guidelines[RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
                     }
                     else
                     {
                         guidelines[0] = "ERROR";
                     }
 
-                    guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
-                    guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec11";
-                    guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/renal_ct_cyst_guidelines";
+                    guidelines[RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
+                    guidelines[RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec11";
+                    guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/renal_ct_cyst_guidelines";
                 }
                 else
                 {
@@ -670,24 +670,24 @@ public class RenalDetailFragment extends OrganDetailFragment
                             if (solid_size == 0)
                             {
                                 guidelines[0] = "VALID";
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a very small solid mass measuring less than 1 cm.";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Differential diagnosis includes renal cell carcinoma, oncocytoma, and angiomyolipoma.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_observation_short.substring(0, 1).toUpperCase() + followup_observation_short.substring(1) + ", while size is less than 1 cm.";
+                                guidelines[RESULTS_IMPRESSION] = "There is a very small solid mass measuring less than 1 cm.";
+                                guidelines[RESULTS_CLASSIFICATION] = "Differential diagnosis includes renal cell carcinoma, oncocytoma, and angiomyolipoma.";
+                                guidelines[RESULTS_FOLLOWUP] = followup_observation_short.substring(0, 1).toUpperCase() + followup_observation_short.substring(1) + ", while size is less than 1 cm.";
 
                             }
                             else if (solid_size == 1)
                             {
                                 guidelines[0] = "VALID";
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a small solid mass measuring between 1 to 3 cm.";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "If hyperattenuating and homogenously enhancing, consider MRI and percutaneous biopsy to diagnose angiomyolipoma with minimal fat.  Otherwise " + followup_surgery + ".";
+                                guidelines[RESULTS_IMPRESSION] = "There is a small solid mass measuring between 1 to 3 cm.";
+                                guidelines[RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
+                                guidelines[RESULTS_FOLLOWUP] = "If hyperattenuating and homogenously enhancing, consider MRI and percutaneous biopsy to diagnose angiomyolipoma with minimal fat.  Otherwise " + followup_surgery + ".";
                             }
                             else if (solid_size == 2)
                             {
                                 guidelines[0] = "VALID";
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a large mass larger than 3 cm.";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = followup_surgery.substring(0, 1).toUpperCase() + followup_surgery.substring(1) + ". Angiomyolipoma with minimal fat, oncocytoma, other benign neoplasms may be found at surgery.";
+                                guidelines[RESULTS_IMPRESSION] = "There is a large mass larger than 3 cm.";
+                                guidelines[RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
+                                guidelines[RESULTS_FOLLOWUP] = followup_surgery.substring(0, 1).toUpperCase() + followup_surgery.substring(1) + ". Angiomyolipoma with minimal fat, oncocytoma, other benign neoplasms may be found at surgery.";
                             }
                         }
                         else if (demographic == 1)
@@ -695,24 +695,24 @@ public class RenalDetailFragment extends OrganDetailFragment
                             if (solid_size == 0)
                             {
                                 guidelines[0] = "VALID";
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a very small solid mass measuring less than 1 cm.";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Differential diagnosis includes renal cell carcinoma, oncocytoma, and angiomyolipoma.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "In a patient with high risk comorbidities, recommend " + followup_observation_short + ", while the size is less than 1.5 cm.";
+                                guidelines[RESULTS_IMPRESSION] = "There is a very small solid mass measuring less than 1 cm.";
+                                guidelines[RESULTS_CLASSIFICATION] = "Differential diagnosis includes renal cell carcinoma, oncocytoma, and angiomyolipoma.";
+                                guidelines[RESULTS_FOLLOWUP] = "In a patient with high risk comorbidities, recommend " + followup_observation_short + ", while the size is less than 1.5 cm.";
 
                             }
                             else if (solid_size == 1)
                             {
                                 guidelines[0] = "VALID";
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a small solid mass measuring between 1 to 3 cm.";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "If hyperattenuating and homogenously enhancing, consider MRI or percutaneous biopsy to diagnose angiomyolipoma with minimal fat.  Observation may be considered in a patient with high risk comorbidities. Otherwise " + followup_surgery;
+                                guidelines[RESULTS_IMPRESSION] = "There is a small solid mass measuring between 1 to 3 cm.";
+                                guidelines[RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
+                                guidelines[RESULTS_FOLLOWUP] = "If hyperattenuating and homogenously enhancing, consider MRI or percutaneous biopsy to diagnose angiomyolipoma with minimal fat.  Observation may be considered in a patient with high risk comorbidities. Otherwise " + followup_surgery;
                             }
                             else if (solid_size == 2)
                             {
                                 guidelines[0] = "VALID";
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a large solid mass greater than 3 cm.";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Observation may be considered in a patient with high risk comorbidities. Otherwise " + followup_surgery + ". Angiomyolipoma with minimal fat, oncocytoma, other benign neoplasms may be found at surgery.";
+                                guidelines[RESULTS_IMPRESSION] = "There is a large solid mass greater than 3 cm.";
+                                guidelines[RESULTS_CLASSIFICATION] = "Most likely renal cell carcinoma.";
+                                guidelines[RESULTS_FOLLOWUP] = "Observation may be considered in a patient with high risk comorbidities. Otherwise " + followup_surgery + ". Angiomyolipoma with minimal fat, oncocytoma, other benign neoplasms may be found at surgery.";
                             }
                         }
                         else
@@ -720,24 +720,24 @@ public class RenalDetailFragment extends OrganDetailFragment
                             guidelines[0] = "ERROR";
                         }
 
-                        guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
-                        guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec11";
-                        guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/renal_ct_solid_guidelines";
+                        guidelines[RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
+                        guidelines[RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec11";
+                        guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/renal_ct_solid_guidelines";
                     }
                     else if(nonneoplastic == 1)
                     {
                         // pyelonephritis
                         guidelines[0] = "VALID";
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There are findings suspicious for pyelnephritis.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Correlate with clinical symptoms and urine analysis.";
+                        guidelines[RESULTS_IMPRESSION] = "There are findings suspicious for pyelnephritis.";
+                        guidelines[RESULTS_FOLLOWUP] = "Correlate with clinical symptoms and urine analysis.";
 
                     }
                     else if(nonneoplastic == 2)
                     {
                         // AML
                         guidelines[0] = "VALID";
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a fat containing non-calcified renal mass most likely an angiomyelolipoma.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider IR or surgical consult if symptomatic or if the size is greater than 4 cm.";
+                        guidelines[RESULTS_IMPRESSION] = "There is a fat containing non-calcified renal mass most likely an angiomyelolipoma.";
+                        guidelines[RESULTS_FOLLOWUP] = "Consider IR or surgical consult if symptomatic or if the size is greater than 4 cm.";
 
                     }
                 }

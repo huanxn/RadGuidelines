@@ -565,7 +565,7 @@ public class LiverDetailFragment extends OrganDetailFragment
     @Override
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
@@ -592,39 +592,39 @@ public class LiverDetailFragment extends OrganDetailFragment
                 {
                     if(risk_level == 0 || risk_level == 1)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a low-attenuating liver lesion smaller than 0.5 cm.  " + lowaveragerisk_nofollowup;
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = nofollowup;
+                        guidelines[RESULTS_IMPRESSION] = "There is a low-attenuating liver lesion smaller than 0.5 cm.  " + lowaveragerisk_nofollowup;
+                        guidelines[RESULTS_FOLLOWUP] = nofollowup;
                     }
                     else
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a low-attenuating liver lesion smaller than 0.5 cm.  " + highrisk_followup;
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = ct_legend4;
+                        guidelines[RESULTS_IMPRESSION] = "There is a low-attenuating liver lesion smaller than 0.5 cm.  " + highrisk_followup;
+                        guidelines[RESULTS_FOLLOWUP] = ct_legend4;
                     }
                 }
                 else if(size == 1)
                 {
                     if(attenuation == 0)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a benign appearing low-attenuating liver lesion between 0.5 cm and 1.5 cm.  " + ct_legend6;
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = nofollowup;
+                        guidelines[RESULTS_IMPRESSION] = "There is a benign appearing low-attenuating liver lesion between 0.5 cm and 1.5 cm.  " + ct_legend6;
+                        guidelines[RESULTS_FOLLOWUP] = nofollowup;
                     }
                     else if(attenuation == 1)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion between 0.5 cm and 1.5 cm.  ";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = ct_legend4;
+                        guidelines[RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion between 0.5 cm and 1.5 cm.  ";
+                        guidelines[RESULTS_FOLLOWUP] = ct_legend4;
                     }
                     else if(attenuation == 2)
                     {
                         if(risk_level == 0 || risk_level == 1)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion between 0.5 cm and 1.5 cm.  " + "8,9.  " +  lowaveragerisk_nofollowup;
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = ct_legend8 + ". " + ct_legend9;
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = nofollowup;
+                            guidelines[RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion between 0.5 cm and 1.5 cm.  " + "8,9.  " +  lowaveragerisk_nofollowup;
+                            guidelines[RESULTS_CLASSIFICATION] = ct_legend8 + ". " + ct_legend9;
+                            guidelines[RESULTS_FOLLOWUP] = nofollowup;
                         }
                         else
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion between 0.5 cm and 1.5 cm.  " + highrisk_followup;
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = ct_legend4 + "\n" + ct_legend7 + " To evaluate, prefer multiphasic MRI";
+                            guidelines[RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion between 0.5 cm and 1.5 cm.  " + highrisk_followup;
+                            guidelines[RESULTS_FOLLOWUP] = ct_legend4 + "\n" + ct_legend7 + " To evaluate, prefer multiphasic MRI";
                         }
                     }
 
@@ -634,49 +634,49 @@ public class LiverDetailFragment extends OrganDetailFragment
                 {
                     if(attenuation == 0)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a benign appearing low-attenuating liver lesion larger than 1.5 cm.";
-                        guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = ct_legend6;
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = nofollowup;
+                        guidelines[RESULTS_IMPRESSION] = "There is a benign appearing low-attenuating liver lesion larger than 1.5 cm.";
+                        guidelines[RESULTS_CLASSIFICATION] = ct_legend6;
+                        guidelines[RESULTS_FOLLOWUP] = nofollowup;
                     }
                     else if(attenuation == 1)
                     {
                         if(risk_level == 0)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion larger than 1.5 cm in a low risk patient.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = ct_legend4;
+                            guidelines[RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion larger than 1.5 cm in a low risk patient.";
+                            guidelines[RESULTS_FOLLOWUP] = ct_legend4;
                         }
                         else if(risk_level == 1)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion larger than 1.5 cm in an average risk patient.";
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = ct_legend7;
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend multiphasic MRI for further evaluation.";
+                            guidelines[RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion larger than 1.5 cm in an average risk patient.";
+                            guidelines[RESULTS_CLASSIFICATION] = ct_legend7;
+                            guidelines[RESULTS_FOLLOWUP] = "Recommend multiphasic MRI for further evaluation.";
                         }
                         else if(risk_level == 2)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion larger than 1.5 cm in a high risk patient.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend core biopsy.";
+                            guidelines[RESULTS_IMPRESSION] = "There is a suspicious appearing low-attenuating liver lesion larger than 1.5 cm in a high risk patient.";
+                            guidelines[RESULTS_FOLLOWUP] = "Recommend core biopsy.";
                         }
                     }
                     else if(attenuation == 2)
                     {
                         if(features == 0)
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion larger than 1.5 cm with benign diagnostic features.";
-                            guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = ct_legend8 + "\n" + ct_legend9;
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Differentiation of FNH from adenoma may be important especially if larger than 4 cm and subcapsular.";
+                            guidelines[RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion larger than 1.5 cm with benign diagnostic features.";
+                            guidelines[RESULTS_CLASSIFICATION] = ct_legend8 + "\n" + ct_legend9;
+                            guidelines[RESULTS_FOLLOWUP] = "Differentiation of FNH from adenoma may be important especially if larger than 4 cm and subcapsular.";
                         }
                         else
                         {
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion larger than 1.5 cm without benign diagnostic features.";
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "Differential diagnosis includes hepatocellular or metastatic enhancing malignancy: islet cell, neuroendocrine, carcinoid, renal cell carcinoma, melanoma, choriocarcinoma, sarcoma, breast, some pancreatic lesions.";
-                            guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Consider further evaluation with multiphasic MRI or core biopsy. Otherwise " + ct_legend4.substring(0,1).toLowerCase() + ct_legend4.substring(1);
+                            guidelines[RESULTS_IMPRESSION] = "There is a flash-filling robustly enhancing lesion larger than 1.5 cm without benign diagnostic features.";
+                            guidelines[RESULTS_IMPRESSION] = "Differential diagnosis includes hepatocellular or metastatic enhancing malignancy: islet cell, neuroendocrine, carcinoid, renal cell carcinoma, melanoma, choriocarcinoma, sarcoma, breast, some pancreatic lesions.";
+                            guidelines[RESULTS_FOLLOWUP] = "Consider further evaluation with multiphasic MRI or core biopsy. Otherwise " + ct_legend4.substring(0,1).toLowerCase() + ct_legend4.substring(1);
                         }
                     }
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec12";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/liver_ct_mass_guidelines";
+                guidelines[RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal CT: White Paper of the ACR Incidental Findings Committee";
+                guidelines[RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(10)00330-3/fulltext#sec12";
+                guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/liver_ct_mass_guidelines";
 
 
 
@@ -736,33 +736,33 @@ public class LiverDetailFragment extends OrganDetailFragment
                         if (size == 0 || size == 1)
                         {
                             // size less than 2.0 cm
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + " smaller than 2.0 cm" + criteria_description + ".";
+                            guidelines[RESULTS_IMPRESSION] = findings + " smaller than 2.0 cm" + criteria_description + ".";
 
                             if (score == 0 || score == 1)
                             {
                                 // LR3
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR3;
+                                guidelines[RESULTS_CLASSIFICATION] = LR3;
                             }
                             else
                             {
                                 // LR4
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR4;
+                                guidelines[RESULTS_CLASSIFICATION] = LR4;
                             }
                         }
                         if (size == 2)
                         {
                             // size more than 2.0 cm
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + " at least 2.0 cm in size" + criteria_description + ".";
+                            guidelines[RESULTS_IMPRESSION] = findings + " at least 2.0 cm in size" + criteria_description + ".";
 
                             if (score == 0)
                             {
                                 // LR3
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR3;
+                                guidelines[RESULTS_CLASSIFICATION] = LR3;
                             }
                             else
                             {
                                 // LR4
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR4;
+                                guidelines[RESULTS_CLASSIFICATION] = LR4;
                             }
                         }
                     }
@@ -774,29 +774,29 @@ public class LiverDetailFragment extends OrganDetailFragment
                         if (size == 0)
                         {
                             // less than 1.0 cm
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] =  findings + " smaller than 1.0 cm" + criteria_description + ".";
+                            guidelines[RESULTS_IMPRESSION] =  findings + " smaller than 1.0 cm" + criteria_description + ".";
 
                             if (score == 0)
                             {
                                 // LR3
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR3;
+                                guidelines[RESULTS_CLASSIFICATION] = LR3;
                             }
                             else
                             {
                                 // LR4
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR4;
+                                guidelines[RESULTS_CLASSIFICATION] = LR4;
                             }
                         }
                         else if (size == 1)
                         {
                             // size between 1.0 and 2.0 cm
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + " measuring between 1.0 to 2.0 cm" + criteria_description;
+                            guidelines[RESULTS_IMPRESSION] = findings + " measuring between 1.0 to 2.0 cm" + criteria_description;
 
                             if (score == 0)
                             {
                                 // LR3
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] += ".";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR3;
+                                guidelines[RESULTS_IMPRESSION] += ".";
+                                guidelines[RESULTS_CLASSIFICATION] = LR3;
                             }
                             else if (score == 1)
                             {
@@ -806,44 +806,44 @@ public class LiverDetailFragment extends OrganDetailFragment
                                 if(growth == 1 && growth_5g == 1)
                                 {
 
-                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] += " of at least 50% increase in diameter within 6 months.";
-                                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR5.substring(0,4) + "g" + LR5.substring(4);
+                                    guidelines[RESULTS_IMPRESSION] += " of at least 50% increase in diameter within 6 months.";
+                                    guidelines[RESULTS_CLASSIFICATION] = LR5.substring(0,4) + "g" + LR5.substring(4);
                                 }
                                 else if(washout == 1 && ultrasound_5us == 1)
                                 {
-                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] += ".  Antecedent surveillance ultrasound demonstrates a corresponding visible discrete nodule.";
-                                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR5.substring(0,4) + "us" + LR5.substring(4);
+                                    guidelines[RESULTS_IMPRESSION] += ".  Antecedent surveillance ultrasound demonstrates a corresponding visible discrete nodule.";
+                                    guidelines[RESULTS_CLASSIFICATION] = LR5.substring(0,4) + "us" + LR5.substring(4);
                                 }
                                 else
                                 {
-                                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] += ".";
-                                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR4;
+                                    guidelines[RESULTS_IMPRESSION] += ".";
+                                    guidelines[RESULTS_CLASSIFICATION] = LR4;
                                 }
 
                             }
                             else
                             {
                                 // LR5
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] += ".";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR5;
+                                guidelines[RESULTS_IMPRESSION] += ".";
+                                guidelines[RESULTS_CLASSIFICATION] = LR5;
                             }
                         }
                         else
                         {
                             // size larger than 2.0 cm
-                            guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings + " at least 2.0 cm in size" + criteria_description + ".";
+                            guidelines[RESULTS_IMPRESSION] = findings + " at least 2.0 cm in size" + criteria_description + ".";
 
                             if (score == 0)
                             {
                                 //LR4
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR4;
+                                guidelines[RESULTS_CLASSIFICATION] = LR4;
                             }
                             else
                             {
                                 //LR5
                                 guidelines[0] = "VALID";
-                                guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = LR5;
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "";
+                                guidelines[RESULTS_CLASSIFICATION] = LR5;
+                                guidelines[RESULTS_FOLLOWUP] = "";
                             }
                         }
 
@@ -851,32 +851,32 @@ public class LiverDetailFragment extends OrganDetailFragment
                 }
                 else if(initial_observation == 0)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a treated liver observation.";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "LR-Treated: Treated Observation\n\nObservation of any category that has undergone loco-regional treatment.";
+                    guidelines[RESULTS_IMPRESSION] = "There is a treated liver observation.";
+                    guidelines[RESULTS_CLASSIFICATION] = "LR-Treated: Treated Observation\n\nObservation of any category that has undergone loco-regional treatment.";
                 }
                 else if(initial_observation == 1)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a liver observation that is definitely benign.";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "LR-1: Definitely Benign\n\nObersvation with imaging features diagnostic of a benign entity, or definite disappearance at follow up in absence of treatment.";
+                    guidelines[RESULTS_IMPRESSION] = "There is a liver observation that is definitely benign.";
+                    guidelines[RESULTS_CLASSIFICATION] = "LR-1: Definitely Benign\n\nObersvation with imaging features diagnostic of a benign entity, or definite disappearance at follow up in absence of treatment.";
                 }
                 else if(initial_observation == 2)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a liver observation that is probably benign.";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "LR-2: Probably Benign\n\nObservation with imaging features suggestive but not diagnostic of a benign entity.";
+                    guidelines[RESULTS_IMPRESSION] = "There is a liver observation that is probably benign.";
+                    guidelines[RESULTS_CLASSIFICATION] = "LR-2: Probably Benign\n\nObservation with imaging features suggestive but not diagnostic of a benign entity.";
                 }
                 else if(initial_observation == 3)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a liver lesion of probable malignancy, but not specific for HCC.";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "LR-M:Probably Malignant, not specific for hepatocellular carcinoma\n\nObservation with imaging features suggestive of non-HCC malignancy.";
+                    guidelines[RESULTS_IMPRESSION] = "There is a liver lesion of probable malignancy, but not specific for HCC.";
+                    guidelines[RESULTS_CLASSIFICATION] = "LR-M:Probably Malignant, not specific for hepatocellular carcinoma\n\nObservation with imaging features suggestive of non-HCC malignancy.";
                 }
                 else if(initial_observation == 4)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is a liver lesion with tumor in vein.";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "LR-5V: Definitely hepatocellular carcinoma with Tumor in Vein\n\nObservation with imaging features diagnostic of HCC invading vein.";
+                    guidelines[RESULTS_IMPRESSION] = "There is a liver lesion with tumor in vein.";
+                    guidelines[RESULTS_CLASSIFICATION] = "LR-5V: Definitely hepatocellular carcinoma with Tumor in Vein\n\nObservation with imaging features diagnostic of HCC invading vein.";
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "ACR LI-RADS v2014 for CT and MRI";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/LIRADS";
+                guidelines[RESULTS_REFERENCE_TEXT] = "ACR LI-RADS v2014 for CT and MRI";
+                guidelines[RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/LIRADS";
 
                 break;
 

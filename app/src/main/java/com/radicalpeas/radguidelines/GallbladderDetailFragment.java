@@ -168,14 +168,14 @@ public class GallbladderDetailFragment extends OrganDetailFragment
     // else send error message
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
             guidelines[i] = "";
         }
 
-        guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
+        guidelines[RESULTS_STATUS_MESSAGE] = "VALID";
 
         // tab position
         Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];
@@ -249,7 +249,7 @@ public class GallbladderDetailFragment extends OrganDetailFragment
                     ductImpression = "If laboratory results are normal, then no further evaluation.  If laboratory results are abnormal, ERCP, EUS, MRCP, or CT cholangiography as appropriate.";
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = contentsFindings + contentsImpression + "\n\n" + wallFindings + wallImpression + "\n\n" + polypFindings + polypImpression + "\n\n" + ductFindings + ductImpression;
+                guidelines[RESULTS_IMPRESSION] = contentsFindings + contentsImpression + "\n\n" + wallFindings + wallImpression + "\n\n" + polypFindings + polypImpression + "\n\n" + ductFindings + ductImpression;
                 break;
 
             default:

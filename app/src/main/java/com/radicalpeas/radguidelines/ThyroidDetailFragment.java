@@ -354,7 +354,7 @@ public class ThyroidDetailFragment extends OrganDetailFragment
     public String[] getResults()
     {
         //ArrayList<String> stringList = new ArrayList<String>();
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
@@ -460,79 +460,79 @@ public class ThyroidDetailFragment extends OrganDetailFragment
 
                 if (TIRADS_points <= 1)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR1: Benign.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
+                    guidelines[RESULTS_IMPRESSION] = findings;
+                    guidelines[RESULTS_CLASSIFICATION] = "TR1: Benign.";
+                    guidelines[RESULTS_FOLLOWUP] = "No FNA is recommended";
                 }
                 else if (TIRADS_points == 2)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR2: Not suspicious.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No FNA is recommended";
+                    guidelines[RESULTS_IMPRESSION] = findings;
+                    guidelines[RESULTS_CLASSIFICATION] = "TR2: Not suspicious.";
+                    guidelines[RESULTS_FOLLOWUP] = "No FNA is recommended";
                 }
                 else if (TIRADS_points == 3)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR3: Mildly Suspicious.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 2.5 cm.  Follow if > 1.5 cm";
+                    guidelines[RESULTS_IMPRESSION] = findings;
+                    guidelines[RESULTS_CLASSIFICATION] = "TR3: Mildly Suspicious.";
+                    guidelines[RESULTS_FOLLOWUP] = "FNA if > 2.5 cm.  Follow if > 1.5 cm";
 
                     if (noduleSize >= 2.5)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
                     }
                     else if (noduleSize >= 1.5)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.5 and 2.5 cm, follow up is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size between 1.5 and 2.5 cm, follow up is recommended.";
                     }
                     else if (noduleSize > 0)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
                     }
                 }
                 else if (TIRADS_points >= 4 && TIRADS_points <= 6)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR4: Moderately Suspicious.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
+                    guidelines[RESULTS_IMPRESSION] = findings;
+                    guidelines[RESULTS_CLASSIFICATION] = "TR4: Moderately Suspicious.";
+                    guidelines[RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
 
                     if (noduleSize >= 2.5)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
                     }
                     else if (noduleSize >= 1.5)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 1.0 and 1.5 cm, follow up is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size between 1.0 and 1.5 cm, follow up is recommended.";
                     }
                     else if (noduleSize > 0)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
                     }
                 }
                 else
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = findings;
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "TR5: Highly Suspicious.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
+                    guidelines[RESULTS_IMPRESSION] = findings;
+                    guidelines[RESULTS_CLASSIFICATION] = "TR5: Highly Suspicious.";
+                    guidelines[RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
 
                     if (noduleSize >= 1.0)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size larger than 1.0 cm, FNA biopsy is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size larger than 1.0 cm, FNA biopsy is recommended.";
                     }
                     else if (noduleSize >= 0.5)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size between 0.5 and 1.0 cm, follow up is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size between 0.5 and 1.0 cm, follow up is recommended.";
                     }
                     else if (noduleSize > 0)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Given the size less than 0.5 cm, no follow up is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size less than 0.5 cm, no follow up is recommended.";
                     }
 
-                    guidelines[OrganDetailActivity.RESULTS_STATISTICS] = " ??% mallignant";
+                    guidelines[RESULTS_STATISTICS] = " ??% mallignant";
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_tirads_2017";
+                guidelines[RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";
+                guidelines[RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
+                guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_tirads_2017";
 
 
                 return guidelines;
@@ -542,15 +542,15 @@ public class ThyroidDetailFragment extends OrganDetailFragment
                 guidelines[0] = "VALID";
                 if(suspicious_features == 1)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with suspicious features.";
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                    guidelines[RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with suspicious features.";
+                    guidelines[RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
                 }
                 else    // not suspicious
                 {
                     if(population_risk == 1)
                     {
-                        guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with no suspicious features in a patient with limited life expectancy and comorbidities.";
-                        guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                        guidelines[RESULTS_IMPRESSION] = "There is an incidental thyroid nodule with no suspicious features in a patient with limited life expectancy and comorbidities.";
+                        guidelines[RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
                     }
                     else    // general population
                     {
@@ -558,35 +558,35 @@ public class ThyroidDetailFragment extends OrganDetailFragment
                         {
                             if(size == 0)   // size less than 1 cm
                             {
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1 cm, with no suspicious features.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                                guidelines[RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1 cm, with no suspicious features.";
+                                guidelines[RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
                             }
                             else    // size greater than 1 cm
                             {
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1 cm, in a patient less than 35 years old.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                                guidelines[RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1 cm, in a patient less than 35 years old.";
+                                guidelines[RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
                             }
                         }
                         else    // age more than 35
                         {
                             if(size == 0)   // size less than 1.5 cm
                             {
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1.5 cm, with no suspicious features, in a patient over 35 years old.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
+                                guidelines[RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring less than 1.5 cm, with no suspicious features, in a patient over 35 years old.";
+                                guidelines[RESULTS_FOLLOWUP] = "No further evaluation is recommended.";
                             }
                             else    // size greater than 1.5 cm
                             {
-                                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1.5 cm, in a patient over 35 years old.";
-                                guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
+                                guidelines[RESULTS_IMPRESSION] = "There is an incidental thyroid nodule measuring more than 1.5 cm, in a patient over 35 years old.";
+                                guidelines[RESULTS_FOLLOWUP] = "Recommend evaluation with thyroid ultrasound.";
                             }
                         }
 
                     }
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Thyroid Nodules Detected on Imaging: White Paper of the ACR Incidental Thyroid Findings Committee";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(14)00627-9/fulltext";
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_ct_guidelines";
+                guidelines[RESULTS_REFERENCE_TEXT] = "Managing Incidental Thyroid Nodules Detected on Imaging: White Paper of the ACR Incidental Thyroid Findings Committee";
+                guidelines[RESULTS_REFERENCE_LINK] = "http://www.jacr.org/article/S1546-1440(14)00627-9/fulltext";
+                guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/thyroid_ct_guidelines";
 
                 return guidelines;
 

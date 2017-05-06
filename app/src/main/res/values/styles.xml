@@ -17,6 +17,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="textHeaderStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textSize">@dimen/standardTextSize</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
 
     <style name="standardTextLabelStyle">
         <item name="android:layout_width">wrap_content</item>

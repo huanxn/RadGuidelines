@@ -218,14 +218,14 @@ public class VascularDetailFragment extends OrganDetailFragment
     // else send error message
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
             guidelines[i] = "";
         }
 
-        guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
+        guidelines[RESULTS_STATUS_MESSAGE] = "VALID";
 
         // tab position
         Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];
@@ -330,20 +330,20 @@ public class VascularDetailFragment extends OrganDetailFragment
                     visceralFindings += " of 2.0 cm or larger. Consider surgical or endovascular repair.";
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = aortaFindings + iliacFindings + renalFindings + visceralFindings;
+                guidelines[RESULTS_IMPRESSION] = aortaFindings + iliacFindings + renalFindings + visceralFindings;
 
-                if (guidelines[OrganDetailActivity.RESULTS_IMPRESSION].isEmpty())
+                if (guidelines[RESULTS_IMPRESSION].isEmpty())
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = "No evidence of vascular aneurysm.";
+                    guidelines[RESULTS_IMPRESSION] = "No evidence of vascular aneurysm.";
                 }
                 else
                 {
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] += followup_vary;
+                    guidelines[RESULTS_FOLLOWUP] += followup_vary;
                 }
 
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal and Pelvic CT and MRI, Part 2: White Paper of the ACR Incidental Findings Committee II on Vascular Findings";
-                //guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
-                //guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/...";
+                guidelines[RESULTS_REFERENCE_TEXT] = "Managing Incidental Findings on Abdominal and Pelvic CT and MRI, Part 2: White Paper of the ACR Incidental Findings Committee II on Vascular Findings";
+                //guidelines[RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
+                //guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/...";
 
                 break;
 
@@ -406,28 +406,28 @@ public class VascularDetailFragment extends OrganDetailFragment
 
                 if(carotid_velocity == carotid_ratio)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = velocityFindings + ".  " + ratioFindings + ".";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = velocityImpression + ".";
+                    guidelines[RESULTS_IMPRESSION] = velocityFindings + ".  " + ratioFindings + ".";
+                    guidelines[RESULTS_CLASSIFICATION] = velocityImpression + ".";
 
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = nearOcclusion;
+                    guidelines[RESULTS_FOLLOWUP] = nearOcclusion;
                 }
                 else if(carotid_velocity == 3)
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = velocityFindings + ".";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = velocityImpression + ".";
+                    guidelines[RESULTS_IMPRESSION] = velocityFindings + ".";
+                    guidelines[RESULTS_CLASSIFICATION] = velocityImpression + ".";
                 }
                 else
                 {
-                    guidelines[OrganDetailActivity.RESULTS_IMPRESSION] = velocityFindings + ". " + velocityImpression + " by ICA peak systolic velocity. However, the " + ratioFindings + ". " + ratioImpression + ".";
-                    guidelines[OrganDetailActivity.RESULTS_CLASSIFICATION] = "";
+                    guidelines[RESULTS_IMPRESSION] = velocityFindings + ". " + velocityImpression + " by ICA peak systolic velocity. However, the " + ratioFindings + ". " + ratioImpression + ".";
+                    guidelines[RESULTS_CLASSIFICATION] = "";
 
-                    guidelines[OrganDetailActivity.RESULTS_FOLLOWUP] = nearOcclusion;
+                    guidelines[RESULTS_FOLLOWUP] = nearOcclusion;
                 }
 
 
-                guidelines[OrganDetailActivity.RESULTS_REFERENCE_TEXT] = "Carotid Artery Stenosis: Gray-Scale and Doppler US Diagnosis - Society of Radiologists in Ultrasound Consensus Conference";
-                //guidelines[OrganDetailActivity.RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
-                //guidelines[OrganDetailActivity.RESULTS_REFERENCE_IMAGE] = "drawable/...";
+                guidelines[RESULTS_REFERENCE_TEXT] = "Carotid Artery Stenosis: Gray-Scale and Doppler US Diagnosis - Society of Radiologists in Ultrasound Consensus Conference";
+                //guidelines[RESULTS_REFERENCE_LINK] = "https://www.acr.org/Quality-Safety/Resources/TIRADS";
+                //guidelines[RESULTS_REFERENCE_IMAGE] = "drawable/...";
 
                 break;
 

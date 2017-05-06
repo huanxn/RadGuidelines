@@ -1,11 +1,15 @@
 package com.radicalpeas.radguidelines;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -86,6 +90,13 @@ public class SpleenDetailFragment extends OrganDetailFragment
                 final Spinner spleen_suspicious_features_spinner = (Spinner) view.findViewById(R.id.spinner_spleen_ct_suspicious_features);
                 final Spinner spleen_lesion_size_spinner = (Spinner) view.findViewById(R.id.spinner_spleen_ct_lesion_size);
 
+                SpannableString benignFeaturesString = new SpannableString("Cyst: imperceptible wall, near-water attenuation (<10 HU), no enhancement\nHemangioma: discontinuous peripheral centripetal enhancement\nOther benign features: homogeneous, low attenuation (<20 HU), no enhancement, smooth margins");
+
+                benignFeaturesString.setSpan(new StyleSpan(Typeface.BOLD), 0, 5, 0);
+                //benignFeaturesString.setSpan(new StyleSpan(Typeface.BOLD), benignFeaturesString.indexOf)
+
+                ((TextView)rootView.findViewById(R.id.textview_spleen_ct_benign_features_info)).setText(benignFeaturesString);
+
                 spleen_benign_features_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -132,6 +143,16 @@ public class SpleenDetailFragment extends OrganDetailFragment
                     @Override
                     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                         suspicious_features = position;
+                        if(suspicious_features == 0)
+                        {
+                            // indeterminate features
+                            ((TextView)rootView.findViewById(R.id.textview_spleen_ct_suspicious_features_info)).setText("Indeterminate imaging features: heterogeneous, intermediate attenuation (>20 HU), enhancement, smooth margins");
+                        }
+                        else if(suspicious_features == 1)
+                        {
+                            // indeterminate features
+                            ((TextView)rootView.findViewById(R.id.textview_spleen_ct_suspicious_features_info)).setText("Heterogeneous, enhancement, irregular margins, necrosis, splenic parenchymal or vascular invasion, substantial enlargement");
+                        }
                     }
 
                     @Override
@@ -169,6 +190,8 @@ public class SpleenDetailFragment extends OrganDetailFragment
 
         if(benign_features == 0)
         {
+            // not diagnostic benign
+            view.findViewById(R.id.textview_spleen_ct_benign_features_info).setVisibility(View.GONE);
 
             enableField(view, R.id.label_spleen_ct_prior_imaging, R.id.spinner_spleen_ct_prior_imaging);
             enableField(view, R.id.label_spleen_ct_cancer_history, R.id.spinner_spleen_ct_cancer_history);
@@ -177,6 +200,7 @@ public class SpleenDetailFragment extends OrganDetailFragment
 
             if(prior_imaging == 0)
             {
+                // no prior
                 enableField(view, R.id.label_spleen_ct_cancer_history, R.id.spinner_spleen_ct_cancer_history);
                 enableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
                 enableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
@@ -185,17 +209,18 @@ public class SpleenDetailFragment extends OrganDetailFragment
                 {
                     enableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
                     disableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
+
+                    view.findViewById(R.id.textview_spleen_ct_suspicious_features_info).setVisibility(View.VISIBLE);
                 }
                 else
                 {
-                    // has priors - hide all other fields
                     disableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
                     enableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
                 }
             }
             else
             {
-                // has priors - hide all other fields
+                // has priors
                 disableField(view, R.id.label_spleen_ct_cancer_history, R.id.spinner_spleen_ct_cancer_history);
                 disableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
                 disableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
@@ -203,11 +228,15 @@ public class SpleenDetailFragment extends OrganDetailFragment
         }
         else
         {
-            // benign - hide all other fields
+            // benign
+            view.findViewById(R.id.textview_spleen_ct_benign_features_info).setVisibility(View.VISIBLE);
+
             disableField(view, R.id.label_spleen_ct_prior_imaging, R.id.spinner_spleen_ct_prior_imaging);
             disableField(view, R.id.label_spleen_ct_cancer_history, R.id.spinner_spleen_ct_cancer_history);
             disableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
             disableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
+
+            view.findViewById(R.id.textview_spleen_ct_suspicious_features_info).setVisibility(View.GONE);
         }
 
     }
@@ -217,14 +246,14 @@ public class SpleenDetailFragment extends OrganDetailFragment
     // else send error message
     public String[] getResults()
     {
-        String[] guidelines = new String[OrganDetailActivity.RESULTS_ARRAY_SIZE];
+        String[] guidelines = new String[RESULTS_ARRAY_SIZE];
 
         for (int i = 0; i < guidelines.length; i++)
         {
             guidelines[i] = "";
         }
 
-        guidelines[OrganDetailActivity.RESULTS_STATUS_MESSAGE] = "VALID";
+        guidelines[RESULTS_STATUS_MESSAGE] = "VALID";
 
         // tab position
         Tab currentTab = Tab.values()[mViewPager.getCurrentItem()];
@@ -232,6 +261,70 @@ public class SpleenDetailFragment extends OrganDetailFragment
         {
             case CT:
 
+                String noFollowUpString = "No follow-up imaging is recommended";
+                String evaluateString = "Consider PET, MRI, or biopsy.";
+                String followUpImagingString = "Recommend follow-up MRI in 6 and 12 months.";
+                String findings = "";
+
+                if(benign_features == 0)
+                {
+                    if(prior_imaging == 0)
+                    {
+                        // no prior imaging available
+                        if(cancer_history == 0)
+                        {
+                            // no history of cancer
+                            if(suspicious_features == 0)
+                            {
+                                // indeterminate imaging features
+                                findings = "Incidental splenic finding with indeterminate imaging features";
+                                guidelines[RESULTS_FOLLOWUP] = followUpImagingString;
+                            }
+                            else if(suspicious_features == 1)
+                            {
+                                // suspicious imaging features
+                                findings = "Incidental splenic finding with suspicious imaging features";
+                                guidelines[RESULTS_FOLLOWUP] = evaluateString;
+                            }
+                        }
+                        else if(cancer_history == 1)
+                        {
+                            // history of cancer
+                            if(lesion_size == 0)
+                            {
+                                // size < 1 cm
+                                findings = "Incidental splenic finding measuring less than 1 cm, in a patient with history of cancer.";
+                                guidelines[RESULTS_FOLLOWUP] = followUpImagingString;
+                            }
+                            else
+                            {
+                                // size >= 1cm
+                                findings = "Incidental splenic finding measuring at least 1 cm, in a patient with history of cancer.";
+                                guidelines[RESULTS_FOLLOWUP] = evaluateString;
+                            }
+                        }
+                    }
+                    else if(prior_imaging == 1)
+                    {
+                        // stable for 1 year
+                        findings = "Incidental splenic finding which has been stable for over 1 year";
+                        guidelines[RESULTS_FOLLOWUP] = noFollowUpString;
+                    }
+                    else if(prior_imaging == 2)
+                    {
+                        // not stable
+                        findings = "Incidental splenic finding which has not been stable for at least 1 year";
+                        guidelines[RESULTS_FOLLOWUP] = evaluateString;
+                    }
+                }
+                else if(benign_features == 1)
+                {
+                    // diagnostic benign features
+                    findings = "Incidental splenic finding with diagnostic benign features";
+                    guidelines[RESULTS_FOLLOWUP] = noFollowUpString;
+                }
+
+                guidelines[RESULTS_IMPRESSION] = findings + ".";
                 break;
 
             default:
