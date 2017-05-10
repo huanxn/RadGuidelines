@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/textview_adnexa_ct_imaging_features"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         />
 
@@ -53,7 +53,7 @@
 
     <TextView
         android:id="@+id/textview_adnexa_ct_diagnostic_features"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         />
 
@@ -82,7 +82,7 @@
         <TextView
             android:id="@+id/label_adnexa_ct_size"
             style="@style/standardTextLabelStyle"
-            android:text="@string/size_prompt"
+            android:text="@string/organ_size_prompt"
             />
         <Spinner
             android:id="@+id/spinner_adnexa_ct_size"

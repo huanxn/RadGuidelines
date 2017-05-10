@@ -78,7 +78,7 @@ public class OrganDetailActivity extends AppCompatActivity
                         arguments.putString(ResultsDetailFragment.ARG_IMPRESSION, results[OrganDetailFragment.RESULTS_IMPRESSION]);
                         arguments.putString(ResultsDetailFragment.ARG_CLASSIFICATION, results[OrganDetailFragment.RESULTS_CLASSIFICATION]);
                         arguments.putString(ResultsDetailFragment.ARG_FOLLOWUP, results[OrganDetailFragment.RESULTS_FOLLOWUP]);
-                        arguments.putString(ResultsDetailFragment.ARG_STATISTICS, results[OrganDetailFragment.RESULTS_STATISTICS]);
+                        arguments.putString(ResultsDetailFragment.ARG_COMMENTS, results[OrganDetailFragment.RESULTS_COMMENTS]);
                         arguments.putString(ResultsDetailFragment.ARG_REFERENCE_TEXT, results[OrganDetailFragment.RESULTS_REFERENCE_TEXT]);
                         arguments.putString(ResultsDetailFragment.ARG_REFERENCE_LINK, results[OrganDetailFragment.RESULTS_REFERENCE_LINK]);
                         arguments.putString(ResultsDetailFragment.ARG_REFERENCE_IMAGE, results[OrganDetailFragment.RESULTS_REFERENCE_IMAGE]);

@@ -44,7 +44,7 @@ public class OrganDetailFragment extends Fragment
     final static int RESULTS_IMPRESSION = 1;
     final static int RESULTS_CLASSIFICATION = 2;
     final static int RESULTS_FOLLOWUP = 3;
-    final static int RESULTS_STATISTICS = 4;
+    final static int RESULTS_COMMENTS = 4;
     final static int RESULTS_REFERENCE_TEXT = 5;
     final static int RESULTS_REFERENCE_LINK = 6;
     final static int RESULTS_REFERENCE_IMAGE= 7;

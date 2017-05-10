@@ -131,7 +131,7 @@
                 <TextView
                     android:id="@+id/label_renal_cyst_size"
                     style="@style/standardTextLabelStyle"
-                    android:text="@string/size_prompt"
+                    android:text="@string/organ_size_prompt"
                     />
                 <Spinner
                     android:id="@+id/spinner_cyst_size"
@@ -194,7 +194,7 @@
                 <TextView
                     android:id="@+id/label_renal_solid_size"
                     style="@style/standardTextLabelStyle"
-                    android:text="@string/size_prompt"
+                    android:text="@string/organ_size_prompt"
                     />
 
                 <Spinner

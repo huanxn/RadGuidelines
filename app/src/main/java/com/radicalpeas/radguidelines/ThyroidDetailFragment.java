@@ -474,11 +474,11 @@ public class ThyroidDetailFragment extends OrganDetailFragment
                 {
                     guidelines[RESULTS_IMPRESSION] = findings;
                     guidelines[RESULTS_CLASSIFICATION] = "TR3: Mildly Suspicious.";
-                    guidelines[RESULTS_FOLLOWUP] = "FNA if > 2.5 cm.  Follow if > 1.5 cm";
+                    guidelines[RESULTS_FOLLOWUP] = "FNA if \u2265 2.5 cm.  Follow if \u2265 1.5 cm";
 
                     if (noduleSize >= 2.5)
                     {
-                        guidelines[RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size 2.5 cm or larger, FNA biopsy is recommended.";
                     }
                     else if (noduleSize >= 1.5)
                     {
@@ -493,26 +493,26 @@ public class ThyroidDetailFragment extends OrganDetailFragment
                 {
                     guidelines[RESULTS_IMPRESSION] = findings;
                     guidelines[RESULTS_CLASSIFICATION] = "TR4: Moderately Suspicious.";
-                    guidelines[RESULTS_FOLLOWUP] = "FNA if > 1.5 cm.  Follow if > 1 cm";
+                    guidelines[RESULTS_FOLLOWUP] = "FNA if \u2265 1.5 cm.  Follow if \u2265 1 cm";
 
-                    if (noduleSize >= 2.5)
+                    if (noduleSize >= 1.5)
                     {
-                        guidelines[RESULTS_FOLLOWUP] = "Given the size larger than 2.5 cm, FNA biopsy is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size 1.5 cm or larger, FNA biopsy is recommended.";
                     }
-                    else if (noduleSize >= 1.5)
+                    else if (noduleSize >= 1.0)
                     {
                         guidelines[RESULTS_FOLLOWUP] = "Given the size between 1.0 and 1.5 cm, follow up is recommended.";
                     }
                     else if (noduleSize > 0)
                     {
-                        guidelines[RESULTS_FOLLOWUP] = "Given the size less than 1.5 cm, no follow up is recommended.";
+                        guidelines[RESULTS_FOLLOWUP] = "Given the size less than 1.0 cm, no follow up is recommended.";
                     }
                 }
                 else
                 {
                     guidelines[RESULTS_IMPRESSION] = findings;
                     guidelines[RESULTS_CLASSIFICATION] = "TR5: Highly Suspicious.";
-                    guidelines[RESULTS_FOLLOWUP] = "FNA if > 1 cm.  Follow if > 0.5 cm";
+                    guidelines[RESULTS_FOLLOWUP] = "FNA if \u2265 1 cm.  Follow if \u2265 0.5 cm";
 
                     if (noduleSize >= 1.0)
                     {
@@ -527,7 +527,7 @@ public class ThyroidDetailFragment extends OrganDetailFragment
                         guidelines[RESULTS_FOLLOWUP] = "Given the size less than 0.5 cm, no follow up is recommended.";
                     }
 
-                    guidelines[RESULTS_STATISTICS] = " ??% mallignant";
+                    guidelines[RESULTS_COMMENTS] = " ??% mallignant";
                 }
 
                 guidelines[RESULTS_REFERENCE_TEXT] = "Thyroid Imaging Reporting and Data System (TI-RADS) 2017";

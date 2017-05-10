@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/label_adrenal_size"
             style="@style/standardTextLabelStyle"
-            android:text="@string/size_prompt"
+            android:text="@string/organ_size_prompt"
             />
 
         <Spinner
@@ -94,7 +94,7 @@
 
     <TextView
         android:id="@+id/textview_adrenal_features_info"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         />
 

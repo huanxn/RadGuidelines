@@ -60,7 +60,7 @@
         android:orientation="horizontal">
         <TextView
             style="@style/standardTextLabelStyle"
-            android:text="@string/size_prompt"
+            android:text="@string/organ_size_prompt"
             />
 
         <Spinner

@@ -3,6 +3,7 @@ package com.radicalpeas.radguidelines;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,12 +91,14 @@ public class SpleenDetailFragment extends OrganDetailFragment
                 final Spinner spleen_suspicious_features_spinner = (Spinner) view.findViewById(R.id.spinner_spleen_ct_suspicious_features);
                 final Spinner spleen_lesion_size_spinner = (Spinner) view.findViewById(R.id.spinner_spleen_ct_lesion_size);
 
-                SpannableString benignFeaturesString = new SpannableString("Cyst: imperceptible wall, near-water attenuation (<10 HU), no enhancement\nHemangioma: discontinuous peripheral centripetal enhancement\nOther benign features: homogeneous, low attenuation (<20 HU), no enhancement, smooth margins");
+                String benignFeaturesString = "Cyst: imperceptible wall, near-water attenuation (<10 HU), no enhancement\n\nHemangioma: discontinuous peripheral centripetal enhancement\n\nOther benign features: homogeneous, low attenuation (<20 HU), no enhancement, smooth margins";
+                SpannableString benignFeaturesSpannableString = new SpannableString(benignFeaturesString);
 
-                benignFeaturesString.setSpan(new StyleSpan(Typeface.BOLD), 0, 5, 0);
-                //benignFeaturesString.setSpan(new StyleSpan(Typeface.BOLD), benignFeaturesString.indexOf)
+                benignFeaturesSpannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, "Cyst".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                benignFeaturesSpannableString.setSpan(new StyleSpan(Typeface.BOLD), benignFeaturesString.indexOf("Hemangioma"), benignFeaturesString.indexOf("Hemangioma") + "Hemangioma".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                benignFeaturesSpannableString.setSpan(new StyleSpan(Typeface.BOLD), benignFeaturesString.indexOf("Other benign"), benignFeaturesString.indexOf("Other benign") + "Other benign features".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
 
-                ((TextView)rootView.findViewById(R.id.textview_spleen_ct_benign_features_info)).setText(benignFeaturesString);
+                ((TextView)rootView.findViewById(R.id.textview_spleen_ct_benign_features_info)).setText(benignFeaturesSpannableString);
 
                 spleen_benign_features_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -205,6 +208,8 @@ public class SpleenDetailFragment extends OrganDetailFragment
                 enableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
                 enableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
 
+                view.findViewById(R.id.textview_spleen_ct_suspicious_features_info).setVisibility(View.VISIBLE);
+
                 if(cancer_history == 0)
                 {
                     enableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
@@ -216,6 +221,8 @@ public class SpleenDetailFragment extends OrganDetailFragment
                 {
                     disableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
                     enableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
+
+                    view.findViewById(R.id.textview_spleen_ct_suspicious_features_info).setVisibility(View.GONE);
                 }
             }
             else
@@ -224,6 +231,8 @@ public class SpleenDetailFragment extends OrganDetailFragment
                 disableField(view, R.id.label_spleen_ct_cancer_history, R.id.spinner_spleen_ct_cancer_history);
                 disableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
                 disableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
+
+                view.findViewById(R.id.textview_spleen_ct_suspicious_features_info).setVisibility(View.GONE);
             }
         }
         else
@@ -231,10 +240,10 @@ public class SpleenDetailFragment extends OrganDetailFragment
             // benign
             view.findViewById(R.id.textview_spleen_ct_benign_features_info).setVisibility(View.VISIBLE);
 
-            disableField(view, R.id.label_spleen_ct_prior_imaging, R.id.spinner_spleen_ct_prior_imaging);
-            disableField(view, R.id.label_spleen_ct_cancer_history, R.id.spinner_spleen_ct_cancer_history);
-            disableField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
-            disableField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
+            hideField(view, R.id.label_spleen_ct_prior_imaging, R.id.spinner_spleen_ct_prior_imaging);
+            hideField(view, R.id.label_spleen_ct_cancer_history, R.id.spinner_spleen_ct_cancer_history);
+            hideField(view, R.id.label_spleen_ct_suspicious_features, R.id.spinner_spleen_ct_suspicious_features);
+            hideField(view, R.id.label_spleen_ct_lesion_size, R.id.spinner_spleen_ct_lesion_size);
 
             view.findViewById(R.id.textview_spleen_ct_suspicious_features_info).setVisibility(View.GONE);
         }

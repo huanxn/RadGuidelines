@@ -78,7 +78,7 @@
 
     <TextView
         android:id="@+id/textview_gallblader_ct_info"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         android:text="Common bile duct or common hepatic duct &gt; 6 mm in a patient &lt; 60 years of age with the gallbladder present or a common duct &gt; 10 mm with the gallbladder absent."
         />

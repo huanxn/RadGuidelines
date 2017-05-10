@@ -1,6 +1,5 @@
 package com.radicalpeas.radguidelines;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,7 +27,7 @@ public class ResultsDetailFragment extends Fragment
     public static final String ARG_IMPRESSION = "IMPRESSION";
     public static final String ARG_CLASSIFICATION = "CLASSIFICATION";
     public static final String ARG_FOLLOWUP = "FOLLOWUP";
-    public static final String ARG_STATISTICS = "STATISTICS";
+    public static final String ARG_COMMENTS = "COMMENTS";
     public static final String ARG_REFERENCE_TEXT = "REFERENCE_TEXT";
     public static final String ARG_REFERENCE_LINK = "REFERENCE_LINK";
     public static final String ARG_REFERENCE_IMAGE = "REFERENCE_IMAGE";
@@ -108,7 +107,7 @@ public class ResultsDetailFragment extends Fragment
 
         private String impression;
         private String classification;
-        private String statistics;
+        private String comments;
         private String followup;
         private String reference_text;
         private String reference_link;
@@ -128,7 +127,7 @@ public class ResultsDetailFragment extends Fragment
             impression = args.getString(ARG_IMPRESSION);
             classification = args.getString(ARG_CLASSIFICATION);
             followup = args.getString(ARG_FOLLOWUP);
-            statistics = args.getString(ARG_STATISTICS);
+            comments = args.getString(ARG_COMMENTS);
             reference_text = args.getString(ARG_REFERENCE_TEXT);
             reference_link = args.getString(ARG_REFERENCE_LINK);
             reference_image = args.getString(ARG_REFERENCE_IMAGE);
@@ -165,7 +164,7 @@ public class ResultsDetailFragment extends Fragment
                     args.putString(ARG_IMPRESSION, impression);
                     args.putString(ARG_CLASSIFICATION, classification);
                     args.putString(ARG_FOLLOWUP, followup);
-                    args.putString(ARG_STATISTICS, statistics);
+                    args.putString(ARG_COMMENTS, comments);
                 }
                 else if(position == 1)
                 {
@@ -234,17 +233,32 @@ public class ResultsDetailFragment extends Fragment
                         {
                             ((TextView) view.findViewById(R.id.impression_text)).setText(getArguments().getString(ARG_IMPRESSION));
                         }
-                        if(getArguments().containsKey(ARG_CLASSIFICATION))
+
+                        if(getArguments().containsKey(ARG_CLASSIFICATION) && !getArguments().getString(ARG_CLASSIFICATION).isEmpty())
                         {
                             ((TextView) view.findViewById(R.id.classification_text)).setText(getArguments().getString(ARG_CLASSIFICATION));
                         }
-                        if(getArguments().containsKey(ARG_FOLLOWUP))
+                        else
+                        {
+                            view.findViewById(R.id.classification_text).setVisibility(View.GONE);
+                        }
+
+                        if(getArguments().containsKey(ARG_FOLLOWUP) && !getArguments().getString(ARG_FOLLOWUP).isEmpty())
                         {
                             ((TextView) view.findViewById(R.id.followup_text)).setText(getArguments().getString(ARG_FOLLOWUP));
                         }
-                        if(getArguments().containsKey(ARG_STATISTICS))
+                        else
                         {
-                            ((TextView) view.findViewById(R.id.statistics_text)).setText(getArguments().getString(ARG_STATISTICS));
+                            view.findViewById(R.id.followup_text).setVisibility(View.GONE);
+                        }
+
+                        if(getArguments().containsKey(ARG_COMMENTS))
+                        {
+                            ((TextView) view.findViewById(R.id.comments_text)).setText(getArguments().getString(ARG_COMMENTS));
+                        }
+                        else
+                        {
+                            view.findViewById(R.id.comments_text).setVisibility(View.GONE);
                         }
 
                         break;

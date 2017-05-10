@@ -300,6 +300,7 @@ public class AdnexaDetailFragment extends OrganDetailFragment
                 break;
         }
     }
+
     // must be overriden
     // if completed info, returns guideline recommendations, reference, link
     // else send error message

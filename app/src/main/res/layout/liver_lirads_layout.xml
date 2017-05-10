@@ -24,7 +24,7 @@
             android:orientation="horizontal">
             <TextView
                 style="@style/standardTextLabelStyle"
-                android:text="@string/size_prompt"
+                android:text="@string/organ_size_prompt"
                 />
             <Spinner
                 android:id="@+id/spinner_liver_lirads_size"
@@ -68,7 +68,7 @@
 
         <TextView
             android:id="@+id/textview_liver_lirads_washout_info"
-            style="@style/secondaryTextInfoStyle"
+            style="@style/subTextInfoStyle"
             android:text="Signal intensity of an observation must be less than on an earlier post-contrast phase AND visibly less than background liver on portal venous or delayed phase."
             android:visibility="gone"
             />
@@ -91,7 +91,7 @@
 
         <TextView
             android:id="@+id/textview_liver_lirads_capsule_info"
-            style="@style/secondaryTextInfoStyle"
+            style="@style/subTextInfoStyle"
             android:text="Rim of smooth hyperenhancement along the periphery of an observation in portal venous or delayed phase."
             android:visibility="gone"
             />
@@ -114,7 +114,7 @@
 
         <TextView
             android:id="@+id/textview_liver_lirads_growth_info"
-            style="@style/secondaryTextInfoStyle"
+            style="@style/subTextInfoStyle"
             android:text="Increase in diameter by both a minimum of 5 mm and a sufficient rate of at least 50% increase within 6 months or at least 100% increase over more than 6 months.\nA new observation measuring at least 10 mm not previously present on a prior examination of sufficient quality also meets threshold growth."
             android:visibility="gone"
             />

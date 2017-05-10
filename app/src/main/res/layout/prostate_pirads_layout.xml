@@ -17,6 +17,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/prostate_location_array"
             />
     </LinearLayout>
 
@@ -26,13 +27,14 @@
         android:orientation="horizontal">
         <TextView
             style="@style/standardTextLabelStyle"
-            android:text="T2 Signal"
+            android:text="T2:"
             />
         <Spinner
             android:id="@+id/spinner_pirads_t2"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/prostate_peripheral_T2_array"
             />
     </LinearLayout>
 
@@ -42,13 +44,14 @@
         android:orientation="horizontal">
         <TextView
             style="@style/standardTextLabelStyle"
-            android:text="@string/renal_cyst_septation_prompt"
+            android:text="DWI:"
             />
         <Spinner
-            android:id="@+id/spinner_cyst_septations"
+            android:id="@+id/spinner_pirads_dwi"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/prostate_dwi_array"
             />
     </LinearLayout>
 
@@ -58,42 +61,28 @@
         android:orientation="horizontal">
         <TextView
             style="@style/standardTextLabelStyle"
-            android:text="@string/renal_cyst_calcification_prompt"
+            android:text="DCE:"
             />
         <Spinner
-            android:id="@+id/spinner_cyst_calcifications"
+            android:id="@+id/spinner_pirads_enhancement"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/prostate_dce_array"
             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
         <TextView
             style="@style/standardTextLabelStyle"
-            android:text="@string/renal_cyst_enhancement_prompt"
+            android:text="@string/organ_size_prompt"
             />
         <Spinner
-            android:id="@+id/spinner_cyst_enhancement"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/standardTextLabelStyle"
-            android:text="@string/size_prompt"
-            />
-        <Spinner
-            android:id="@+id/spinner_cyst_size"
+            android:id="@+id/spinner_pirads_size"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

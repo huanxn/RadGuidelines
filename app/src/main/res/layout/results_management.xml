@@ -17,8 +17,8 @@
         style="@style/standardTextInfoStyle"/>
 
     <TextView
-        android:id="@+id/statistics_text"
-        style="@style/standardTextInfoStyle"/>
+        android:id="@+id/comments_text"
+        style="@style/secondaryTextInfoStyle"/>
 
 
 

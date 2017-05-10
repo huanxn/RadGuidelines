@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/textview_node_ct_imaging_features_info"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         />
 
     <LinearLayout
@@ -83,13 +83,13 @@
 
     <TextView
         android:id="@+id/textview_liver_ct_features_info"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         />
 
     <TextView
         android:id="@+id/textview_liver_ct_attenuation_info"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         />
 

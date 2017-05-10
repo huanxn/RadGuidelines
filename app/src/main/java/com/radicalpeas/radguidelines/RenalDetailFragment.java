@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -600,7 +599,7 @@ public class RenalDetailFragment extends OrganDetailFragment
                             guidelines[RESULTS_IMPRESSION] = findings;
                             guidelines[RESULTS_CLASSIFICATION] = "Bosniak 2F: mildly complex cyst";
                             guidelines[RESULTS_FOLLOWUP] = followup_2F.substring(0, 1).toUpperCase() + followup_2F.substring(1) + ".";
-                            guidelines[RESULTS_STATISTICS] = "Percentage malignant: 5%";
+                            guidelines[RESULTS_COMMENTS] = "Percentage malignant: 5%";
                         }
                         else if (cyst_septation == 3 || cyst_enhancement == 1)
                         {
@@ -617,7 +616,7 @@ public class RenalDetailFragment extends OrganDetailFragment
                             guidelines[RESULTS_IMPRESSION] = findings;
                             guidelines[RESULTS_CLASSIFICATION] = "Bosniak 3: Indeterminate cyst";
                             guidelines[RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
-                            guidelines[RESULTS_STATISTICS] = "Percentage malignant: 55%";
+                            guidelines[RESULTS_COMMENTS] = "Percentage malignant: 55%";
                         }
                         else
                         {
@@ -639,7 +638,7 @@ public class RenalDetailFragment extends OrganDetailFragment
                         guidelines[RESULTS_IMPRESSION] = findings;
                         guidelines[RESULTS_CLASSIFICATION] = "Bosniak 3: Indeterminate cyst";
                         guidelines[RESULTS_FOLLOWUP] = followup_3_or_4.substring(0, 1).toUpperCase() + followup_3_or_4.substring(1) + ".";
-                        guidelines[RESULTS_STATISTICS] = "Percentage malignant: 55%";
+                        guidelines[RESULTS_COMMENTS] = "Percentage malignant: 55%";
                     }
                     else if (cyst_wall == 2)
                     {

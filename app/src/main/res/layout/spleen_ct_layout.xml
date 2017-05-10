@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/textview_spleen_ct_benign_features_info"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         />
 
@@ -84,7 +84,7 @@
 
     <TextView
         android:id="@+id/textview_spleen_ct_suspicious_features_info"
-        style="@style/secondaryTextInfoStyle"
+        style="@style/subTextInfoStyle"
         android:visibility="gone"
         />
 

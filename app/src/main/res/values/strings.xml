@@ -14,13 +14,39 @@
     </string-array>
 
 
+    <string name="organ_size_prompt">Size:</string>
     <string name="organ_cancer_history_prompt">Cancer History:</string>
     <string name="organ_malignancy_history_prompt">Malignancy History:</string>
 
     <!-- LUNG -->
+    <string-array name="lung_incidental_solid_size_array">
+        <item>&lt; 6 mm</item>
+        <item>6 to 8 mm</item>
+        <item>&gt; 8 mm</item>
+    </string-array>
 
+    <string-array name="lung_incidental_subsolid_size_array">
+        <item>&lt; 6 mm</item>
+        <item>&gt;= 6 mm</item>
+    </string-array>
 
-    <!-- LIVER -->
+    <string-array name="lung_incidental_risk_level_array">
+        <item>low risk</item>
+        <item>high risk</item>
+    </string-array>
+
+    <string-array name="lung_incidental_nodule_type_array">
+        <item>solid</item>
+        <item>subsolid (ground glass)</item>
+        <item>subsolid (part-solid)</item>
+    </string-array>
+
+    <string-array name="lung_incidental_number_array">
+        <item>single</item>
+        <item>multiple</item>
+    </string-array>
+
+        <!-- LIVER -->
     <string name="liver_ct_risk_level">Risk level:</string>
     <string-array name="liver_ct_risk_level_array">
         <item>low risk</item>
@@ -80,11 +106,10 @@
         <item>fat-containing, non-calcified</item>
     </string-array>
 
-    <string name="size_prompt">Size (cm):</string>
     <string-array name="renal_solid_size_array">
-        <item>Less than 1 cm</item>
+        <item>&lt; 1 cm</item>
         <item>1 to 3 cm</item>
-        <item>More than 3 cm</item>
+        <item>&gt; 3 cm</item>
     </string-array>
 
     <!-- RENAL CYST -->
@@ -402,7 +427,44 @@
     </string-array>
 
     <!-- PROSTATE -->
+    <string-array name="prostate_location_array">
+        <item>Peripheral Zone</item>
+        <item>Transition Zone</item>
+    </string-array>
 
+    <string-array name="prostate_peripheral_T2_array">
+        <item>Uniform hyperintense signal intensity (normal)</item>
+        <item>Linear or wedge-shaped hypointensity or diffuse mild hypointensity, usually indistinct margin</item>
+        <item>Heterogeneous signal intensity or non-circumscribed, rounded, moderate hypointensity. Includes others that do not qualify as 2, 4, or 5</item>
+        <item>Circumscribed, homogenous moderate hypointense focus/mass confined to prostate and &lt; 1.5 cm in greatest dimension</item>
+        <item>Same as 4 but ≥1.5cm in greatest dimension or definite extraprostatic extension/invasive behavior</item>
+    </string-array>
+
+    <string-array name="prostate_transition_T2_array">
+        <item>Homogeneous intermediate signal intensity (normal)</item>
+        <item>Circumscribed hypointense or heterogeneous encapsulated nodule(s) (BPH)</item>
+        <item>Heterogeneous signal intensity with obscured margins. Includes others that do not qualify as 2, 4, or 5</item>
+        <item>Lenticular or non-circumscribed, homogeneous, moderately hypointense, and &lt; 1.5 cm in greatest dimension</item>
+        <item>Same as 4, but ≥1.5cm in greatest dimension or definite extraprostatic extension/invasive behavior</item>
+    </string-array>
+
+    <string-array name="prostate_dwi_array">
+        <item>No abnormality (i.e., normal) on ADC and high b-value DWI</item>
+        <item>Indistinct hypointense on ADC</item>
+        <item>Focal mildly/moderately hypointense on ADC and isointense/mildly hyperintense on high b-value DWI</item>
+        <item>Focal markedly hypointense on ADC and markedly hyperintense on high b-value DWI; &lt; 1.5cm in greatest dimension</item>
+        <item>Same as 4 but ≥1.5cm in greatest dimension or definite extraprostatic extension/invasive behavior</item>
+    </string-array>
+
+    <string-array name="prostate_dce_array">
+        <item>no early enhancement, or diffuse enhancement not corresponding to a focal finding on T2W and/or DWI or focal enhancement corresponding to a lesion demonstrating features of BPH on T2WI</item>
+        <item>focal, earlier than or contemporaneously with enhancement of adjacent normal prostatic tissues, and corresponds to suspicious finding on T2W and/or DWI</item>
+    </string-array>
+
+    <string-array name="prostate_size_array">
+        <item>&lt; 1.5 cm</item>
+        <item>&gt;= 1.5 cm</item>
+    </string-array>
 
     <!-- RESULTS -->
     <string-array name="results_tab_titles_array">
